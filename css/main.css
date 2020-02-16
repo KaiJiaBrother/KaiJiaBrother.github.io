@@ -1205,7 +1205,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #1ac142;
+  background: #ff08ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2271,6 +2271,25 @@ ul.breadcrumb li + li:last-child {
   color: #ccc;
   margin: auto;
 }
+.popular-posts-header {
+  border-bottom: 1px solid #eee;
+  display: block;
+  font-size: 1.125em;
+  margin-bottom: 10px;
+  margin-top: 60px;
+}
+.popular-posts {
+  padding: 0;
+}
+.popular-posts .popular-posts-item {
+  margin-left: 2em;
+}
+.popular-posts .popular-posts-item .popular-posts-title {
+  font-size: 0.875em;
+  font-weight: normal;
+  line-height: 2.4;
+  margin: 0;
+}
 .header {
   margin: 0 auto;
   position: relative;
@@ -2725,21 +2744,14 @@ ul.breadcrumb li + li:last-child {
   padding: 18px 0;
 }
 body {
-  background-image: url("../images/body.jfif");
+  background-image: url("../images/thumb-1920-1064258.jpg");
   background-repeat: repeat;
   background-attachment: fixed;
   background-position: center;
 }
-.post-block,
-#posts > article + article .post-block {
-  margin-top: $site-top-margin;
-  margin-left: 3px;
-  border-radius: $site-card-radius;
-}
 @media (max-width: 767px) {
   .post-block,
   #posts > article + article .post-block {
-    padding: 25px 0 15px !important;
     margin: 0 15px 20px;
   }
 }
