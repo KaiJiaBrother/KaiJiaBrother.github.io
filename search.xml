@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Stay Strong Wuhan</title>
+    <url>/Others/Stay%20Strong%20Wuhan/</url>
+    <content><![CDATA[<p>武汉加油！！！</p>
+]]></content>
+      <categories>
+        <category>Others</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>This is a blog without any titles</title>
-    <url>/2020/02/13/first-flag/</url>
+    <url>/Others/first-flag/</url>
     <content><![CDATA[<h2 id="A-small-goal"><a href="#A-small-goal" class="headerlink" title="A small goal"></a>A small goal</h2><p>I&#39;m going to record <code>one Linux command</code> everyday since today.<br>Let&#39;s see how long I can insist it.</p>
 ]]></content>
       <categories>
@@ -14,7 +26,7 @@
   </entry>
   <entry>
     <title>how to ssh to linux machine in University of Leeds</title>
-    <url>/2019/10/14/how-to-ssh-to-linux-machine-in-University-of-Leeds/</url>
+    <url>/Linux/how-to-ssh-to-linux-machine-in-University-of-Leeds/</url>
     <content><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>This guide will show you how to quickly and simply set up SSH so you can access the School of Computing facilities from the comfort of your own home.</p>
 <p>Note: a basic familiarity with the command line will be required for this guide, as well as knowledge of how to use a terminal based text editor such as <code>vim</code> or <code>nano</code>.</p>
 <a id="more"></a>
@@ -67,7 +79,7 @@
   </entry>
   <entry>
     <title>Introduction</title>
-    <url>/2016/04/22/introduction/</url>
+    <url>/Others/introduction/</url>
     <content><![CDATA[<h2 id="My-first-blog"><a href="#My-first-blog" class="headerlink" title="My first blog"></a>My first blog</h2><p>The domain name <code>kaijiadage.com</code> is derived from the Chinese spelling of my nickname which is widely used in my social media. I bought this domain name on Apirl 22nd 2016 and ran my own .net project on this website until the graduation of the undergraduate.<br>Regrettably, the server was expired after my graduation. As a result, the website cannot work.<br>When it comes to the beginning of semester 2 in my Msc study, I reborn the idea of setting up a personal blog in order to record my study, my life.</p>
 ]]></content>
       <categories>
