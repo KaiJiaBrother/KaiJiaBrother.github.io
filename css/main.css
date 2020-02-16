@@ -1205,7 +1205,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffe9ff;
+  background: #ffff96;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2809,6 +2809,20 @@ body {
     padding: 15px;
     margin: 0 15px 20px;
   }
+}
+#valine-comments textarea {
+  font-size: 0.7rem;
+  background: url("https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/Photo/comment_bg.png") 100% 100% no-repeat;
+}
+#valine-comments button {
+  padding: 0.3rem 1rem;
+  border-color: #fff;
+  background-color: #49b1f5;
+  color: #fff;
+  font-size: 0.7rem;
+}
+#valine-comments button:hover {
+  background-color: #06446c;
 }
 .v .vlist .vcard .vhead .vsys {
   display: none !important;
