@@ -157,8 +157,8 @@ body {
 body {
   background: #eee;
   color: #555;
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 1em;
+  font-family: 'Times New Roman', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 1.1em;
   line-height: 2;
 }
 @media (max-width: 991px) {
@@ -173,28 +173,28 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Times New Roman', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-weight: bold;
   line-height: 1.5;
   margin: 20px 0 15px;
 }
 h1 {
-  font-size: 1.5em;
+  font-size: 1.475em;
 }
 h2 {
-  font-size: 1.375em;
+  font-size: 1.35em;
 }
 h3 {
-  font-size: 1.25em;
+  font-size: 1.225em;
 }
 h4 {
-  font-size: 1.125em;
+  font-size: 1.1em;
 }
 h5 {
-  font-size: 1em;
+  font-size: 0.975em;
 }
 h6 {
-  font-size: 0.875em;
+  font-size: 0.85em;
 }
 p {
   margin: 0 0 20px 0;
@@ -372,7 +372,7 @@ pre {
 }
 pre,
 code {
-  font-family: consolas, Menlo, monospace, "PingFang SC", "Microsoft YaHei";
+  font-family: 'Source Code Pro', consolas, Menlo, monospace, "PingFang SC", "Microsoft YaHei";
 }
 code {
   background: #eee;
@@ -712,15 +712,16 @@ pre .javascript .function {
   margin-bottom: 20px;
   padding: 15px;
   position: relative;
-  border: 1px solid #eee;
-  border-left-width: 5px;
+  background: #f9f9f9;
+  border: initial;
+  border-left: 3px solid #eee;
 }
 .post-body .note h2,
 .post-body .note h3,
 .post-body .note h4,
 .post-body .note h5,
 .post-body .note h6 {
-  margin-top: 0;
+  margin-top: 3px;
   border-bottom: initial;
   margin-bottom: 0;
   padding-top: 0;
@@ -743,7 +744,18 @@ pre .javascript .function {
 .post-body .note img:last-child {
   margin-bottom: 0;
 }
+.post-body .note:not(.no-icon) {
+  padding-left: 45px;
+}
+.post-body .note:not(.no-icon)::before {
+  font-family: 'FontAwesome';
+  font-size: larger;
+  left: 15px;
+  position: absolute;
+  top: 13px;
+}
 .post-body .note.default {
+  background: #f7f7f7;
   border-left-color: #777;
 }
 .post-body .note.default h2,
@@ -753,7 +765,12 @@ pre .javascript .function {
 .post-body .note.default h6 {
   color: #777;
 }
+.post-body .note.default:not(.no-icon)::before {
+  content: "\f0a9";
+  color: #777;
+}
 .post-body .note.primary {
+  background: #f5f0fa;
   border-left-color: #6f42c1;
 }
 .post-body .note.primary h2,
@@ -763,7 +780,12 @@ pre .javascript .function {
 .post-body .note.primary h6 {
   color: #6f42c1;
 }
+.post-body .note.primary:not(.no-icon)::before {
+  content: "\f055";
+  color: #6f42c1;
+}
 .post-body .note.info {
+  background: #eef7fa;
   border-left-color: #428bca;
 }
 .post-body .note.info h2,
@@ -773,7 +795,12 @@ pre .javascript .function {
 .post-body .note.info h6 {
   color: #428bca;
 }
+.post-body .note.info:not(.no-icon)::before {
+  content: "\f05a";
+  color: #428bca;
+}
 .post-body .note.success {
+  background: #eff8f0;
   border-left-color: #5cb85c;
 }
 .post-body .note.success h2,
@@ -783,7 +810,12 @@ pre .javascript .function {
 .post-body .note.success h6 {
   color: #5cb85c;
 }
+.post-body .note.success:not(.no-icon)::before {
+  content: "\f058";
+  color: #5cb85c;
+}
 .post-body .note.warning {
+  background: #fdf8ea;
   border-left-color: #f0ad4e;
 }
 .post-body .note.warning h2,
@@ -793,7 +825,12 @@ pre .javascript .function {
 .post-body .note.warning h6 {
   color: #f0ad4e;
 }
+.post-body .note.warning:not(.no-icon)::before {
+  content: "\f06a";
+  color: #f0ad4e;
+}
 .post-body .note.danger {
+  background: #fcf1f2;
   border-left-color: #d9534f;
 }
 .post-body .note.danger h2,
@@ -801,6 +838,10 @@ pre .javascript .function {
 .post-body .note.danger h4,
 .post-body .note.danger h5,
 .post-body .note.danger h6 {
+  color: #d9534f;
+}
+.post-body .note.danger:not(.no-icon)::before {
+  content: "\f056";
   color: #d9534f;
 }
 .pagination .prev,
@@ -967,7 +1008,7 @@ pre .javascript .function {
   border-bottom: none;
   color: #fff;
   display: inline-block;
-  line-height: 1.375em;
+  line-height: 1.5em;
   padding: 0 40px;
   position: relative;
 }
@@ -976,8 +1017,8 @@ pre .javascript .function {
 }
 .site-title {
   display: inline-block;
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 1.375em;
+  font-family: 'Comic Sans MS', 'Times New Roman', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 1.5em;
   font-weight: normal;
   line-height: 1.5;
   vertical-align: top;
@@ -1164,7 +1205,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #b08e4f;
+  background: #1ac142;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1486,7 +1527,7 @@ pre .javascript .function {
   opacity: 0.8;
 }
 .post-body {
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Times New Roman', "PingFang SC", "Microsoft YaHei", sans-serif;
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
@@ -1788,7 +1829,7 @@ pre .javascript .function {
 }
 .posts-expand .post-meta {
   color: #999;
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Times New Roman', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 0.75em;
   margin: 3px 0 60px 0;
   text-align: center;
@@ -2372,6 +2413,19 @@ ul.breadcrumb li + li:last-child {
 .menu .menu-item span.exturl:hover {
   background: #f5f5f5;
 }
+.menu-item-active a::after,
+.menu .menu-item a:hover::after,
+.menu .menu-item span.exturl:hover::after {
+  background: #bbb;
+  border-radius: 50%;
+  content: ' ';
+  height: 6px;
+  margin-top: -3px;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  width: 6px;
+}
 .menu .menu-item {
   display: block;
   margin: 0;
@@ -2410,6 +2464,10 @@ ul.breadcrumb li + li:last-child {
 .sub-menu .menu-item span.exturl:hover {
   background: initial;
   color: #fc6423;
+}
+.sub-menu .menu-item a::after,
+.sub-menu .menu-item span.exturl::after {
+  content: initial !important;
 }
 .sub-menu .menu-item-active a {
   background: #fff;
@@ -2490,7 +2548,6 @@ ul.breadcrumb li + li:last-child {
 }
 .links-of-author-item {
   margin: 5px 0 0;
-  width: 50%;
 }
 .links-of-author-item a,
 .links-of-author-item span.exturl {
@@ -2743,9 +2800,6 @@ body {
 .v .vlist .vcard .vhead .vsys {
   display: none !important;
 }
-.posts-expand .post-meta {
-  margin: 3px 0 40px 0;
-}
 .posts-expand .post-meta time {
   border-bottom: none;
   cursor: initial;
@@ -2754,7 +2808,7 @@ body {
   font-weight: 900;
 }
 .posts-collapse .post-title a {
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Times New Roman', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 .post-body a {
   color: #0477ab;
@@ -2827,7 +2881,6 @@ blockquote p,
   box-shadow: none;
 }
 .post-button {
-  text-align: right;
   margin-top: 15px;
 }
 @media (max-width: 767px) {
