@@ -1,14 +1,14 @@
 (function() {
 	function ready(fn) {
-		if (document.readyState != 'loading'){
+		if (document.readyState != "loading") {
 			fn();
 		} else {
-			document.addEventListener('DOMContentLoaded', fn);
+			document.addEventListener("DOMContentLoaded", fn);
 		}
 	}
 
 	function makeSnow(el) {
-		var ctx = el.getContext('2d');
+		var ctx = el.getContext("2d");
 		var width = 0;
 		var height = 0;
 		var particles = [];
@@ -16,14 +16,14 @@
 		var Particle = function() {
 			this.x = this.y = this.dx = this.dy = 0;
 			this.reset();
-		}
+		};
 
 		Particle.prototype.reset = function() {
 			this.y = Math.random() * height;
 			this.x = Math.random() * width;
-			this.dx = (Math.random() * 1) - 0.5;
-			this.dy = (Math.random() * 0.5) + 0.5;
-		}
+			this.dx = Math.random() * 1 - 0.5;
+			this.dy = Math.random() * 0.5 + 0.5;
+		};
 
 		function createParticles(count) {
 			if (count != particles.length) {
@@ -45,7 +45,7 @@
 
 		function updateParticles() {
 			ctx.clearRect(0, 0, width, height);
-			ctx.fillStyle = '#f6f9fa';
+			ctx.fillStyle = "#f6f9fa";
 
 			particles.forEach(function(particle) {
 				particle.y += particle.dy;
@@ -71,11 +71,11 @@
 		onResize();
 		updateParticles();
 
-		window.addEventListener('resize', onResize);
+		window.addEventListener("resize", onResize);
 	}
 
 	ready(function() {
-		var canvas = document.getElementById('snow');
+		var canvas = document.getElementById("snow");
 		makeSnow(canvas);
 	});
 })();
