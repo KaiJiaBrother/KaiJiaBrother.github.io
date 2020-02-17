@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /categories/
+Allow: /tags/
+Allow: /about/
+Disallow: /vendors/
+Disallow: /admin/
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /vendors/
+Disallow: /fancybox/
+Disallow: .js$
+Disallow: .css$
+Disallow: .jpg$
+Disallow: .jpeg$
+Disallow: .gif$
+Disallow: .png$
+Disallow: .bmp$
+
+Sitemap: https://kaijiadage.com/sitemap.xml
+Sitemap: https://kaijiadage.com/baidusitemap.xml
