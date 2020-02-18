@@ -49,7 +49,7 @@
   <entry>
     <title>This is a blog without any titles</title>
     <url>/posts/58173337/</url>
-    <content><![CDATA[<h2 id="A-small-goal"><a href="#A-small-goal" class="headerlink" title="A small goal"></a>A small goal</h2><p>I&#39;m going to record <code>one Linux command</code> <del>everyday</del> onece a week since <del>today</del> this week.<br>Let&#39;s see how long I can insist it.</p>
+    <content><![CDATA[<h2 id="A-small-goal"><a href="#A-small-goal" class="headerlink" title="A small goal"></a>A small goal</h2><p>I&#39;m going to record <code>one Linux command</code> (<del>everyday</del>) once a week since (<del>today</del>) this week.<br>Let&#39;s see how long I can insist it.</p>
 ]]></content>
       <categories>
         <category>Others</category>
