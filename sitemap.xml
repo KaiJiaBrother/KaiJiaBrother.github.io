@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kaijiadage.com/about/index.html</loc>
+    
+    <lastmod>2020-02-18T17:19:31.256Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://kaijiadage.com/posts/5e869232/</loc>
     
-    <lastmod>2020-02-18T16:18:02.245Z</lastmod>
+    <lastmod>2020-02-18T17:00:45.908Z</lastmod>
     
   </url>
   
@@ -19,13 +26,6 @@
     <loc>https://kaijiadage.com/posts/ee36c540/</loc>
     
     <lastmod>2020-02-18T15:08:04.493Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kaijiadage.com/about/index.html</loc>
-    
-    <lastmod>2020-02-18T13:41:50.669Z</lastmod>
     
   </url>
   
