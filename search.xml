@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>为什么我不使用hexo-asset-image插件 (Why I do not use hexo-asset-image)</title>
+    <url>/posts/bbd6e04f/</url>
+    <content><![CDATA[<p><code>hexo-asset-image</code> 是一个图片管理插件，在博客同一级可以生成相应的文件夹，用来存放博客用到的图片。<br>但在实际使用时，发现：</p>
+<ul>
+<li>1.这个功能有些多余,在一定程度上造成博客的插件众多，降低访问速度。</li>
+<li>2.图片和博客同时存在_post/，不如手动建一个文件夹存在images/更为合适。</li>
+<li>3.插件本身因为长时间无人维护，有一些坑。具体哪些坑，以后更新…</li>
+</ul>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Data mining之weka使用踩坑心得</title>
     <url>/posts/c94f917b/</url>
     <content><![CDATA[<p>待更新…</p>
