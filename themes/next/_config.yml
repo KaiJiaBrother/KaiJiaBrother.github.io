@@ -431,7 +431,7 @@ font:
 
   # Global font settings used for all elements inside <body>.
   global:
-    external: true
+    external: false
     family: Times New Roman
     size: 1.1
 
