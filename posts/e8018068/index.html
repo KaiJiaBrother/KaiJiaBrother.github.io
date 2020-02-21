@@ -22,20 +22,20 @@
     var CONFIG = {"hostname":"kaijiadage.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="IntroductionThis guide will show you how to quickly and simply set up SSH so you can access the School of Computing facilities from the comfort of your own home. Note: a basic familiarity with the com">
+  <meta name="description" content="针对第三周实验的一些简单个人理解，有错误请指出。            1- Initial system setup whoami: 显示当前用户虚拟机进入时默认为root。 su hduser: su命令用于切换为hduser用户(hadoop user为该hadoop实例下自带的用户) cd ~: 进入当前用户的根目录，如果当前是root用户，则进入&#x2F;root&#x2F;，如">
 <meta property="og:type" content="article">
-<meta property="og:title" content="how to ssh to linux machine in University of Leeds">
-<meta property="og:url" content="https://kaijiadage.com/posts/cf3ac2d4/index.html">
+<meta property="og:title" content="Big Data Systems Lab Session Running Hadoop on a Single Node">
+<meta property="og:url" content="https://kaijiadage.com/posts/e8018068/index.html">
 <meta property="og:site_name" content="DEC-10 Lab">
-<meta property="og:description" content="IntroductionThis guide will show you how to quickly and simply set up SSH so you can access the School of Computing facilities from the comfort of your own home. Note: a basic familiarity with the com">
+<meta property="og:description" content="针对第三周实验的一些简单个人理解，有错误请指出。            1- Initial system setup whoami: 显示当前用户虚拟机进入时默认为root。 su hduser: su命令用于切换为hduser用户(hadoop user为该hadoop实例下自带的用户) cd ~: 进入当前用户的根目录，如果当前是root用户，则进入&#x2F;root&#x2F;，如">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2019-10-14T22:53:55.000Z">
-<meta property="article:modified_time" content="2020-02-17T16:59:36.753Z">
+<meta property="article:published_time" content="2020-02-21T15:06:56.000Z">
+<meta property="article:modified_time" content="2020-02-21T17:12:13.688Z">
 <meta property="article:author" content="Jerry Jia">
-<meta property="article:tag" content="University of Leeds">
+<meta property="article:tag" content="Big Data">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://kaijiadage.com/posts/cf3ac2d4/">
+<link rel="canonical" href="https://kaijiadage.com/posts/e8018068/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>how to ssh to linux machine in University of Leeds | DEC-10 Lab</title>
+  <title>Big Data Systems Lab Session Running Hadoop on a Single Node | DEC-10 Lab</title>
   
     <script>
       function sendPageView() {
@@ -201,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="https://kaijiadage.com/posts/cf3ac2d4/">
+    <link itemprop="mainEntityOfPage" href="https://kaijiadage.com/posts/e8018068/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -214,7 +214,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          how to ssh to linux machine in University of Leeds
+          Big Data Systems Lab Session Running Hadoop on a Single Node
         </h1>
 
         <div class="post-meta">
@@ -223,16 +223,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2019-10-14 23:53:55" itemprop="dateCreated datePublished" datetime="2019-10-14T23:53:55+01:00">2019-10-14</time>
+              <time title="Created: 2020-02-21 15:06:56 / Modified: 17:12:13" itemprop="dateCreated datePublished" datetime="2020-02-21T15:06:56+00:00">2020-02-21</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-17 16:59:36" itemprop="dateModified" datetime="2020-02-17T16:59:36+00:00">2020-02-17</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -261,8 +255,8 @@
       </span>
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/posts/cf3ac2d4/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/cf3ac2d4/" itemprop="commentCount"></span>
+    <a title="valine" href="/posts/e8018068/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/e8018068/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -272,14 +266,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>5.7k</span>
+              <span>1.5k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
+              <span>1 mins.</span>
             </span>
 
         </div>
@@ -291,48 +285,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>This guide will show you how to quickly and simply set up SSH so you can access the School of Computing facilities from the comfort of your own home.</p>
-<p>Note: a basic familiarity with the command line will be required for this guide, as well as knowledge of how to use a terminal based text editor such as <code>vim</code> or <code>nano</code>.</p>
-<a id="more"></a>
-
-<h1 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h1><p><a href="http://en.wikipedia.org/wiki/Secure_Shell" target="_blank" rel="noopener">SSH</a> is a protocol which allows, among other things, remote access to a machine through a command line interface. It uses a server - client architecture. Almost all modern Unix distributions (i.e. Linux and OSX) come with <code>ssh</code> preinstalled.</p>
-<h2 id="Connecting-to-University-Systems-with-ssh"><a href="#Connecting-to-University-Systems-with-ssh" class="headerlink" title="Connecting to University Systems with ssh"></a>Connecting to University Systems with <code>ssh</code></h2><p>We will be connecting to a machine at the University called <code>remote-access.leeds.ac.uk</code>, from there we will be able to connect to any of the Linux machines that you have access to.</p>
-<p>To connect to the “remote-access” server using SSH type, replacing <code>&lt;your username&gt;</code> with your University username, the following:</p>
-<pre><code>ssh &lt;your username&gt;@remote-access.leeds.ac.uk</code></pre><p>You will be prompted to enter your password. Once you have done so you will be at a command prompt where any commands entered will be executed on the “remote-access” server. To close this or any other <code>ssh</code> connections type</p>
-<pre><code>exit</code></pre><p>or</p>
-<pre><code>logout</code></pre><p>or press control-d</p>
-<p>The sole purpose of the “remote-access” server is to provide an entry point onto the University network and consequently:</p>
-<ol>
-<li>You have almost no file storage space on the server (just under 5MB)</li>
-<li>You won’t be able to access your Linux files on this machine</li>
-<li>The machine doesn’t have any useful software installed.</li>
+        <div class="note info">
+            <p>针对第三周实验的一些简单个人理解，有错误请指出。</p>
+          </div>
+<h1 id="1-Initial-system-setup"><a href="#1-Initial-system-setup" class="headerlink" title="1- Initial system setup"></a>1- Initial system setup</h1><ol>
+<li><code>whoami</code>: 显示当前用户<br>虚拟机进入时默认为root。</li>
+<li><code>su hduser</code>: su命令用于切换为<code>hduser</code>用户(hadoop user为该hadoop实例下自带的用户)</li>
+<li><code>cd ~</code>: 进入当前用户的根目录，如果当前是root用户，则进入<code>/root/</code>，如果当前是hduser，则进入<code>/home/hduser</code>,其中/代表整个虚拟机的根路径</li>
+<li><code>ssh-keygen -t rsa -P &quot;&quot;</code>: <code>ssh-keygen</code>用来生成密钥对。<code>-t rsa</code>指密钥类型为rsa, <code>-P</code>提供旧密语（类似默认密码）<br>生成的密钥默认位于<code>~/.ssh/</code>目录下，有两个文件，<code>id_rsa</code>是私钥，<code>id_rsa.pub</code>是公钥（<code>.ssh</code>代表隐藏文件，基于安全目的）<br>私钥不要泄漏出去，公钥则可以随意对外发布。用公钥进行加密的数据，只能用私钥才能解密。<br>使用ssh是为了使当前虚拟机与localhost建立安全连接（类似两台不同主机，不同服务器之间），还能免去输入密码，提高登录速度。</li>
+<li><code>cat $HOME/.ssh/id_rsa.pub &gt;&gt; $HOME/.ssh/authorized_keys</code>: 把公钥内容添加到需要免密登录的主机中，这里<code>$HOME</code>和<code>~</code>的效果是一样的<blockquote>
+<p>如果想同时配置多个ssh密钥对，例如还要同时连接gitlab, github，需要手动配置config文件指定使用哪个密钥，这里留个坑，以后再补充。</p>
+</blockquote>
+</li>
+<li><code>ssh localhost</code>: 刚才建立密钥对，就是为了连接<code>localhost</code></li>
+<li><code>echo $HADOOP_HOME</code>: 这里用来显示<code>$HADOOP_HOME</code>环境变量值，指定<code>Hadoop</code>运行环境的路径<br><code>~/.bashrc</code>这里储存了当前用户下的所有环境变量，只会对当前用户有效，每次启动<code>shell</code>自动被读取</li>
+<li><code>source .bashrc</code>: 运行此命令，使新建立的环境变量在当前shell中起作用，否则只能下次启动shell时激活该shell命令。<h1 id="2-Setting-up-Hadoop-and-HDFS"><a href="#2-Setting-up-Hadoop-and-HDFS" class="headerlink" title="2- Setting up Hadoop and HDFS"></a>2- Setting up Hadoop and HDFS</h1><div class="note info">
+            <p>这一部分主要是配置<code>Hadoop</code>存储数据文件的路径，监听端口。<br><code>hdfsTMP</code>用来储存临时文件</p>
+          </div></li>
+<li><code>nano core-site.xml</code>: 同<code>vi/vim</code>作用类似，文本编辑器，编辑<code>core-site.xml</code>文件。<br>这里使用<code>nano -w core-site.xml</code>命令更好，防止自动换行，造成不必要的错误。<br>常用操作：<code>Ctrl+O</code>(保存), <code>Ctrl+X</code>(退出), <code>Ctrl+C</code>(取消操作), <code>Ctrl+W</code>，搜索, 想再次搜索相同的字符串，按<code>Alt+W</code><br><code>vi/vim core-site.xml</code>: 常用操作：<code>i</code>(进入编辑模式)，<code>ESC</code>(退出编辑模式)，<code>:wq</code>(保存并退出)，<code>:q</code>(退出不保存)，<code>:q!</code>(强制退出)</li>
+<li><code>mkdir -p ~/hdfsTMP/namenode</code>: <code>-p</code>递归创建多个目录</li>
+<li><code>unset HADOOP_OPTS</code>: 清除环境变量<code>$HADOOP_OPTS</code><h1 id="3-Formatting-HDFS"><a href="#3-Formatting-HDFS" class="headerlink" title="3- Formatting HDFS"></a>3- Formatting HDFS</h1><div class="note info">
+            <p>创建Hadoop file system</p>
+          </div></li>
+<li><code>start-all.sh</code>: 没有权限时需要使用<code>chmod u+x 文件名.sh</code>来给可执行权限，不过该实验不用。<br>bash脚本执行方法：当前目录下，<code>./start-all.sh</code> 或 <code>sh start-all.sh</code><h1 id="4-Uploading-data-to-HDFS"><a href="#4-Uploading-data-to-HDFS" class="headerlink" title="4- Uploading data to HDFS"></a>4- Uploading data to HDFS</h1><h1 id="5-Creating-a-MapReduce-Java-application"><a href="#5-Creating-a-MapReduce-Java-application" class="headerlink" title="5- Creating a MapReduce Java application"></a>5- Creating a MapReduce Java application</h1>这里有个坑，<br><code>hadoop jar OurMapReduceJob.jar org.myorg.WordCount hdfsbook.txt output</code>跑完之后会报找不到main方法的错，原因是环境变量中的引号可能是中文的，回去检查一下。</li>
 </ol>
-<p>The “remote-access” server should therefore be treated as a “pass-through” or stepping stone to get onto the machine you really want to use.</p>
-<p>Now you are connected to the “remote-access” server you can <code>ssh</code> into any of the Linux machines on campus (provided you are authorised to use them!). The hostnames of the machines in DEC-10 are of the format <code>comp-p30xx</code> where xx is a two digit number between and 00-59.</p>
-<p>You can do this by entering, after replacing <em>xx</em> with your favourite (two digit) number:</p>
-<pre><code>ssh comp-pc30xx</code></pre><p>Please be considerate with your resource usage when other people are using the machine. You can check this by running the command <code>w</code>, which will output something like the following:</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">15</span>:<span class="number">55</span>:<span class="number">40</span> up <span class="number">26</span> days,  <span class="number">4</span>:<span class="number">25</span>,  <span class="number">3</span> users,  load average: <span class="number">0.33</span>, <span class="number">0.25</span>, <span class="number">0.17</span></span><br><span class="line">USER     				 TTY      FROM             <span class="symbol">LOGIN@</span>   IDLE   JCPU   PCPU WHAT</span><br><span class="line">sc15xx           :<span class="number">0</span>       :<span class="number">0</span>               <span class="number">14</span>:<span class="number">59</span>   ?xdm?   <span class="number">1</span>:<span class="number">28</span>m  <span class="number">0.17</span>s gdm-session-wor</span><br><span class="line">sc15xx           pts/<span class="number">0</span>    :<span class="number">0</span>               <span class="number">15</span>:<span class="number">53</span>    <span class="number">1</span>:<span class="number">24</span>   <span class="number">0.06</span>s  <span class="number">0.01</span>s /usr/bin/python</span><br><span class="line">&lt;your username&gt;  pts/<span class="number">1</span>    euras01hv.leeds. <span class="number">15</span>:<span class="number">55</span>    <span class="number">0.00</span>s  <span class="number">0.04</span>s  <span class="number">0.00</span>s w</span><br></pre></td></tr></table></figure>
-
-<p>If you see any usernames in the list other than your own then you are sharing that machine and must refrain from using an excessive amount of memory or CPU time. Most of the work you will do in your 1st year won’t be intensive enough to impact other users, e.g. editing and compiling your small C programs.</p>
-<h1 id="Advanced-Usage"><a href="#Advanced-Usage" class="headerlink" title="Advanced Usage"></a>Advanced Usage</h1><p>The following sections don’t offer any additional functionality, but should make it slightly quicker to log in, i.e. fewer keystrokes.</p>
-<h2 id="ssh-configuration-file"><a href="#ssh-configuration-file" class="headerlink" title="ssh configuration file"></a><code>ssh</code> configuration file</h2><p>Although it is perfectly fine to connect to the remote-access server and then manually use <code>ssh</code> to get onto the machine you wish to use, there is a slightly nicer way of doing this. <code>ssh</code> uses a simple configuration text file within which you can define commonly used hosts and various settings for each of them. The configuration file is located in the <code>.ssh</code> directory within your home directory, i.e. <code>~/.ssh/</code> and is called <code>config</code>. <em>Note that this is a “hidden” directory and will only appear when you run <code>ls</code> with the <code>-a</code> option!</em></p>
-<p>Open the file in your favourite text editor (mine is <code>vim</code>) and enter the following, <strong>replacing <code>&lt;your username&gt;</code> with your university username, e.g. <code>sc15xx</code></strong>:</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host remote-access</span><br><span class="line">	HostName remote-access.leeds.ac.uk</span><br><span class="line"><span class="built_in">	Port </span>22</span><br><span class="line"><span class="built_in">	User </span>&lt;your username&gt;</span><br></pre></td></tr></table></figure>
-
-<p>The configuration defined a host called “remote-access” and provides the url of the server, the port to connect to (ssh default is 22) and the username of the user you wish to connect as. You can have multiple hosts defined in your config file.</p>
-<p>To use this configuration, save the file as <code>~/.ssh/config</code>. Then in a terminal enter:</p>
-<pre><code>ssh remote-access</code></pre><p>You will be prompted for a password. Once you have entered your password and pressed enter everything should be as it was if you had done it without using the config file.</p>
-<h2 id="Setting-up-SSH-keys"><a href="#Setting-up-SSH-keys" class="headerlink" title="Setting up SSH keys"></a>Setting up SSH keys</h2><p>Typing in your password can become bothersome so it is nice to have a way to automate this. One way is to set up a RSA key pair. This uses public key cryptography to authenticate your login. <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)" target="_blank" rel="noopener">An RSA key has two parts, a public and private key</a>. <em>The private key must be kept private</em>; guard it with your life. First we must create a set of RSA keys. To do this enter:</p>
-<pre><code>ssh-keygen -t rsa</code></pre><p>you will be asked to provide a file name to save the key as. There is a default location provided in brackets so all you have to do is press enter. You will be prompted to enter a passphrase, i.e. a password. It’s up to you whether you want to use a passphrase or not (although it is recommended). Entering a passphrase does have its benefits: the security of a key still depends on the fact that it is not visible to anyone else. Should a passphrase-protected private key fall into an unauthorized users possession, they will be unable to log in to its associated accounts until they figure out the passphrase. The only downside is that the first time you want to use the key after logging on you will have to enter the passphrase. If you choose to enter a passphrase or not press <code>enter</code> and it will generate your key. The key is located in <code>~/.ssh/id_rsa</code>.</p>
-<p>Now you will have to copy the public part of the key to the server. Assuming you have followed the above instructions, enter:</p>
-<pre><code>ssh-copy-id remote-access</code></pre><p>You will be presented with a notice whether this has been successful. Now that you have copied your public key to the server you will be able to login without being prompted for a password.</p>
-<h2 id="Automatic-SSH-proxying-through-“remote-access”-Server"><a href="#Automatic-SSH-proxying-through-“remote-access”-Server" class="headerlink" title="Automatic SSH proxying through “remote-access” Server"></a>Automatic SSH proxying through “remote-access” Server</h2><p>The gain access to any of the machines in DEC-10 from off-campus by just entering <code>ssh comp-pc30xx</code> enter following hosts into your <code>ssh</code> config file:</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Host remote-access</span><br><span class="line">        HostName remote-access.leeds.ac.uk</span><br><span class="line">       <span class="built_in"> User </span>&lt;your username&gt;</span><br><span class="line"></span><br><span class="line">Host comp-pc*</span><br><span class="line">        ProxyCommand  ssh remote-access nc %h %p</span><br></pre></td></tr></table></figure>
-
-<p>The configuration tells ssh that for any host that starts with <code>comp-pc</code>, i.e. the machines in DEC-10, it should proxy the connection via the remote-access machine. Diagrammatically:</p>
-<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">+</span>--<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">+</span>                  <span class="literal">+</span>--<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">+</span>                <span class="literal">+</span>--<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">+</span></span><br><span class="line"><span class="comment">|</span> <span class="comment">you</span> <span class="comment">|</span>                  <span class="comment">|</span> <span class="comment">remote</span><span class="literal">-</span><span class="comment">access</span> <span class="comment">|</span>                <span class="comment">|</span> <span class="comment">comp</span><span class="literal">-</span><span class="comment">pc30xx</span>  <span class="comment">|</span></span><br><span class="line"><span class="comment"></span><span class="literal">+</span>--<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">+</span>                  <span class="literal">+</span>--<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">+</span>                <span class="literal">+</span>--<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">+</span></span><br><span class="line"><span class="comment">|</span>     &lt;<span class="comment">==============</span> <span class="comment">ssh</span><span class="literal">-</span><span class="comment">over</span><span class="literal">-</span><span class="comment">netcat</span> <span class="comment">tunnel</span> <span class="comment">==============</span>&gt;             <span class="comment">|</span></span><br><span class="line"><span class="comment"></span><span class="literal">+</span>--<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">+</span>                  <span class="literal">+</span>--<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">+</span>                <span class="literal">+</span>--<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">+</span></span><br></pre></td></tr></table></figure>
-<p>Now you may simply enter:</p>
-<pre><code>ssh comp-pc30xx</code></pre><p>where xx is a number between 00-59 and you will have a remote shell on the specified machine!</p>
 
     </div>
 
@@ -370,7 +346,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="https://kaijiadage.com/posts/cf3ac2d4/" title="how to ssh to linux machine in University of Leeds">https://kaijiadage.com/posts/cf3ac2d4/</a>
+    <a href="https://kaijiadage.com/posts/e8018068/" title="Big Data Systems Lab Session Running Hadoop on a Single Node">https://kaijiadage.com/posts/e8018068/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/en" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -382,7 +358,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/University-of-Leeds/" rel="tag"><i class="fa fa-tag"></i> University of Leeds</a>
+              <a href="/tags/Big-Data/" rel="tag"><i class="fa fa-tag"></i> Big Data</a>
           </div>
 
         
@@ -391,13 +367,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/posts/ed318fdc/" rel="prev" title="Introduction">
-      <i class="fa fa-chevron-left"></i> Introduction
+    <a href="/posts/c406e4ba/" rel="prev" title="how to use gitlab and github at the same time">
+      <i class="fa fa-chevron-left"></i> how to use gitlab and github at the same time
     </a></div>
-      <div class="post-nav-item">
-    <a href="/posts/58173337/" rel="next" title="This is a blog without any titles">
-      This is a blog without any titles <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -458,7 +431,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSH"><span class="nav-number">2.</span> <span class="nav-text">SSH</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Connecting-to-University-Systems-with-ssh"><span class="nav-number">2.1.</span> <span class="nav-text">Connecting to University Systems with ssh</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Advanced-Usage"><span class="nav-number">3.</span> <span class="nav-text">Advanced Usage</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ssh-configuration-file"><span class="nav-number">3.1.</span> <span class="nav-text">ssh configuration file</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setting-up-SSH-keys"><span class="nav-number">3.2.</span> <span class="nav-text">Setting up SSH keys</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Automatic-SSH-proxying-through-“remote-access”-Server"><span class="nav-number">3.3.</span> <span class="nav-text">Automatic SSH proxying through “remote-access” Server</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Initial-system-setup"><span class="nav-number">1.</span> <span class="nav-text">1- Initial system setup</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Setting-up-Hadoop-and-HDFS"><span class="nav-number">2.</span> <span class="nav-text">2- Setting up Hadoop and HDFS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Formatting-HDFS"><span class="nav-number">3.</span> <span class="nav-text">3- Formatting HDFS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Uploading-data-to-HDFS"><span class="nav-number">4.</span> <span class="nav-text">4- Uploading data to HDFS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Creating-a-MapReduce-Java-application"><span class="nav-number">5.</span> <span class="nav-text">5- Creating a MapReduce Java application</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
