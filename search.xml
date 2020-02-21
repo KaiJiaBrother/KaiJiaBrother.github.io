@@ -98,7 +98,12 @@
   <entry>
     <title>pytorch踩坑心得</title>
     <url>/posts/dadd677d/</url>
-    <content><![CDATA[<p>待更新…</p>
+    <content><![CDATA[<h1 id="momentum的用处"><a href="#momentum的用处" class="headerlink" title="momentum的用处"></a>momentum的用处</h1><p><img src="/images/pytorch/momentum.png" alt="momentum"></p>
+<div class="note info">
+            <p>Image from <a href="https://pytorch.org/docs/stable/optim.html" target="_blank" rel="noopener">SGD</a></p>
+          </div>
+
+<p>待更新…</p>
 ]]></content>
       <categories>
         <category>Deep Learning</category>
