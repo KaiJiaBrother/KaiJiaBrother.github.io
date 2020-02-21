@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>leetcode</title>
+    <url>/posts/39d23ebd/</url>
+    <content><![CDATA[<p>这里分享leetcode编程练习中遇到的不错的代码。</p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+      <tags>
+        <tag>Competition</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Big Data Systems Lab Session Running Hadoop on a Single Node</title>
     <url>/posts/e8018068/</url>
     <content><![CDATA[<div class="note info">
