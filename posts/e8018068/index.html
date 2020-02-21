@@ -30,7 +30,7 @@
 <meta property="og:description" content="针对第三周实验的一些简单个人理解，有错误请指出。            1- Initial system setup whoami: 显示当前用户虚拟机进入时默认为root。 su hduser: su命令用于切换为hduser用户(hadoop user为该hadoop实例下自带的用户) cd ~: 进入当前用户的根目录，如果当前是root用户，则进入&#x2F;root&#x2F;，如">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-02-21T15:06:56.000Z">
-<meta property="article:modified_time" content="2020-02-21T17:12:13.688Z">
+<meta property="article:modified_time" content="2020-02-21T17:19:06.106Z">
 <meta property="article:author" content="Jerry Jia">
 <meta property="article:tag" content="Big Data">
 <meta name="twitter:card" content="summary">
@@ -225,7 +225,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-02-21 15:06:56 / Modified: 17:12:13" itemprop="dateCreated datePublished" datetime="2020-02-21T15:06:56+00:00">2020-02-21</time>
+              <time title="Created: 2020-02-21 15:06:56 / Modified: 17:19:06" itemprop="dateCreated datePublished" datetime="2020-02-21T15:06:56+00:00">2020-02-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -291,15 +291,15 @@
 <h1 id="1-Initial-system-setup"><a href="#1-Initial-system-setup" class="headerlink" title="1- Initial system setup"></a>1- Initial system setup</h1><ol>
 <li><code>whoami</code>: 显示当前用户<br>虚拟机进入时默认为root。</li>
 <li><code>su hduser</code>: su命令用于切换为<code>hduser</code>用户(hadoop user为该hadoop实例下自带的用户)</li>
-<li><code>cd ~</code>: 进入当前用户的根目录，如果当前是root用户，则进入<code>/root/</code>，如果当前是hduser，则进入<code>/home/hduser</code>,其中/代表整个虚拟机的根路径</li>
-<li><code>ssh-keygen -t rsa -P &quot;&quot;</code>: <code>ssh-keygen</code>用来生成密钥对。<code>-t rsa</code>指密钥类型为rsa, <code>-P</code>提供旧密语（类似默认密码）<br>生成的密钥默认位于<code>~/.ssh/</code>目录下，有两个文件，<code>id_rsa</code>是私钥，<code>id_rsa.pub</code>是公钥（<code>.ssh</code>代表隐藏文件，基于安全目的）<br>私钥不要泄漏出去，公钥则可以随意对外发布。用公钥进行加密的数据，只能用私钥才能解密。<br>使用ssh是为了使当前虚拟机与localhost建立安全连接（类似两台不同主机，不同服务器之间），还能免去输入密码，提高登录速度。</li>
+<li><code>cd ~</code>: 进入当前用户的根目录，如果当前是root用户，则进入<code>/root/</code>，如果当前是hduser，则进入<code>/home/hduser</code>,其中<code>/</code>代表整个虚拟机的根路径</li>
+<li><code>ssh-keygen -t rsa -P &quot;&quot;</code>: <code>ssh-keygen</code>用来生成密钥对。<code>-t rsa</code>指密钥类型为rsa, <code>-P</code>提供旧密语（类似默认密码）<br>生成的密钥默认位于<code>~/.ssh/</code>目录下，有两个文件，<code>id_rsa</code>是私钥，<code>id_rsa.pub</code>是公钥（<code>.ssh</code>代表隐藏文件，基于安全目的）<br>私钥不要泄漏出去，公钥则可以随意对外发布。用公钥进行加密的数据，只能用私钥才能解密。<br>使用ssh是为了使当前虚拟机与<code>localhost</code>建立安全连接（类似两台不同主机，不同服务器之间），还能免去输入密码，提高登录速度。</li>
 <li><code>cat $HOME/.ssh/id_rsa.pub &gt;&gt; $HOME/.ssh/authorized_keys</code>: 把公钥内容添加到需要免密登录的主机中，这里<code>$HOME</code>和<code>~</code>的效果是一样的<blockquote>
 <p>如果想同时配置多个ssh密钥对，例如还要同时连接gitlab, github，需要手动配置config文件指定使用哪个密钥，这里留个坑，以后再补充。</p>
 </blockquote>
 </li>
 <li><code>ssh localhost</code>: 刚才建立密钥对，就是为了连接<code>localhost</code></li>
 <li><code>echo $HADOOP_HOME</code>: 这里用来显示<code>$HADOOP_HOME</code>环境变量值，指定<code>Hadoop</code>运行环境的路径<br><code>~/.bashrc</code>这里储存了当前用户下的所有环境变量，只会对当前用户有效，每次启动<code>shell</code>自动被读取</li>
-<li><code>source .bashrc</code>: 运行此命令，使新建立的环境变量在当前shell中起作用，否则只能下次启动shell时激活该shell命令。<h1 id="2-Setting-up-Hadoop-and-HDFS"><a href="#2-Setting-up-Hadoop-and-HDFS" class="headerlink" title="2- Setting up Hadoop and HDFS"></a>2- Setting up Hadoop and HDFS</h1><div class="note info">
+<li><code>source .bashrc</code>: 运行此命令，使新建立的环境变量在当前shell中起作用，否则只能下次启动shell时激活该环境变量。<h1 id="2-Setting-up-Hadoop-and-HDFS"><a href="#2-Setting-up-Hadoop-and-HDFS" class="headerlink" title="2- Setting up Hadoop and HDFS"></a>2- Setting up Hadoop and HDFS</h1><div class="note info">
             <p>这一部分主要是配置<code>Hadoop</code>存储数据文件的路径，监听端口。<br><code>hdfsTMP</code>用来储存临时文件</p>
           </div></li>
 <li><code>nano core-site.xml</code>: 同<code>vi/vim</code>作用类似，文本编辑器，编辑<code>core-site.xml</code>文件。<br>这里使用<code>nano -w core-site.xml</code>命令更好，防止自动换行，造成不必要的错误。<br>常用操作：<code>Ctrl+O</code>(保存), <code>Ctrl+X</code>(退出), <code>Ctrl+C</code>(取消操作), <code>Ctrl+W</code>，搜索, 想再次搜索相同的字符串，按<code>Alt+W</code><br><code>vi/vim core-site.xml</code>: 常用操作：<code>i</code>(进入编辑模式)，<code>ESC</code>(退出编辑模式)，<code>:wq</code>(保存并退出)，<code>:q</code>(退出不保存)，<code>:q!</code>(强制退出)</li>
