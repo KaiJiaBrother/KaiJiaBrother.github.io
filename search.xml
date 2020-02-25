@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>data challenge slides</title>
+    <url>/posts/70cdea1a/</url>
+    <content><![CDATA[<p><img src="images/data-challenge-slides/1.PNG" alt="slides1"><br><img src="images/data-challenge-slides/2.PNG" alt="slides1"><br><img src="images/data-challenge-slides/3.PNG" alt="slides1"><br><img src="images/data-challenge-slides/4.PNG" alt="slides1"><br><img src="images/data-challenge-slides/5.PNG" alt="slides1"><br><img src="images/data-challenge-slides/6.PNG" alt="slides1"><br><img src="images/data-challenge-slides/7.PNG" alt="slides1"><br><img src="images/data-challenge-slides/8.PNG" alt="slides1"><br><img src="images/data-challenge-slides/9.PNG" alt="slides1"><br><img src="images/data-challenge-slides/10.PNG" alt="slides1"><br><img src="images/data-challenge-slides/11.PNG" alt="slides1"><br><img src="images/data-challenge-slides/12.PNG" alt="slides1"><br><img src="images/data-challenge-slides/13.PNG" alt="slides1"><br><img src="images/data-challenge-slides/14.PNG" alt="slides1"><br><img src="images/data-challenge-slides/15.PNG" alt="slides1"><br><img src="images/data-challenge-slides/16.PNG" alt="slides1"><br><img src="images/data-challenge-slides/17.PNG" alt="slides1"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>云计算学习笔记之Docker(Cloud Computing Lab -- Docker)</title>
+    <url>/posts/db3e7c66/</url>
+    <content><![CDATA[<ul>
+<li>Docker在产业里的应用比VM更多</li>
+<li>VM和Docker的区别在于：VM是由Hypervisor统一管理，使用Guest OS；而Docker通过Docker Engine</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Development</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>leetcode</title>
     <url>/posts/39d23ebd/</url>
     <content><![CDATA[<p>这里分享leetcode编程练习中遇到的不错的代码。</p>
@@ -115,6 +136,9 @@
             <p>Image from <a href="https://pytorch.org/docs/stable/optim.html" target="_blank" rel="noopener">SGD</a></p>
           </div>
 
+<h1 id="学习笔记"><a href="#学习笔记" class="headerlink" title="学习笔记"></a>学习笔记</h1><ul>
+<li>NumPy 的替代品，目的是可在GPU上使用</li>
+</ul>
 <p>待更新…</p>
 ]]></content>
       <categories>
@@ -145,7 +169,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux command(1)</title>
+    <title>Linux command</title>
     <url>/posts/ee36c540/</url>
     <content><![CDATA[]]></content>
       <categories>
