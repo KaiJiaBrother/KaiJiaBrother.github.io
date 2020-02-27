@@ -114,9 +114,38 @@
       </tags>
   </entry>
   <entry>
-    <title>Data mining之weka使用踩坑心得</title>
+    <title>Data mining notes &amp;&amp; weka notes</title>
     <url>/posts/c94f917b/</url>
-    <content><![CDATA[<p>待更新…</p>
+    <content><![CDATA[<h1 id="Language-and-Computers"><a href="#Language-and-Computers" class="headerlink" title="Language and Computers"></a>Language and Computers</h1><p>Document classification = sort documents into user-defined classes.<br>classification tasks, such as sentiment analysis<br>One simple technique for identifying languages is to use <code>n-grams</code>(stretch of n tokens(i.e., letters or words)).<br>Document classification is an example of a computer science activity called machine learning, which is itself part of the subfield of artificial intelligence</p>
+<p>Supervised learning: training set and test set have been labeled with desired “correct answers”.<br>Unsupervised learning: assume there are no pre-specified categories.</p>
+<p>First step in classifying or clustering documents:<br>identify properties most relevant to the decision we want to make, i.e., features<br>To make a useful system we need to tell the computer two things:</p>
+<ol>
+<li>Exactly which features are used and exactly how to detect them</li>
+</ol>
+<ul>
+<li>feature engineering</li>
+<li>Hard to automate this step</li>
+</ul>
+<ol start="2">
+<li>How to weight the evidence provided by the features</li>
+</ol>
+<ul>
+<li>Often works well to use machine learning for this<br>feature engineering:</li>
+<li>Kitchen sink strategy</li>
+<li>Hand-crafted strategy<br>The best features may be hard to collect reliably<br>bag of words assumption<br>Imagine that we cut up a document and put the words in a bag<br>Record the odds ratio for ham to spam as 12.5/0.8.<br>Idea of Naive Bayes: count things that occur in the test set</li>
+</ul>
+<h2 id="authorship-attribution"><a href="#authorship-attribution" class="headerlink" title="authorship attribution"></a>authorship attribution</h2><p>Stylometry<br>Lexical style markers</p>
+<h2 id="plagiarism"><a href="#plagiarism" class="headerlink" title="plagiarism"></a>plagiarism</h2><h1 id="Data-Warehousing"><a href="#Data-Warehousing" class="headerlink" title="Data Warehousing"></a>Data Warehousing</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>We have lots of data, the point of data mining is to extract the information, knowledge and particularly get the right knowledge at the right time. The idea of data Warehousing is to make data avaliable to do data mining. you need to have a static snap-shot of data to do the evaluation.</p>
+<h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><ul>
+<li>a standardized data store</li>
+<li>a process for bringing together disparate data from throughout an organization for decision-support purposes.</li>
+</ul>
+<p>use different algorithms to compare results to know which algo is better to use the same data.<br>store in the database rather in one format.</p>
+<p>subject-oriented: discriminating similar languages, has a particular topic<br>integrated: harvested from different sources into a single standard format(database, social media)<br>time-variant: twitter, news(data change every time, not predicting in the future)<br>non-volatile: static snap-shot, use the same dataset(pick the data at a particular time)</p>
+<p>copy of transaction data, query and analysis</p>
+<h2 id="Data-Mart"><a href="#Data-Mart" class="headerlink" title="Data Mart"></a>Data Mart</h2><p>smaller, more focused data warehouse - a mini-warehouse<br>reflects the business rules of a specific business unit within an enterprise.</p>
+<h2 id="Generic-Architecture-of-Data"><a href="#Generic-Architecture-of-Data" class="headerlink" title="Generic Architecture of Data"></a>Generic Architecture of Data</h2><p>transaction data: base level of data- raw material for understanding customer behavior<br>operational sumamary data: summaries are for a specific time period and utilize the transaction data for that time period.<br>decision support summary data: used to help make decisions about the business.<br>database schema: defines the structure of data, not the values of the data.<br>metadata: data<br>business rules: highest level of abstraction from operational data.<br>OLAP(ONline Analytical Processing): Data representation for ease of visualization.</p>
+<p>is any data-set a data warehouse?<br>sis: no<br>library catalogue: no<br>vle: no<br>text in a textbook: yes</p>
 ]]></content>
       <categories>
         <category>Data mining</category>
