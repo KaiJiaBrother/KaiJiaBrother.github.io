@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Data mining coursework</title>
+    <url>/posts/cf5e19f/</url>
+    <content><![CDATA[<blockquote>
+<p>I&#39;m going to record the error when I&#39;m doing my coursework here</p>
+</blockquote>
+<ol>
+<li>reindex() missing 1 required positional argument: ‘self’<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tweet_df = pd.DataFrame.reindex(index=range(df.shape[<span class="number">0</span>]))</span><br></pre></td></tr></table></figure>
+This code could help you create a DataFrame filling with ‘NaN’.<br>The new DataFrame tweet_df has one column and the same number of rows as DataFrame df.<br>The previous code is wrong and it should change to the following code:<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tweet_df = pd.DataFrame().reindex(index=range(df.shape[<span class="number">0</span>]))</span><br></pre></td></tr></table></figure></li>
+<li>in pandas, null means numpy.nan<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> pd.isnull(df):</span><br><span class="line">  print(<span class="string">'DataFrame df is null'</span>)</span><br></pre></td></tr></table></figure>
+if you want to remove the null character string, you cannot merely use pd.isnull(), you should use:<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">drop_rows</span><span class="params">(tweets)</span>:</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(len(tweets)):</span><br><span class="line">    <span class="keyword">if</span> tweets[i] == <span class="string">''</span> <span class="keyword">or</span> pd.isnull(tweets[i]):</span><br><span class="line">      tweets.drop([i])</span><br><span class="line">  <span class="keyword">return</span> tweets</span><br></pre></td></tr></table></figure></li>
+<li>in some functions in pandas, you should be careful to inplace operator,<br>it will bring you some misunderstanding sometimes.</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Data mining</category>
+      </categories>
+      <tags>
+        <tag>Data mining</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Data Challenge slides</title>
     <url>/posts/70cdea1a/</url>
     <content><![CDATA[<p><img src="/images/data-challenge-slides/1.PNG" alt="page1"><br><img src="/images/data-challenge-slides/2.PNG" alt="page2"><br><img src="/images/data-challenge-slides/3.PNG" alt="page3"><br><img src="/images/data-challenge-slides/4.PNG" alt="page4"><br><img src="/images/data-challenge-slides/5.PNG" alt="page5"><br><img src="/images/data-challenge-slides/6.PNG" alt="page6"><br><img src="/images/data-challenge-slides/7.PNG" alt="page7"><br><img src="/images/data-challenge-slides/8.PNG" alt="page8"><br><img src="/images/data-challenge-slides/9.PNG" alt="page9"><br><img src="/images/data-challenge-slides/10.PNG" alt="page10"><br><img src="/images/data-challenge-slides/11.PNG" alt="page11"><br><img src="/images/data-challenge-slides/12.PNG" alt="page12"><br><img src="/images/data-challenge-slides/13.PNG" alt="page13"><br><img src="/images/data-challenge-slides/14.PNG" alt="page14"><br><img src="/images/data-challenge-slides/15.PNG" alt="page15"><br><img src="/images/data-challenge-slides/16.PNG" alt="page16"><br><img src="/images/data-challenge-slides/17.PNG" alt="page17"></p>
