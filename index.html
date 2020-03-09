@@ -603,7 +603,7 @@ height: 100%; left: 0; top: 0;">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-09 00:41:21" itemprop="dateModified" datetime="2020-03-09T00:41:21+00:00">2020-03-09</time>
+                <time title="Modified: 2020-03-09 11:47:36" itemprop="dateModified" datetime="2020-03-09T11:47:36+00:00">2020-03-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -637,14 +637,14 @@ height: 100%; left: 0; top: 0;">
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3.2k</span>
+              <span>7.6k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
+              <span>6 mins.</span>
             </span>
 
         </div>
@@ -688,40 +688,88 @@ height: 100%; left: 0; top: 0;">
 <li>a technique used to iteratively improve a classifier’s performance.</li>
 <li>Typically, multiple classifiers will be trained on different sets of the input data, and on prediction tasks the output of the different classifiers will be combined together.</li>
 </ul>
-<h1 id="自助（抽样）法"><a href="#自助（抽样）法" class="headerlink" title="自助（抽样）法"></a>自助（抽样）法</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li>自身样本重采样的方法来估计真实分布的问题</li>
-<li>从给定训练集中有放回的均匀抽样（每当选中一个样本，它等可能地被再次选中并被再次添加到训练集中。）</li>
-<li>对于小数据集，自助法效果很好。</li>
-<li>最常用的一种是.632自助法，假设给定的数据集包含d个样本。该数据集有放回地抽样d次，产生d个样本的训练集。这样原数据样本中的某些样本很可能在该样本集中出现多次。没有进入该训练集的样本最终形成检验集（测试集）。 显然每个样本被选中的概率是1/d，因此未被选中的概率就是(1-1/d)，这样一个样本在训练集中没出现的概率就是d次都未被选中的概率，即(1-1/d)^d。当d趋于无穷大时，这一概率就将趋近于e^(-1)=0.368，所以留在训练集中的样本大概就占原来数据集的63.2%。</li>
-<li>为了从单个样本中产生多个样本，bootstrapping作为交叉验证的一个替代方法，在原来的样本中进行替换的随机采样，从而得到新的样本。bootstrap得到的样本比交叉验证的样本重叠更多，因此它们的估计依赖性更强，被认为是小数据集进行重采样的最好方法。</li>
-<li>其核心思想和基本步骤如下：<ul>
-<li>采用重抽样技术从原始样本中抽取一定数量（自己给定）的样本，此过程允许重复抽样。</li>
-<li>根据抽出的样本计算给定的统计量T。</li>
-<li>重复上述N次（一般大于1000），得到N个统计量T。</li>
-<li>计算上述N个统计量T的样本方差，得到统计量的方差。</li>
+<ol start="6">
+<li>In statistics</li>
+</ol>
+<ul>
+<li>the practice of estimating properties of an estimator (such as its variance) by measuring those properties when sampling from an approximating distribution.</li>
 </ul>
+<h1 id="自助（抽样）法"><a href="#自助（抽样）法" class="headerlink" title="自助（抽样）法"></a>自助（抽样）法</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li><p>自身样本重采样的方法来估计真实分布的问题</p>
 </li>
-<li>例子：我要统计鱼塘里面的鱼的条数，怎么统计呢？假设鱼塘总共有鱼1000条，我是开了上帝视角的，但是你是不知道里面有多少。<br>步骤：<ol>
+<li><p>从给定训练集中有放回的均匀抽样（每当选中一个样本，它等可能地被再次选中并被再次添加到训练集中。）</p>
+</li>
+<li><p>对于小数据集，自助法效果很好。</p>
+</li>
+<li><p>最常用的一种是.632自助法，假设给定的数据集包含d个样本。该数据集有放回地抽样d次，产生d个样本的训练集。这样原数据样本中的某些样本很可能在该样本集中出现多次。没有进入该训练集的样本最终形成检验集（测试集）。 显然每个样本被选中的概率是1/d，因此未被选中的概率就是(1-1/d)，这样一个样本在训练集中没出现的概率就是d次都未被选中的概率，即(1-1/d)^d。当d趋于无穷大时，这一概率就将趋近于e^(-1)=0.368，所以留在训练集中的样本大概就占原来数据集的63.2%。</p>
+</li>
+<li><p>对于这部分大约36.8%的没有被采样到的数据，我们常常称之为袋外数据(Out Of Bag, 简称OOB)。这些数据没有参与训练集模型的拟合，因此可以用来检测模型的泛化能力。</p>
+</li>
+<li><p>为了从单个样本中产生多个样本，bootstrapping作为交叉验证的一个替代方法，在原来的样本中进行替换的随机采样，从而得到新的样本。bootstrap得到的样本比交叉验证的样本重叠更多，因此它们的估计依赖性更强，被认为是小数据集进行重采样的最好方法。</p>
+</li>
+<li><p>例子：我要统计鱼塘里面的鱼的条数，怎么统计呢？假设鱼塘总共有鱼1000条，我是开了上帝视角的，但是你是不知道里面有多少。<br>步骤：</p>
+<ol>
 <li>承包鱼塘，不让别人捞鱼(规定总体分布不变)。</li>
 <li>自己捞鱼，捞100条，都打上标签(构造样本)</li>
 <li>把鱼放回鱼塘，休息一晚(使之混入整个鱼群，确保之后抽样随机)</li>
 <li>开始捞鱼，每次捞100条，数一下，自己昨天标记的鱼有多少条，占比多少(一次重采样取分布)。</li>
 <li>重复3，4步骤n次。建立分布。<br>假设一下，第一次重新捕鱼100条，发现里面有标记的鱼12条，记下为12%，放回去，再捕鱼100条，发现标记的为9条，记下9%，重复重复好多次之后，假设取置信区间95%，你会发现，每次捕鱼平均在10条左右有标记，所以，我们可以大致推测出鱼塘有1000条左右。其实是一个很简单的类似于一个比例问题。这也是因为提出者Efron给统计学顶级期刊投稿的时候被拒绝的理由–”太简单”。这也就解释了，为什么在小样本的时候，bootstrap效果较好，你这样想，如果我想统计大海里有多少鱼，你标记100000条也没用啊，因为实际数量太过庞大，你取的样本相比于太过渺小，最实际的就是，你下次再捕100000的时候，发现一条都没有标记，，，这特么就尴尬了。。。</li>
 </ol>
+</li>
+<li><p>其核心思想和基本步骤如下：</p>
 <ul>
-<li>整合多个弱分类器，成为一个强大的分类器。这时候，集合分类器(Boosting, Bagging等)出现了。<h2 id="集成学习（ensemble-learning）"><a href="#集成学习（ensemble-learning）" class="headerlink" title="集成学习（ensemble learning）"></a>集成学习（ensemble learning）</h2></li>
+<li>采用重抽样技术从原始样本中抽取一定数量（自己给定）的样本，此过程允许重复抽样。</li>
+<li>根据抽出的样本计算给定的统计量T。</li>
+<li>重复上述N次（一般大于1000），得到N个统计量T。</li>
+<li>计算上述N个统计量T的样本方差，得到统计量的方差。</li>
 </ul>
 </li>
+<li><p>通过方差的估计可以构造置信区间等</p>
+</li>
+<li><p>整合多个弱分类器，成为一个强大的分类器。这时候，集合分类器(Boosting, Bagging等)出现了。</p>
+</li>
+</ul>
+<h2 id="集成学习（ensemble-learning）"><a href="#集成学习（ensemble-learning）" class="headerlink" title="集成学习（ensemble learning）"></a>集成学习（ensemble learning）</h2><ul>
 <li>将若干弱分类器组合之后产生一个强分类器</li>
 <li>弱分类器（weak learner）指那些分类准确率只稍好于随机猜测的分类器（error rate &lt; 50%）</li>
 <li>假设各弱分类器间具有一定差异性（如不同的算法，或相同算法不同参数配置），这会导致生成的分类决策边界不同，也就是说它们在决策时会犯不同的错误。将它们结合后能得到更合理的边界，减少整体错误，实现更好的分类效果。</li>
-<li>数据集较大时，可以分为不同的子集，分别进行训练，然后再合成分类器。<br>数据集过小时，可使用自举技术（bootstrapping），从原样本集有放回的抽取m个子集，训练m个分类器，进行集成。</li>
+<li>数据集较大时，可以分为不同的子集，分别进行训练，然后再合成分类器。<br>数据集过小时，可使用自助法（bootstrapping），从原样本集有放回的抽取m个子集，训练m个分类器，进行集成。</li>
 <li>bagging和boosting都是集成学习（ensemble learning）领域的基本算法</li>
 </ul>
-<h2 id="Bagging-bootstrap-aggregation"><a href="#Bagging-bootstrap-aggregation" class="headerlink" title="Bagging(bootstrap aggregation)"></a>Bagging(bootstrap aggregation)</h2><p>-</p>
+<h2 id="Bagging-bootstrap-aggregation"><a href="#Bagging-bootstrap-aggregation" class="headerlink" title="Bagging(bootstrap aggregation)"></a>Bagging(bootstrap aggregation)</h2><ul>
+<li>让该学习算法训练多轮，每轮的训练集由从初始的训练集中随机取出n个训练样本组成，某个训练样本在某训练集中可能出现多次或者不出现，训练之后可得到一个预测函数序列h_1,h_n，最终的预测函数H对分类问题采用投票方式，对回归问题（加权平均好点，但是没）采用简单平均方式判别。训练R个分类器f_i,分类器之间其他相同就是参数步相同。其中f_i是通过从训练集和中随机取N次样本训练得到的。对于新样本，用这个R个分类器去分类，得到最多的那个类别就是这个样本的最终类别。</li>
+</ul>
 <h2 id="Bagging代表算法-Random-Forest-随机森林"><a href="#Bagging代表算法-Random-Forest-随机森林" class="headerlink" title="Bagging代表算法-Random Forest(随机森林)"></a>Bagging代表算法-Random Forest(随机森林)</h2><ul>
-<li>Bootstrap方法随机选择子样本</li>
-<li>属性集中随机选择k个属性，每个树节点分裂时，从这随机的k个属性，选择最优的<h2 id="Boosting算法代表–Adaboost-Adaptive-Boosting"><a href="#Boosting算法代表–Adaboost-Adaptive-Boosting" class="headerlink" title="Boosting算法代表–Adaboost(Adaptive Boosting)"></a>Boosting算法代表–Adaboost(Adaptive Boosting)</h2></li>
+<li><p>Bootstrap方法随机选择子样本</p>
+</li>
+<li><p>属性集中随机选择k个属性，每个树节点分裂时，从这随机的k个属性，选择最优的</p>
+</li>
+<li><p>随机森林，使用随机的方式建立一个森林，森林里面有很多的决策树组成，随机森林的每一棵决策树之间是没有关联的。在得到森林之后，当有一个新的输入样本进入，就让森林中的每一棵决策树分别进行判断，看看这个样本属于那个类，然后看看哪一类被选择多，就预测为那一类。</p>
+</li>
+<li><p>在建立决策树的过程中，需要注意两点-采样和完全分裂。首先是两个随机采样的过程，Random Forest对输入的数据要进行 行，列的采样。</p>
+</li>
+<li><p>对于行采样，采用有放回的方式，也就是在采样得到的样本集合中，可能有重复的样本。假设输入样本为N个，那么采样的样本也为n个。这样使得在训练的时候，每一棵树的输入样本都不是全部样本，使得相对不容易出现over-fitting。</p>
+</li>
+<li><p>然后进行列采样，从M个feature中，选择m个。</p>
+</li>
+<li><p>之后就是对采样之后的数据使用完全分裂的方式建立出决策树，这样决策树的某一个叶子节点要么是无法继续分裂，要么里面的所有样本都是指向的同一类分类。</p>
+</li>
+<li><p>一般的决策树都有一个重要的步骤，剪枝，但是这里不这样干，由于之前的两个随机采样的过程保证了随机性，所以就算不剪枝，也不会over-fitting。</p>
+</li>
+<li><p>按这种算法得到的随机森林中的每一棵树都是很弱的，但是组合起来就很厉害了。可以这样比喻随机森林：每一颗决策树就是一个精通于某一个窄领域的专家，这样在随机森林中就有了很多个精通不同领域的专家，对于新的样本，可以用不同的角度看待它，最终由各个专家，投票得到结果。</p>
+</li>
+</ul>
+<h2 id="Boosting算法代表–Adaboost-Adaptive-Boosting"><a href="#Boosting算法代表–Adaboost-Adaptive-Boosting" class="headerlink" title="Boosting算法代表–Adaboost(Adaptive Boosting)"></a>Boosting算法代表–Adaboost(Adaptive Boosting)</h2><ul>
+<li><p>初始化时对每一个训练赋予相同的权重1/n，然后用该学算法对训练集训练t轮，每次训练后，对训练失败的训练列赋予较大的权重，也就是让学习算法在后续的学习中集中对比较难的训练列进行训练（就是把训练分类错了的样本，再次拿出来训练，看它以后还敢出错不），整个迭代过程直到错误率足够小或达到一定次数为止，从而得到一个预测函数序列h_1,h_m,其中h_i也有一定的权重，预测效果好的预测函数权重大，反之小。最终的预测函数H对分类问题采用有权重的投票方式，对回归问题采用加权平均的方式对新样本判别。</p>
+</li>
+<li><p>类似bagging方法，但是训练是串行的（顺序生成），第K个分类器训练时，关注对前k-1分类器中错误，不是随机取样本，而是加大取这些分错的样本的权重。</p>
+</li>
+</ul>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ul>
+<li>取样本方式不同：bagging采用均匀取样，而boosting根据错误率来采样，因此boosting的分类精度要由于bagging。</li>
+<li>bagging的训练集选择是随机的，各轮训练集之前互相独立，而boosting的各轮训练集的选择与前面各轮的学习结果相关；bagging的各个预测函数没有权重，而boosting有权重；</li>
+<li>bagging的各个函数可以并行生成，而boosting的各个预测函数只能顺序生成。</li>
+<li>对于像神经网络这样极为消耗时间的算法，bagging可通过并行节省大量的时间开销。bagging和boosting都可以有效地提高分类的准确性。在大多数数据集中，boosting的准确性要比bagging高。有一些数据集中，boosting会退化-overfit。boosting思想的一种改进型adaboost方法在邮件过滤，文本分类中有很好的性能。</li>
 </ul>
 <h2 id="置信区间，就是一种区间估计。"><a href="#置信区间，就是一种区间估计。" class="headerlink" title="置信区间，就是一种区间估计。"></a>置信区间，就是一种区间估计。</h2><ul>
 <li>例子：<ul>
@@ -736,8 +784,20 @@ height: 100%; left: 0; top: 0;">
 </ul>
 </li>
 </ul>
+<h1 id="Bootstrapping-programming-in-R"><a href="#Bootstrapping-programming-in-R" class="headerlink" title="Bootstrapping programming in R"></a>Bootstrapping programming in R</h1><p>If we have n data entries, indexed as y1,…,yn and x1,…,xn, we can generate a new data set by sampling from these indices uniformly with replacement. Lets see how to do this in R using the faithful data set:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data = faithful</span><br><span class="line">bootstrap_indices = sample(length(faithful), length(faithful), replace=TRUE)</span><br><span class="line">data_bootstrap = data[bootstrap_indices, ]</span><br></pre></td></tr></table></figure>
+<p>data_bootstrap is now a bootstrap sample from the original data.</p>
+<p>There is little to be gained from BAGGING linear regressions. This is because the sum of two linear functions is another linear function. However, for non-linear functions there is much more potential. For example,the sum of many logistic functions is not in general another logistic function. Therefore we will use logistic regression to demonstrate the power of BAGGING. We’ll define an underlying probability function that is impossible for a single logistic regression to capture properly. Then we&#39;ll show how summing over many logistic regression models trained on different sampled subsets of the data can outperform a single model.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define a complex probability function</span></span><br><span class="line">myfunction &lt;- function(x)&#123;<span class="number">0</span>+<span class="number">1</span>*(x&gt;<span class="number">0.25</span> &amp; x &lt; <span class="number">0.75</span>)&#125;</span><br><span class="line"><span class="comment">#Generate some data</span></span><br><span class="line">X = seq(<span class="number">0</span>,<span class="number">1</span>, length.out=<span class="number">100</span>)</span><br><span class="line">P = myfunction(X)</span><br><span class="line">Y = <span class="keyword">as</span>.numeric(runif(<span class="number">100</span>)&lt;P)</span><br><span class="line"><span class="comment">#Plot the data with the actual probability</span></span><br><span class="line">plot(X, Y)</span><br><span class="line">lines(X, P)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Make a data frame and split into training and test data</span></span><br><span class="line">mydata = data.frame(Y, X)</span><br><span class="line">test_idx = sample(dim(mydata)[<span class="number">1</span>], <span class="number">20</span>)</span><br><span class="line">test_data = mydata[test_idx, ]</span><br><span class="line">train_data = mydata[-test_idx, ]</span><br><span class="line"><span class="comment">#Fit a logistic model to the training data</span></span><br><span class="line">myModel = glm(Y ~ X, data=train_data, family=binomial)</span><br><span class="line"><span class="comment">#Make a prediction for the probability of the test data being 1</span></span><br><span class="line">prediction = predict(myModel, newdata=test_data, type=<span class="string">"response"</span>)</span><br><span class="line"><span class="comment">#Evaluate the predictive log-likelihood</span></span><br><span class="line">testLL = sum(log(prediction[which(test_data$Y==<span class="number">1</span>)])) +</span><br><span class="line">  sum(log(<span class="number">1</span>-prediction[which(test_data$Y==<span class="number">0</span>)]))</span><br><span class="line"></span><br><span class="line"><span class="comment">#BAGGING!</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#Make 1000 bootstrap samples</span></span><br><span class="line"><span class="comment">#Fit a logistic model to each</span></span><br><span class="line"><span class="comment">#Record prediction onto test data and aggregate</span></span><br><span class="line">bsPrediction = rep(<span class="number">0</span>, dim(test_data)[<span class="number">1</span>])</span><br><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">1000</span>)&#123;</span><br><span class="line">  bs_idx = sample(dim(train_data)[<span class="number">1</span>], <span class="number">20</span>, replace=TRUE)</span><br><span class="line">  bs_data = train_data[bs_idx,]</span><br><span class="line">  bsModel = glm(Y ~ X, data=bs_data, family=binomial)</span><br><span class="line">  bsPrediction = bsPrediction + predict(bsModel, newdata=test_data, type=<span class="string">"response"</span>)/<span class="number">1000</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#Get the predictive likelihood of the bagged model</span></span><br><span class="line">bstestLL = sum(log(bsPrediction[which(test_data$Y==<span class="number">1</span>)])) +</span><br><span class="line">  sum(log(<span class="number">1</span>-bsPrediction[which(test_data$Y==<span class="number">0</span>)]))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Print the results</span></span><br><span class="line">print(testLL)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(bstestLL)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plot(test_data$X, prediction)</span><br><span class="line">plot(test_data$X, bsPrediction)</span><br></pre></td></tr></table></figure>
+<p>In this case a single logistic regression cannot capture the fact that the probability is non-monotonic in X. By learning from different sampled subsets of the data, the BAGGED logistic regressions capture different features of the underlying relationship, in this case the rise in probability at X = 0.25 and th decrease at X = 0.75.</p>
 <p>Reference:</p>
 <ol>
+<li>tutorial from Professor Netta Cohen</li>
+<li>lectures from university of leeds</li>
 <li><a href="https://en.wikipedia.org/wiki/Bootstrapping" target="_blank" rel="noopener">wikipedia</a></li>
 <li><a href="https://www.jianshu.com/p/708dff71df3a" target="_blank" rel="noopener">简书</a></li>
 <li><a href="https://www.jiqizhixin.com/graph/technologies/c2f1159e-e096-4c9e-8e0c-48f490dc7bbe" target="_blank" rel="noopener">机器之心</a></li>
@@ -1531,13 +1591,13 @@ height: 100%; left: 0; top: 0;">
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">22k</span>
+    <span title="Symbols count total">27k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">16 mins.</span>
+    <span title="Reading time total">19 mins.</span>
 </div><span id="sitetime"></span>
 <script language=javascript>
 function siteTime(){
