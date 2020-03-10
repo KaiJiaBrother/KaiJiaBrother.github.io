@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Heuristic Algorithm(启发式算法)</title>
+    <url>/posts/f7ee5063/</url>
+    <content><![CDATA[<h1 id="Heuristic-Algorithm-启发式算法"><a href="#Heuristic-Algorithm-启发式算法" class="headerlink" title="Heuristic Algorithm(启发式算法)"></a>Heuristic Algorithm(启发式算法)</h1><h2 id="general-concept"><a href="#general-concept" class="headerlink" title="general concept"></a>general concept</h2><p>a heuristic is a technique designed for solving a problem more quickly when classic methods are too slow, or for finding an approximate solution when classic methods fail to find any exact solution. This is achieved by trading optimality, completeness, accuracy, or precision for speed. In a way, it can be considered a shortcut.</p>
+<h2 id="Travelling-salesman-problem-TSP"><a href="#Travelling-salesman-problem-TSP" class="headerlink" title="Travelling salesman problem(TSP)"></a>Travelling salesman problem(TSP)</h2><blockquote>
+<p>Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city and returns to the origin city?</p>
+</blockquote>
+<p>TSP is known to be NP-Hard so an optimal solution for even a moderate size problem is difficult to solve. Instead, the greedy algorithm can be used to give a good but not optimal solution (it is an approximation to the optimal answer) in a reasonably short amount of time. The greedy algorithm heuristic says to pick whatever is currently the best next step regardless of whether that prevents (or even makes impossible) good steps later. It is a heuristic in that practice says it is a good enough solution, theory says there are better solutions (and even can tell how much better in some cases).</p>
+<h2 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h2><p>Another example of heuristic making an algorithm faster occurs in certain search problems. Initially, the heuristic tries every possibility at each step, like the full-space search algorithm. But it can stop the search at any time if the current possibility is already worse than the best solution already found. In such search problems, a heuristic can be used to try good choices first so that bad paths can be eliminated early (see alpha-beta pruning). In the case of best-first search algorithms, such as A* search, the heuristic improves the algorithm’s convergence while maintaining its correctness as long as the heuristic is admissible.</p>
+<h2 id="Antivirus-software"><a href="#Antivirus-software" class="headerlink" title="Antivirus software"></a>Antivirus software</h2><p>Antivirus software often uses heuristic rules for detecting viruses and other forms of malware. Heuristic scanning looks for code and/or behavioral patterns common to a class or family of viruses, with different sets of rules for different viruses. If a file or executing process is found to contain matching code patterns and/or to be performing that set of activities, then the scanner infers that the file is infected. The most advanced part of behavior-based heuristic scanning is that it can work against highly randomized self-modifying/mutating (polymorphic) viruses that cannot be reliably detected by simpler string scanning methods. Heuristic scanning has the potential to detect future viruses without requiring the virus to be first detected somewhere else, submitted to the virus scanner developer, analyzed, and a detection update for the scanner provided to the scanner’s users.</p>
+<h2 id="启发式算法"><a href="#启发式算法" class="headerlink" title="启发式算法"></a>启发式算法</h2><p>一个基于直观或经验构造的算法，在可接受的花费（指计算时间和空间）下给出待解决组合优化问题每一个实例的一个可行解，该可行解与最优解的偏离程度一般不能被预计。现阶段，启发式算法以仿自然体算法为主，主要有蚁群算法、模拟退火法、神经网络等。</p>
+<h1 id="P-Problem-vs-NP-Problem"><a href="#P-Problem-vs-NP-Problem" class="headerlink" title="P-Problem vs NP-Problem"></a>P-Problem vs NP-Problem</h1><h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><ul>
+<li>时间复杂度则表示这个算法运行得到想要的解所需的计算工作量，他探讨的是当输入值接近无穷时，算法所需工作量的变化快慢程度。<h2 id="P-Problem-polynomial"><a href="#P-Problem-polynomial" class="headerlink" title="P-Problem(polynomial)"></a>P-Problem(polynomial)</h2></li>
+<li>A problem is assigned to the P (polynomial time) class if there exists at least one algorithm to solve that problem, such that the number of steps of the algorithm is bounded by a polynomial in n, where n is the length of the input.</li>
+<li>算法的步数可以用多项式来表示</li>
+<li>P类问题：如果一个问题可以找到一个能在多项式的时间里解决它的算法</li>
+</ul>
+<h2 id="NP-Problem-non-deterministic-polynomial-time-不确定性多项式时间"><a href="#NP-Problem-non-deterministic-polynomial-time-不确定性多项式时间" class="headerlink" title="NP-Problem(non-deterministic polynomial time)不确定性多项式时间"></a>NP-Problem(non-deterministic polynomial time)不确定性多项式时间</h2><ul>
+<li>A problem is assigned to the NP (nondeterministic polynomial time) class if it is solvable in polynomial time by a nondeterministic Turing machine.</li>
+<li></li>
+<li>A P-problem (whose solution time is bounded by a polynomial) is always also NP. If a problem is known to be NP, and a solution to the problem is somehow known, then demonstrating the correctness of the solution can always be reduced to a single P (polynomial time) verification. If P and NP are not equivalent, then the solution of NP-problems requires (in the worst case) an exhaustive search.</li>
+<li></li>
+<li>NP问题：可以在多项式的时间里验证一个解的问题/可以在多项式的时间里猜出一个解的问题</li>
+<li>所有的P类问题都是NP问题。</li>
+<li>不知道这个问题是不是存在多项式时间内的算法，所以叫non-deterministic不确定性，但是我们可以在多项式时间内验证并得出这个问题的一个正确解。</li>
+</ul>
+<h2 id="NPC-problem-non-deterministic-polynomial-complete"><a href="#NPC-problem-non-deterministic-polynomial-complete" class="headerlink" title="NPC problem(non-deterministic polynomial complete)"></a>NPC problem(non-deterministic polynomial complete)</h2><ul>
+<li>如果所有NP问题都能在多项式时间内转化为最难的一个NP类问题（被约化成的问题应具有比前一个问题更复杂的时间复杂度），则称该NP问题为NPC问题</li>
+</ul>
+<h2 id="NP-hard-Problem"><a href="#NP-hard-Problem" class="headerlink" title="NP-hard Problem"></a>NP-hard Problem</h2><ul>
+<li><p>A problem is said to be NP-hard if an algorithm for solving it can be translated into one for solving any other NP-problem. It is much easier to show that a problem is NP than to show that it is NP-hard. A problem which is both NP and NP-hard is called an NP-complete problem.</p>
+</li>
+<li><p>我们又叫NP难问题，他不是一个NP问题，然后所有的NPC问题都可以在多项式时间内转化为他的话，我们就叫他NPH（hard）问题。</p>
+</li>
+</ul>
+<p>Reference:</p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Heuristic_(computer_science)" target="_blank" rel="noopener">wikipedia</a></li>
+<li><a href="https://mathworld.wolfram.com/NP-Problem.html" target="_blank" rel="noopener">mathworld</a></li>
+<li><a href="http://www.matrix67.com/blog/archives/105" target="_blank" rel="noopener">matrix67.com</a></li>
+<li><a href="https://blog.csdn.net/databatman/article/details/49304295" target="_blank" rel="noopener">blog.csdn</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Artificial Intelligence</category>
+      </categories>
+      <tags>
+        <tag>Artificial Intelligence</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>cloud computing notes</title>
     <url>/posts/983f472e/</url>
     <content><![CDATA[]]></content>
