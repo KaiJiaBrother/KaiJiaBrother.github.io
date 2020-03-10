@@ -32,7 +32,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kaijiadage.com/images/stopwords.png">
 <meta property="article:published_time" content="2020-03-06T15:57:12.000Z">
-<meta property="article:modified_time" content="2020-03-10T02:26:38.518Z">
+<meta property="article:modified_time" content="2020-03-10T13:00:44.425Z">
 <meta property="article:author" content="Jerry Jia">
 <meta property="article:tag" content="Data mining">
 <meta name="twitter:card" content="summary">
@@ -234,7 +234,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-10 02:26:38" itemprop="dateModified" datetime="2020-03-10T02:26:38+00:00">2020-03-10</time>
+                <time title="Modified: 2020-03-10 13:00:44" itemprop="dateModified" datetime="2020-03-10T13:00:44+00:00">2020-03-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -275,14 +275,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4.7k</span>
+              <span>6.3k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
+              <span>5 mins.</span>
             </span>
 
         </div>
@@ -330,6 +330,46 @@
 <p>本意是想替换tweets中的所有user，url，只整体替换单词，最后发现只要tweets中出现了这个组合的词都被替换了，比如一个词，原本是username，本无意替换，这里却替换成了name。<br>最后采用lambda表达式，一行搞定：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'tweet'</span>] = df[<span class="string">'tweet'</span>].apply(<span class="keyword">lambda</span> x: <span class="string">' '</span>.join([w <span class="keyword">for</span> w <span class="keyword">in</span> x.split() <span class="keyword">if</span> w <span class="keyword">not</span> <span class="keyword">in</span> word_list <span class="keyword">and</span> len(w)&gt;<span class="number">3</span>]))</span><br></pre></td></tr></table></figure>
 <p>意思就是把每一条tweets进行遍历（x的作用），每条tweet都根据空格分隔为一个list然后遍历（w），满足条件的留下来（for前面的w），最后每一条tweet通过’ ‘（空格）再连接起来。</p>
+<ol start="7">
+<li>pandas.DataFrame.merge使用<br>Merge DataFrame or named Series objects with a database-style join.<br>以数据库风格的方式合并DataFrame或Series<br>比如两个csv文件都拥有相同的列名id，现在想根据id合并为一个csv文件（类似Excel的vlookup函数）<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outfile = pd.merge(df1, df2, how=<span class="string">'inner'</span>, left_on=<span class="string">'id'</span>,right_on=<span class="string">'id'</span>)</span><br></pre></td></tr></table></figure>
+表示将df1的id列和df2的id列以inner join的方式进行合并，<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> df1 <span class="keyword">inner</span> <span class="keyword">join</span> df2</span><br><span class="line"><span class="keyword">where</span> df1.id = df2.id</span><br></pre></td></tr></table></figure>
+以上代码过于啰嗦，完全可以用以下代替<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outfile = pd.merge(df1, df2, on=<span class="string">'id'</span>)</span><br></pre></td></tr></table></figure></li>
+<li>summary</li>
+</ol>
+<p>The method I used to create the training data and test data:</p>
+<ul>
+<li>get all the distinct words from different tweets(for example, get offensive words from all the offensive tweets), count and rank them.</li>
+<li>In this case, I get 7 different sets of words(offensive, not offensive, targeted, nottargeted and so on).</li>
+<li>Then, I choose the words that occur more than 10 times(we can modify this threshold), so I get 7 new sets of words.</li>
+<li>After that, I use these 7 new sets of words to filter the original tweets respectively(for example, use new offensive words set to filter the offensive tweets, only keep words in the new offensive words set).</li>
+<li>finally, I get 7 different types of tweets(offensive tweets, notoffensive tweets and so on) and combine them to 3 new tweets sets(subtask_a, subtask_b, subtask_c)</li>
+</ul>
+<p>Other data cleaning method I used (maybe they can be mentioned in the presentation)</p>
+<ul>
+<li>Only keep the characters and hash tags</li>
+<li>remove the extra blanks</li>
+<li>lowercase all the words</li>
+<li>remove the stop words and some words that don’t make sense.(stop words are from nltk corpus and wordcloud stopwords list)</li>
+<li>replace all the null subtask to NaN</li>
+<li>keep the words longer than 3 words</li>
+<li>word cloud presentation</li>
+</ul>
+<p>lemmatizer</p>
+<ul>
+<li>use lemmatizer for the training and test data</li>
+</ul>
+<p>stem</p>
+<ul>
+<li><p>use SnowballStemmer for the training and test data</p>
+</li>
+<li><p>words_count</p>
+</li>
+</ul>
+<p>All the words(except the stop words and some words that don’t make sense)in the tweets and their counts</p>
+<p>Reference:</p>
+<ol>
+<li><a href="https://pandas.pydata.org/pandas-docs/stable/reference/index.html" target="_blank" rel="noopener">Pandas API reference</a></li>
+</ol>
 
     </div>
 
@@ -548,13 +588,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">28k</span>
+    <span title="Symbols count total">30k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">20 mins.</span>
+    <span title="Reading time total">21 mins.</span>
 </div><span id="sitetime"></span>
 <script language=javascript>
 function siteTime(){
