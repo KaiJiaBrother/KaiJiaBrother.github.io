@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Tableau</title>
+    <url>/posts/9c9742d/</url>
+    <content><![CDATA[<ol>
+<li>Create a Top N Filter顺序问题<br>From the Data pane, drag City to the Filters shelf：filter的City还是原数据里的所有City，不是通过filter State之后的City<br>解决方法：On the Filters shelf, right-click the Inclusions (Country, State) (Country, State) set and select Add to Context.</li>
+</ol>
+<p>Reference:<br>1.<a href="https://help.tableau.com/current/guides/get-started-tutorial/en-us/get-started-tutorial-drilldown.htm" target="_blank" rel="noopener">help.tableau.com</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Heuristic Algorithm(启发式算法)</title>
     <url>/posts/f7ee5063/</url>
     <content><![CDATA[<h1 id="Heuristic-Algorithm-启发式算法"><a href="#Heuristic-Algorithm-启发式算法" class="headerlink" title="Heuristic Algorithm(启发式算法)"></a>Heuristic Algorithm(启发式算法)</h1><h2 id="general-concept"><a href="#general-concept" class="headerlink" title="general concept"></a>general concept</h2><p>a heuristic is a technique designed for solving a problem more quickly when classic methods are too slow, or for finding an approximate solution when classic methods fail to find any exact solution. This is achieved by trading optimality, completeness, accuracy, or precision for speed. In a way, it can be considered a shortcut.</p>
