@@ -7,7 +7,10 @@
 <li>Create a Top N Filter顺序问题<br>From the Data pane, drag City to the Filters shelf：filter的City还是原数据里的所有City，不是通过filter State之后的City(top N filter or the set filter排序问题)<br>原因：Tableau Order of Operations(the order that Tableau performs various actions, such as the order in which it applies your filters to the view.)</li>
 </ol>
 <p>解决方法：On the Filters shelf, right-click the Inclusions (Country, State) (Country, State) set and select Add to Context.</p>
-<p>Reference:<br>1.<a href="https://help.tableau.com/current/guides/get-started-tutorial/en-us/get-started-tutorial-drilldown.htm" target="_blank" rel="noopener">help.tableau.com</a></p>
+<p>Reference:</p>
+<ol>
+<li><a href="https://help.tableau.com/current/guides/get-started-tutorial/en-us/get-started-tutorial-drilldown.htm" target="_blank" rel="noopener">help.tableau.com</a></li>
+</ol>
 ]]></content>
   </entry>
   <entry>
