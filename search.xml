@@ -15,7 +15,11 @@
   <entry>
     <title>Inspired</title>
     <url>/posts/bf1390a3/</url>
-    <content><![CDATA[<p>Dear Netta,</p>
+    <content><![CDATA[<blockquote>
+<p>An email to record the concerns that I have recently. And thanks Professor Netta.</p>
+</blockquote>
+<a id="more"></a>
+<p>Dear Netta,</p>
 <p>I’m still at leeds now,  in residence during this time. I don’t have any plan to go back home in the near future.</p>
 <p>– Ok, thanks!</p>
 <p>When I went shopping, I found only myself wearing the mask, which made me feel a little uncomfortable. Some of my Chinese friends suffered from discrimination maybe because they are Chinese and they wear the masks.</p>
@@ -35,7 +39,11 @@
   <entry>
     <title>Tableau</title>
     <url>/posts/9c9742d/</url>
-    <content><![CDATA[<ol>
+    <content><![CDATA[<blockquote>
+<p>Just reord some issues when I use Tableau.</p>
+</blockquote>
+<a id="more"></a>
+<ol>
 <li>Create a Top N Filter顺序问题<br>From the Data pane, drag City to the Filters shelf：filter的City还是原数据里的所有City，不是通过filter State之后的City(top N filter or the set filter排序问题)<br>原因：Tableau Order of Operations(the order that Tableau performs various actions, such as the order in which it applies your filters to the view.)</li>
 </ol>
 <p>解决方法：On the Filters shelf, right-click the Inclusions (Country, State) (Country, State) set and select Add to Context.</p>
@@ -49,6 +57,7 @@
     <title>Heuristic Algorithm(启发式算法)</title>
     <url>/posts/f7ee5063/</url>
     <content><![CDATA[<h1 id="Heuristic-Algorithm-启发式算法"><a href="#Heuristic-Algorithm-启发式算法" class="headerlink" title="Heuristic Algorithm(启发式算法)"></a>Heuristic Algorithm(启发式算法)</h1><h2 id="general-concept"><a href="#general-concept" class="headerlink" title="general concept"></a>general concept</h2><p>a heuristic is a technique designed for solving a problem more quickly when classic methods are too slow, or for finding an approximate solution when classic methods fail to find any exact solution. This is achieved by trading optimality, completeness, accuracy, or precision for speed. In a way, it can be considered a shortcut.</p>
+<a id="more"></a>
 <h2 id="Travelling-salesman-problem-TSP"><a href="#Travelling-salesman-problem-TSP" class="headerlink" title="Travelling salesman problem(TSP)"></a>Travelling salesman problem(TSP)</h2><blockquote>
 <p>Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city and returns to the origin city?</p>
 </blockquote>
@@ -110,6 +119,7 @@
     <title>big data notes</title>
     <url>/posts/b96255d4/</url>
     <content><![CDATA[<h1 id="CPU-vs-GPU-vs-FPGA"><a href="#CPU-vs-GPU-vs-FPGA" class="headerlink" title="CPU vs GPU vs FPGA"></a>CPU vs GPU vs FPGA</h1><p>A CPU (central processing unit) works together with a GPU (graphics processing unit) to increase the throughput of data and the number of concurrent calculations within an application.</p>
+<a id="more"></a>
 <p>A CPU can never be fully replaced by a GPU: a GPU complements CPU architecture by allowing repetitive calculations within an application to be run in parallel while the main program continues to run on the CPU. The CPU can be thought of as the taskmaster of the entire system, coordinating a wide range of general-purpose computing tasks, with the GPU performing a narrower range of more specialized tasks (usually mathematical). Using the power of parallelism, a GPU can complete more work in the same amount of time as compared to a CPU.</p>
 <p><code>The main difference</code> between CPU and GPU architecture is that a CPU is designed to handle a wide-range of tasks quickly (as measured by CPU clock speed), but are limited in the concurrency of tasks that can be running. A GPU is designed to quickly render high-resolution images and video concurrently.</p>
 <p>Because GPUs can perform parallel operations on multiple sets of data, they are also commonly used for non-graphical tasks such as machine learning and scientific computation. Designed with thousands of processor cores running simultaneously, GPUs enable massive parallelism where each core is focused on making efficient calculations.</p>
@@ -136,7 +146,9 @@
   <entry>
     <title>3月7日游Chester Zoo及七种迹象，暗示你的生活正在慢慢变好</title>
     <url>/posts/537a960e/</url>
-    <content><![CDATA[<h2 id="3月7日游Chester-Zoo"><a href="#3月7日游Chester-Zoo" class="headerlink" title="3月7日游Chester Zoo"></a>3月7日游Chester Zoo</h2><p>今天去了一趟Chester Zoo，去的时候和旁边的越南同学聊了一路，回的时候和日本同学聊了一路。和越南同学聊，一直讲英语，后边问她会不会说中文，会，就穿插着用中文聊了，哈哈哈，越南同学真厉害。回的时候是日本同学，正好对日本动漫（火影忍者啥的），一些乐队（goose house），cartoon(久石让，宫崎骏)，一些风景名胜（fuji mountain，北海道），一些文化（招财猫，日本古人画像，日本天皇，doll）感兴趣，问了很多问题，还给日本同学分享了自己游玩明十三陵（一些帝王陵墓的讲究，比如有个棂星门），天安门广场（看了降旗仪式的视频），故宫里的珍妃井的故事和大戏台，聊得很开心，1个半小时很快就过去了。晚上吃过饭瞌睡，就在床上小憩了一会儿，醒来之后四周都是黑的，突然，一股难以言表的感觉浮上心头，这一天就这么过去了，时间过得好快啊。</p>
+    <content><![CDATA[<h2 id="3月7日游Chester-Zoo"><a href="#3月7日游Chester-Zoo" class="headerlink" title="3月7日游Chester Zoo"></a>3月7日游Chester Zoo</h2><p>今天去了一趟Chester Zoo，去的时候和旁边的越南同学聊了一路，回的时候和日本同学聊了一路。</p>
+<a id="more"></a>
+<p>和越南同学聊，一直讲英语，后边问她会不会说中文，会，就穿插着用中文聊了，哈哈哈，越南同学真厉害。回的时候是日本同学，正好对日本动漫（火影忍者啥的），一些乐队（goose house），cartoon(久石让，宫崎骏)，一些风景名胜（fuji mountain，北海道），一些文化（招财猫，日本古人画像，日本天皇，doll）感兴趣，问了很多问题，还给日本同学分享了自己游玩明十三陵（一些帝王陵墓的讲究，比如有个棂星门），天安门广场（看了降旗仪式的视频），故宫里的珍妃井的故事和大戏台，聊得很开心，1个半小时很快就过去了。晚上吃过饭瞌睡，就在床上小憩了一会儿，醒来之后四周都是黑的，突然，一股难以言表的感觉浮上心头，这一天就这么过去了，时间过得好快啊。</p>
 <p>最近英国疫情稍稍严峻了一些（昨天是116例了），今天第一次基本全程戴口罩，刚开始戴口罩还是很不舒服的，不过很快就习惯了。到了动物园，碰到的外国人没一个人戴口罩（此时应无视他人异样的目光），周围没人的时候就解下来，大口吸口气，哈哈哈！动物园里有很多小孩，凑我旁边问我为什么戴口罩。还好戴着口罩，化解了我脸上的尴尬。</p>
 <p>刚好来利兹前去了一趟大连野生动物园，就说下最大的对比吧。这里每种动物相对少一点，人离得近一点，比如老虎区，人不是高高在上的站在围墙外面参观，而是基本水平的参观。工作人员讲解很耐心，很多景点碰到了讲解就停下来听一听。印象最深刻的就是蝙蝠馆（Fruit bat forest），蝙蝠就在身边飞啊飞，里面很臭。问了工作人员两个傻逼问题，为什么臭啊，这些蝙蝠带病毒不，哈哈哈。</p>
 <p>正好看到人民日报的励志文，记录一下，当自己颓废的时候激励自己。</p>
@@ -193,6 +205,7 @@
 <ul>
 <li>a self-starting process that is supposed to proceed without external input.</li>
 </ul>
+<a id="more"></a>
 <ol start="2">
 <li>In computer technology(usually shortened to booting)</li>
 </ol>
@@ -351,6 +364,7 @@
     <content><![CDATA[<blockquote>
 <p>I&#39;m going to record the errors when I&#39;m doing my Data Mining coursework here</p>
 </blockquote>
+<a id="more"></a>
 <ol>
 <li><p>reindex() missing 1 required positional argument: ‘self’</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tweet_df = pd.DataFrame.reindex(index=range(df.shape[<span class="number">0</span>]))</span><br></pre></td></tr></table></figure>
@@ -435,7 +449,11 @@
   <entry>
     <title>Data Challenge slides</title>
     <url>/posts/70cdea1a/</url>
-    <content><![CDATA[<p><img src="/images/data-challenge-slides/1.PNG" alt="page1"><br><img src="/images/data-challenge-slides/2.PNG" alt="page2"><br><img src="/images/data-challenge-slides/3.PNG" alt="page3"><br><img src="/images/data-challenge-slides/4.PNG" alt="page4"><br><img src="/images/data-challenge-slides/5.PNG" alt="page5"><br><img src="/images/data-challenge-slides/6.PNG" alt="page6"><br><img src="/images/data-challenge-slides/7.PNG" alt="page7"><br><img src="/images/data-challenge-slides/8.PNG" alt="page8"><br><img src="/images/data-challenge-slides/9.PNG" alt="page9"><br><img src="/images/data-challenge-slides/10.PNG" alt="page10"><br><img src="/images/data-challenge-slides/11.PNG" alt="page11"><br><img src="/images/data-challenge-slides/12.PNG" alt="page12"><br><img src="/images/data-challenge-slides/13.PNG" alt="page13"><br><img src="/images/data-challenge-slides/14.PNG" alt="page14"><br><img src="/images/data-challenge-slides/15.PNG" alt="page15"><br><img src="/images/data-challenge-slides/16.PNG" alt="page16"><br><img src="/images/data-challenge-slides/17.PNG" alt="page17"></p>
+    <content><![CDATA[<blockquote>
+<p>The slides that I use in Data Challenge.</p>
+</blockquote>
+<a id="more"></a>
+<p><img src="/images/data-challenge-slides/1.PNG" alt="page1"><br><img src="/images/data-challenge-slides/2.PNG" alt="page2"><br><img src="/images/data-challenge-slides/3.PNG" alt="page3"><br><img src="/images/data-challenge-slides/4.PNG" alt="page4"><br><img src="/images/data-challenge-slides/5.PNG" alt="page5"><br><img src="/images/data-challenge-slides/6.PNG" alt="page6"><br><img src="/images/data-challenge-slides/7.PNG" alt="page7"><br><img src="/images/data-challenge-slides/8.PNG" alt="page8"><br><img src="/images/data-challenge-slides/9.PNG" alt="page9"><br><img src="/images/data-challenge-slides/10.PNG" alt="page10"><br><img src="/images/data-challenge-slides/11.PNG" alt="page11"><br><img src="/images/data-challenge-slides/12.PNG" alt="page12"><br><img src="/images/data-challenge-slides/13.PNG" alt="page13"><br><img src="/images/data-challenge-slides/14.PNG" alt="page14"><br><img src="/images/data-challenge-slides/15.PNG" alt="page15"><br><img src="/images/data-challenge-slides/16.PNG" alt="page16"><br><img src="/images/data-challenge-slides/17.PNG" alt="page17"></p>
 <div class="note info no-icon">
             <p>In addition, we use sql programming to deal with the data and use Mice method to replace the null value in python.</p>
           </div>
@@ -450,7 +468,11 @@
   <entry>
     <title>云计算学习笔记之Docker(Cloud Computing Lab -- Docker)</title>
     <url>/posts/db3e7c66/</url>
-    <content><![CDATA[<ul>
+    <content><![CDATA[<blockquote>
+<p>Record the issues when I use Docker.</p>
+</blockquote>
+<a id="more"></a>
+<ul>
 <li>Docker在产业里的应用比VM更多</li>
 <li>VM和Docker的区别在于：VM是由Hypervisor统一管理，使用Guest OS；而Docker通过Docker Engine</li>
 </ul>
@@ -480,6 +502,7 @@
     <content><![CDATA[<div class="note info">
             <p>针对第三周实验的一些简单个人理解，有错误请指出。</p>
           </div>
+<a id="more"></a>
 <h1 id="1-Initial-system-setup"><a href="#1-Initial-system-setup" class="headerlink" title="1- Initial system setup"></a>1- Initial system setup</h1><ol>
 <li><code>whoami</code>: 显示当前用户<br>虚拟机进入时默认为root。</li>
 <li><code>su hduser</code>: su命令用于切换为<code>hduser</code>用户(hadoop user为该hadoop实例下自带的用户)</li>
@@ -548,7 +571,11 @@
   <entry>
     <title>Data mining notes &amp; weka notes</title>
     <url>/posts/c94f917b/</url>
-    <content><![CDATA[<h1 id="Information-Extraction"><a href="#Information-Extraction" class="headerlink" title="Information Extraction"></a>Information Extraction</h1><h2 id="Information-Extraction-IE-and-Information-Retrieval-IR"><a href="#Information-Extraction-IE-and-Information-Retrieval-IR" class="headerlink" title="Information Extraction(IE) and Information Retrieval(IR)"></a>Information Extraction(IE) and Information Retrieval(IR)</h2><p>IE pulls facts and structured information from the content of large text collections (usually corpora).<br>IR pulls documents from large text collections (usually the Web) in response to specific keywords or queries.<br>With traditional query engines, getting the facts can be hard and slow.</p>
+    <content><![CDATA[<blockquote>
+<p>What I learned in Data Mining.</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="Information-Extraction"><a href="#Information-Extraction" class="headerlink" title="Information Extraction"></a>Information Extraction</h1><h2 id="Information-Extraction-IE-and-Information-Retrieval-IR"><a href="#Information-Extraction-IE-and-Information-Retrieval-IR" class="headerlink" title="Information Extraction(IE) and Information Retrieval(IR)"></a>Information Extraction(IE) and Information Retrieval(IR)</h2><p>IE pulls facts and structured information from the content of large text collections (usually corpora).<br>IR pulls documents from large text collections (usually the Web) in response to specific keywords or queries.<br>With traditional query engines, getting the facts can be hard and slow.</p>
 <ul>
 <li>IE would return information in a structured way</li>
 <li>IR would return documents containing the relevant information somewhere (if you were lucky)<br>IE returns knowledge at a much deeper level than IR.<br>When would you use IE?</li>
@@ -609,11 +636,15 @@
   <entry>
     <title>pytorch踩坑心得</title>
     <url>/posts/dadd677d/</url>
-    <content><![CDATA[<h1 id="momentum的用处"><a href="#momentum的用处" class="headerlink" title="momentum的用处"></a>momentum的用处</h1><p><img src="/images/pytorch/momentum.png" alt="momentum"></p>
+    <content><![CDATA[<blockquote>
+<p>Reocrd the issues when I use pytorch.</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="momentum的用处"><a href="#momentum的用处" class="headerlink" title="momentum的用处"></a>momentum的用处</h1><p><img src="/images/pytorch/momentum.png" alt="momentum"></p>
 <div class="note info">
             <p>Image from <a href="https://pytorch.org/docs/stable/optim.html" target="_blank" rel="noopener">SGD</a></p>
           </div>
-
+<!-- more -->
 <h1 id="学习笔记"><a href="#学习笔记" class="headerlink" title="学习笔记"></a>学习笔记</h1><ul>
 <li>NumPy 的替代品，目的是可在GPU上使用</li>
 </ul>
@@ -632,6 +663,7 @@
     <content><![CDATA[<blockquote>
 <p>奶奶居住过的老宅孤独寂寞，亦破败不堪。这正如以往年迈的奶奶，那屋檐上的杂草见证了人事间世事的冷暖。<br>The lonely house where grandma lived was secluded and dilapidated. Just like the aged grandma in the past, the weeds on the eaves have witnessed the warmth and coldness of the world.</p>
 </blockquote>
+<a id="more"></a>
 <p>(1929-2020/2/18)<br>奶奶永远的睡着了，奶奶一路走好。</p>
 <p>若不是那个电话，我不知道我可能会被瞒多久。<br>远在英国，妈妈最初只是说奶奶出了点事情，爸爸不在家，便扯开话题，聊些别的。我心里已经有了不祥的预感，这语气似乎过于委婉，又似乎夹杂着些许犹豫。<br>正值疫情严重之时，各路口都布满了层层关卡。<br>我不知道要聊些什么，聊了几句便沉默了。<br>还是沉默。<br>妈妈对着镜头看着我，我移开视线，拨弄着盘子里的食物，把薯条一根一根叉起来，慢慢的嚼。<br>妈妈说这回奶奶病得很重，似乎还在掩饰着什么。<br>姐姐也接通了，有些急，问我懂不懂妈妈的意思。<br>我已经懂了，只是不愿意把这个词说出来。<br>小的时候，每次回奶奶家，离开的时候，奶奶和爷爷都会互相搀扶着，颤颤巍巍地走到路口送我们。<br>过了几年，只有奶奶送我们。<br>现在，再也没有人了。<br>奶奶只是睡着了。<br>希望奶奶睡得安稳，睡得安详。</p>
 <p><img src="/images/in-memory-of-grandma/in-memory-of-grandma.jpg" alt="in-memory-of-grandma"></p>
