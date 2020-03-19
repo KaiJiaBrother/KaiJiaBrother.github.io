@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>COVID-19</title>
+    <url>/posts/42fc5b46/</url>
+    <content><![CDATA[<p>最近英国疫情是越来越严重了，</p>
+]]></content>
+      <categories>
+        <category>Others</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Inspired</title>
     <url>/posts/bf1390a3/</url>
     <content><![CDATA[<p>Dear Netta,</p>
@@ -487,7 +499,7 @@
 <li><code>unset HADOOP_OPTS</code>: 清除环境变量<code>$HADOOP_OPTS</code><h1 id="3-Formatting-HDFS"><a href="#3-Formatting-HDFS" class="headerlink" title="3- Formatting HDFS"></a>3- Formatting HDFS</h1><div class="note info">
             <p>创建Hadoop file system</p>
           </div></li>
-<li><code>start-all.sh</code>: 没有权限时需要使用<code>chmod u+x 文件名.sh</code>来给可执行权限，不过该实验不用。<br>bash脚本执行方法：当前目录下，<code>./start-all.sh</code> 或 <code>sh start-all.sh</code><h1 id="4-Uploading-data-to-HDFS"><a href="#4-Uploading-data-to-HDFS" class="headerlink" title="4- Uploading data to HDFS"></a>4- Uploading data to HDFS</h1><h1 id="5-Creating-a-MapReduce-Java-application"><a href="#5-Creating-a-MapReduce-Java-application" class="headerlink" title="5- Creating a MapReduce Java application"></a>5- Creating a MapReduce Java application</h1>这里有个坑，<br><code>hadoop jar OurMapReduceJob.jar org.myorg.WordCount hdfsbook.txt output</code>跑完之后会报找不到main方法的错，原因是环境变量中的引号可能是中文的，回去检查一下。</li>
+<li><code>start-all.sh</code>: 没有权限时需要使用<code>chmod u+x 文件名.sh</code>来给可执行权限，不过该实验不用。<br>bash脚本执行方法：当前目录下，<code>./start-all.sh</code> 或 <code>sh start-all.sh</code><h1 id="4-Uploading-data-to-HDFS"><a href="#4-Uploading-data-to-HDFS" class="headerlink" title="4- Uploading data to HDFS"></a>4- Uploading data to HDFS</h1><h1 id="5-Creating-a-MapReduce-Java-application"><a href="#5-Creating-a-MapReduce-Java-application" class="headerlink" title="5- Creating a MapReduce Java application"></a>5- Creating a MapReduce Java application</h1>这里有个坑，<code>hadoop jar OurMapReduceJob.jar org.myorg.WordCount hdfsbook.txt output</code>跑完之后会报找不到main方法的错，原因是环境变量中的引号可能是中文的，回去检查一下。</li>
 </ol>
 ]]></content>
       <categories>

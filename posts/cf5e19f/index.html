@@ -274,15 +274,13 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-file-word-o"></i>
               </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
               <span>6.3k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>5 mins.</span>
+              <span>6 mins.</span>
             </span>
 
         </div>
@@ -516,7 +514,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -587,14 +585,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-      <span class="post-meta-item-text">Symbols count total: </span>
     <span title="Symbols count total">35k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-      <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">25 mins.</span>
+    <span title="Reading time total">32 mins.</span>
 </div><span id="sitetime"></span>
 <script language=javascript>
 function siteTime(){
@@ -611,7 +607,7 @@ var todayDate = today.getDate();
 var todayHour = today.getHours();
 var todayMinute = today.getMinutes();
 var todaySecond = today.getSeconds();
-var t1 = Date.UTC(2020,02,13,00,00,00); // 设置建立网站的时间
+var t1 = Date.UTC(2020,02,13,00,00,00); // Set a tiem to build the website
 var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
 var diff = t2-t1;
 var diffYears = Math.floor(diff/years);
@@ -619,7 +615,7 @@ var diffDays = Math.floor((diff/days)-diffYears*365);
 var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
 var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
 var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
-document.getElementById("sitetime").innerHTML=" 已运行"+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+document.getElementById("sitetime").innerHTML="I have been waiting for you "+diffYears+" year "+diffDays+" days "+diffHours+" hours "+diffMinutes+" mins "+diffSeconds+" seconds";
 }
 siteTime();
 </script>
