@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>papers summary</title>
+    <url>/posts/7cd80329/</url>
+    <content><![CDATA[<h1 id="N-Valakunde-and-S-Ravikumar-“Prediction-of-Addiction-to-Social-Media-”-2019-IEEE-International-Conference-on-Electrical-Computer-and-Communication-Technologies-ICECCT-Coimbatore-India-2019-pp-1-6"><a href="#N-Valakunde-and-S-Ravikumar-“Prediction-of-Addiction-to-Social-Media-”-2019-IEEE-International-Conference-on-Electrical-Computer-and-Communication-Technologies-ICECCT-Coimbatore-India-2019-pp-1-6" class="headerlink" title="N. Valakunde and S. Ravikumar, “Prediction of Addiction to Social Media,” 2019 IEEE International Conference on Electrical, Computer and Communication Technologies (ICECCT), Coimbatore, India, 2019, pp. 1-6."></a>N. Valakunde and S. Ravikumar, “Prediction of Addiction to Social Media,” 2019 IEEE International Conference on Electrical, Computer and Communication Technologies (ICECCT), Coimbatore, India, 2019, pp. 1-6.</h1><ol>
+<li><p>The problem of social media addiction has only been observed and studied in the previous research papers, but no solution has been presented to date. This study aims to solve the problem of addiction by implementing machine learning using Linear Regression through Least Square Method and recommending certain positive exercises and practices which can help an individual to refrain from high usage of social media.</p>
+</li>
+<li><p>The data collected is analyzed with the help of graphs plotted by using the users’ data. The inputs are taken from the user from the respective questions asked to him/her, and a point is plotted for the user’s values in the respective graphs. By plotting the points on these graphs and comparing them, the machine is able to determine the problem faced by an individual and help him/her by giving out suggestions in the form of helpline numbers, motivational videos and/or inspiring speeches from successful people. This is a small and effective method to help people get rid of addiction to social media and lead a better life.</p>
+</li>
+<li><p>The research uses a very simple and basic algorithm(Linear Regression using Least Square Method). More complex and advanced machine learning algorithms can be used to achieve higher levels of accuracy in predictions. Besides, the research only contains the user data collected of 287 users, more data should be collected to make result become much more intelligent and accurate.</p>
+</li>
+<li><p>The research uses Linear Regression algorithm to indicate whether the user is addicted to social media or not and gives some recommendation to them like cutting down on their social media usage. This work can be used to predict the user behaviors to indicate how much the user would get addicted to the social media.</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>papers</category>
+      </categories>
+      <tags>
+        <tag>papers</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>COVID-19</title>
     <url>/posts/42fc5b46/</url>
     <content><![CDATA[<p>待更新。</p>
