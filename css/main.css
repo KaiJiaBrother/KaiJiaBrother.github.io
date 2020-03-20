@@ -1239,7 +1239,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff4ee0;
+  background: #40ff6f;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2835,6 +2835,9 @@ body {
     border-bottom-left-radius: 8px;
   }
 }
+.site-brand-container {
+  background: #a67e64;
+}
 .sidebar-inner {
   margin-top: 12px;
   border-radius: 8px;
@@ -2945,12 +2948,7 @@ blockquote p,
   border: none;
 }
 .pagination .page-number.current {
-  border-radius: 100%;
-  background: #34495e;
-}
-.pagination {
-  background: none;
-  box-shadow: none;
+  background: #a67e64;
 }
 .post-button {
   margin-top: 15px;
@@ -2963,13 +2961,13 @@ blockquote p,
 .btn {
   padding: 3px 15px;
   color: #fff !important;
-  background-color: #bdc3c7;
+  background-color: #a67e64;
   border: 0px;
-  border-radius: 15px;
+  border-radius: 12px;
 }
 .btn:hover {
   color: #fff !important;
-  background: #34495e;
+  background: #648ca6;
   text-decoration: none !important;
 }
 #reward-button {
@@ -3048,4 +3046,5 @@ blockquote p,
 .footer,
 .footer a {
   color: #000;
+  font-weight: bold;
 }
