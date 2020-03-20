@@ -503,7 +503,7 @@
             <p>针对第三周实验的一些简单个人理解，有错误请指出。</p>
           </div>
 <a id="more"></a>
-<h1 id="1-Initial-system-setup"><a href="#1-Initial-system-setup" class="headerlink" title="1- Initial system setup"></a>1- Initial system setup</h1><ol>
+<h1 id="Initial-system-setup"><a href="#Initial-system-setup" class="headerlink" title="Initial system setup"></a>Initial system setup</h1><ol>
 <li><code>whoami</code>: 显示当前用户<br>虚拟机进入时默认为root。</li>
 <li><code>su hduser</code>: su命令用于切换为<code>hduser</code>用户(hadoop user为该hadoop实例下自带的用户)</li>
 <li><code>cd ~</code>: 进入当前用户的根目录，如果当前是root用户，则进入<code>/root/</code>，如果当前是hduser，则进入<code>/home/hduser</code>,其中<code>/</code>代表整个虚拟机的根路径</li>
@@ -514,15 +514,15 @@
 </li>
 <li><code>ssh localhost</code>: 刚才建立密钥对，就是为了连接<code>localhost</code></li>
 <li><code>echo $HADOOP_HOME</code>: 这里用来显示<code>$HADOOP_HOME</code>环境变量值，指定<code>Hadoop</code>运行环境的路径<br><code>~/.bashrc</code>这里储存了当前用户下的所有环境变量，只会对当前用户有效，每次启动<code>shell</code>自动被读取</li>
-<li><code>source .bashrc</code>: 运行此命令，使新建立的环境变量在当前shell中起作用，否则只能下次启动shell时激活该环境变量。<h1 id="2-Setting-up-Hadoop-and-HDFS"><a href="#2-Setting-up-Hadoop-and-HDFS" class="headerlink" title="2- Setting up Hadoop and HDFS"></a>2- Setting up Hadoop and HDFS</h1><div class="note info">
+<li><code>source .bashrc</code>: 运行此命令，使新建立的环境变量在当前shell中起作用，否则只能下次启动shell时激活该环境变量。<h1 id="Setting-up-Hadoop-and-HDFS"><a href="#Setting-up-Hadoop-and-HDFS" class="headerlink" title="Setting up Hadoop and HDFS"></a>Setting up Hadoop and HDFS</h1><div class="note info">
             <p>这一部分主要是配置<code>Hadoop</code>存储数据文件的路径，监听端口。<br><code>hdfsTMP</code>用来储存临时文件</p>
           </div></li>
 <li><code>nano core-site.xml</code>: 同<code>vi/vim</code>作用类似，文本编辑器，编辑<code>core-site.xml</code>文件。<br>这里使用<code>nano -w core-site.xml</code>命令更好，防止自动换行，造成不必要的错误。<br>常用操作：<code>Ctrl+O</code>(保存), <code>Ctrl+X</code>(退出), <code>Ctrl+C</code>(取消操作), <code>Ctrl+W</code>，搜索, 想再次搜索相同的字符串，按<code>Alt+W</code><br><code>vi/vim core-site.xml</code>: 常用操作：<code>i</code>(进入编辑模式)，<code>ESC</code>(退出编辑模式)，<code>:wq</code>(保存并退出)，<code>:q</code>(退出不保存)，<code>:q!</code>(强制退出)</li>
 <li><code>mkdir -p ~/hdfsTMP/namenode</code>: <code>-p</code>递归创建多个目录</li>
-<li><code>unset HADOOP_OPTS</code>: 清除环境变量<code>$HADOOP_OPTS</code><h1 id="3-Formatting-HDFS"><a href="#3-Formatting-HDFS" class="headerlink" title="3- Formatting HDFS"></a>3- Formatting HDFS</h1><div class="note info">
+<li><code>unset HADOOP_OPTS</code>: 清除环境变量<code>$HADOOP_OPTS</code><h1 id="Formatting-HDFS"><a href="#Formatting-HDFS" class="headerlink" title="Formatting HDFS"></a>Formatting HDFS</h1><div class="note info">
             <p>创建Hadoop file system</p>
           </div></li>
-<li><code>start-all.sh</code>: 没有权限时需要使用<code>chmod u+x 文件名.sh</code>来给可执行权限，不过该实验不用。<br>bash脚本执行方法：当前目录下，<code>./start-all.sh</code> 或 <code>sh start-all.sh</code><h1 id="4-Uploading-data-to-HDFS"><a href="#4-Uploading-data-to-HDFS" class="headerlink" title="4- Uploading data to HDFS"></a>4- Uploading data to HDFS</h1><h1 id="5-Creating-a-MapReduce-Java-application"><a href="#5-Creating-a-MapReduce-Java-application" class="headerlink" title="5- Creating a MapReduce Java application"></a>5- Creating a MapReduce Java application</h1>这里有个坑，<code>hadoop jar OurMapReduceJob.jar org.myorg.WordCount hdfsbook.txt output</code>跑完之后会报找不到main方法的错，原因是环境变量中的引号可能是中文的，回去检查一下。</li>
+<li><code>start-all.sh</code>: 没有权限时需要使用<code>chmod u+x 文件名.sh</code>来给可执行权限，不过该实验不用。<br>bash脚本执行方法：当前目录下，<code>./start-all.sh</code> 或 <code>sh start-all.sh</code><h1 id="Uploading-data-to-HDFS"><a href="#Uploading-data-to-HDFS" class="headerlink" title="Uploading data to HDFS"></a>Uploading data to HDFS</h1><h1 id="Creating-a-MapReduce-Java-application"><a href="#Creating-a-MapReduce-Java-application" class="headerlink" title="Creating a MapReduce Java application"></a>Creating a MapReduce Java application</h1>这里有个坑，<code>hadoop jar OurMapReduceJob.jar org.myorg.WordCount hdfsbook.txt output</code>跑完之后会报找不到main方法的错，原因是环境变量中的引号可能是中文的，回去检查一下。</li>
 </ol>
 ]]></content>
       <categories>
