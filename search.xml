@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>big data revision</title>
+    <url>/posts/1984119a/</url>
+    <content><![CDATA[<blockquote class="blockquote-center"><p>A revision version for Big Data System.</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="Big-Data-Definition"><a href="#Big-Data-Definition" class="headerlink" title="Big Data Definition"></a>Big Data Definition</h1><ul>
+<li>huge volumes of data</li>
+<li>the challenges, risks, and rewards of storing and extracting meaningful information from this data</li>
+<li>it becomes difficult to process using on-hand data management tools or traditional data processing applications<h2 id="Volume"><a href="#Volume" class="headerlink" title="Volume"></a>Volume</h2></li>
+<li>Sheer size of data in terms of storage and access.</li>
+<li>Many different factors can contribute to the increase in data volume.<h2 id="Velocity"><a href="#Velocity" class="headerlink" title="Velocity"></a>Velocity</h2></li>
+<li>Speed of incoming data and the time it takes to process.</li>
+<li>Data velocity is both the speed at which data streams in, and the timely manner in which data must be dealt with to maintain time based relevance.<h2 id="Variety"><a href="#Variety" class="headerlink" title="Variety"></a>Variety</h2></li>
+<li>Types of files and formats of data as well as sources.</li>
+<li>Data comes in all kinds of formats, but can be grouped into two types: structured and unstructured.</li>
+<li>Structured data is the numeric data in traditional databases. Created from line-of-business and pre-formatted data collected over time.</li>
+<li>Unstructured data is the relational and seemingly unrelated data that comes from unstructured sources (social media, text documents, email, video, audio, etc.)</li>
+</ul>
+<p>Extra Vs have been proposed, these typically describe characteristics rather than being definitional</p>
+<h2 id="Veracity"><a href="#Veracity" class="headerlink" title="Veracity"></a>Veracity</h2><ul>
+<li>How accurate and meaningful is the data?<h2 id="Value"><a href="#Value" class="headerlink" title="Value"></a>Value</h2></li>
+<li>How can value be deruved from a big dataset?</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Notes</category>
+      </categories>
+      <tags>
+        <tag>Big Data</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>papers summary</title>
     <url>/posts/7cd80329/</url>
     <content><![CDATA[<blockquote class="blockquote-center"><p>A summary of the papers that I read for the project.</p>
