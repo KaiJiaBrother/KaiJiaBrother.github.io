@@ -3,10 +3,10 @@
   <entry>
     <title>big data revision</title>
     <url>/posts/1984119a/</url>
-    <content><![CDATA[<blockquote class="blockquote-center"><p>A revision version for Big Data System.</p>
+    <content><![CDATA[<blockquote class="blockquote-center"><p>A revision for Big Data System.</p>
 </blockquote>
 <a id="more"></a>
-<h1 id="Big-Data-Definition"><a href="#Big-Data-Definition" class="headerlink" title="Big Data Definition"></a>Big Data Definition</h1><ul>
+<h1 id="Big-Data-Definitions"><a href="#Big-Data-Definitions" class="headerlink" title="Big Data Definitions"></a>Big Data Definitions</h1><ul>
 <li>huge volumes of data</li>
 <li>the challenges, risks, and rewards of storing and extracting meaningful information from this data</li>
 <li>it becomes difficult to process using on-hand data management tools or traditional data processing applications<h2 id="Volume"><a href="#Volume" class="headerlink" title="Volume"></a>Volume</h2></li>
@@ -19,11 +19,26 @@
 <li>Structured data is the numeric data in traditional databases. Created from line-of-business and pre-formatted data collected over time.</li>
 <li>Unstructured data is the relational and seemingly unrelated data that comes from unstructured sources (social media, text documents, email, video, audio, etc.)</li>
 </ul>
+<blockquote>
 <p>Extra Vs have been proposed, these typically describe characteristics rather than being definitional</p>
+</blockquote>
 <h2 id="Veracity"><a href="#Veracity" class="headerlink" title="Veracity"></a>Veracity</h2><ul>
 <li>How accurate and meaningful is the data?<h2 id="Value"><a href="#Value" class="headerlink" title="Value"></a>Value</h2></li>
-<li>How can value be deruved from a big dataset?</li>
+<li>How can value be derived from a big dataset?</li>
 </ul>
+<h1 id="Big-Data-Examples"><a href="#Big-Data-Examples" class="headerlink" title="Big Data Examples"></a>Big Data Examples</h1><ul>
+<li>smart healthcare</li>
+<li>wearable devices</li>
+<li>smart retail</li>
+<li>equipment health management</li>
+<li>connected/smart cars</li>
+<li>intelligent transport</li>
+<li>smart grid</li>
+<li>smart cities</li>
+<li>recommender systems</li>
+<li>finance</li>
+</ul>
+<h1 id="HIGH-LEVEL-ARCHITECTURE"><a href="#HIGH-LEVEL-ARCHITECTURE" class="headerlink" title="HIGH LEVEL ARCHITECTURE"></a>HIGH LEVEL ARCHITECTURE</h1><p>The challenge of Big Data is how can we possibly deal with data that fits    these characteristics, both individually and collectively.<br>The core of the answer lies in using distributed resources.<br>The    sources    layer    refers to all    of the data available for analysis, coming in from all channels.    The    type of analysis and sources are closely related.</p>
 ]]></content>
       <categories>
         <category>Notes</category>
