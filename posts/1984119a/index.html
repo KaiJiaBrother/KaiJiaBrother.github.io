@@ -31,7 +31,7 @@
 <meta property="og:description" content="A revision for Big Data System.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-22T17:19:29.000Z">
-<meta property="article:modified_time" content="2020-03-23T01:33:37.488Z">
+<meta property="article:modified_time" content="2020-03-24T18:48:59.653Z">
 <meta property="article:author" content="Jerry Jia">
 <meta property="article:tag" content="Big Data">
 <meta name="twitter:card" content="summary">
@@ -232,7 +232,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-23 01:33:37" itemprop="dateModified" datetime="2020-03-23T01:33:37+00:00">2020-03-23</time>
+                <time title="Modified: 2020-03-24 18:48:59" itemprop="dateModified" datetime="2020-03-24T18:48:59+00:00">2020-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -272,13 +272,13 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-file-word-o"></i>
               </span>
-              <span>1.6k</span>
+              <span>2.7k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
-              <span>1 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -325,7 +325,34 @@
 <li>recommender systems</li>
 <li>finance</li>
 </ul>
-<h1 id="HIGH-LEVEL-ARCHITECTURE"><a href="#HIGH-LEVEL-ARCHITECTURE" class="headerlink" title="HIGH LEVEL ARCHITECTURE"></a>HIGH LEVEL ARCHITECTURE</h1><p>The challenge of Big Data is how can we possibly deal with data that fits    these characteristics, both individually and collectively.<br>The core of the answer lies in using distributed resources.<br>The    sources    layer    refers to all    of the data available for analysis, coming in from all channels.    The    type of analysis and sources are closely related.</p>
+<h1 id="HIGH-LEVEL-ARCHITECTURE"><a href="#HIGH-LEVEL-ARCHITECTURE" class="headerlink" title="HIGH LEVEL ARCHITECTURE"></a>HIGH LEVEL ARCHITECTURE</h1><ul>
+<li>The challenge of Big Data is how can we possibly deal with data that fits    these characteristics, both individually and collectively.</li>
+<li>The core of the answer lies in using distributed resources.<h2 id="Big-Data-sources"><a href="#Big-Data-sources" class="headerlink" title="Big Data sources"></a>Big Data sources</h2></li>
+<li>The    sources    layer    refers to all    of the data available for analysis, coming in from all channels.    The    type of analysis and sources are closely related.<h2 id="Data-messaging-and-store-layer"><a href="#Data-messaging-and-store-layer" class="headerlink" title="Data messaging and store layer"></a>Data messaging and store layer</h2></li>
+<li>is responsible for acquiring data from data sources.</li>
+<li>If    necessary,    the    layer    will also be responsible    for    converting    the    data    to    a format    that    suits    how    the    data will    be analysed.</li>
+<li>Data acquisition</li>
+<li>Data digest</li>
+<li>Distributed file storage<h2 id="Analysis-layer"><a href="#Analysis-layer" class="headerlink" title="Analysis layer"></a>Analysis layer</h2></li>
+<li>The    analysis layer reads the data digested by the data massaging    and    store    layer    (in    some    cases, it accesses data directly from the data source).</li>
+<li>Entity indentification</li>
+<li>Analytics engine</li>
+<li>Model management<h2 id="CONSUMPTION-LAYER"><a href="#CONSUMPTION-LAYER" class="headerlink" title="CONSUMPTION LAYER"></a>CONSUMPTION LAYER</h2></li>
+<li>This    layer    consumes    the    output    provided    by    the    analysis    layer.<h2 id="INFORMATION-INTEGRATION-LAYER"><a href="#INFORMATION-INTEGRATION-LAYER" class="headerlink" title="INFORMATION    INTEGRATION    LAYER"></a>INFORMATION    INTEGRATION    LAYER</h2></li>
+<li>Responsible    for    connecting    to    various    data    sources.</li>
+<li>Requires    quality    connectors &amp;    adapters<h2 id="DATA-GOVERNANCE-LAYER"><a href="#DATA-GOVERNANCE-LAYER" class="headerlink" title="DATA    GOVERNANCE    LAYER"></a>DATA    GOVERNANCE    LAYER</h2></li>
+<li>GDPR:    General    Data    Protection    Regulation<h2 id="SYSTEM-MANAGEMENT-layer"><a href="#SYSTEM-MANAGEMENT-layer" class="headerlink" title="SYSTEM    MANAGEMENT    layer"></a>SYSTEM    MANAGEMENT    layer</h2><h2 id="QUALITY-OF-SERVICE-QOS-LAYER"><a href="#QUALITY-OF-SERVICE-QOS-LAYER" class="headerlink" title="QUALITY OF    SERVICE    (QOS)    LAYER"></a>QUALITY OF    SERVICE    (QOS)    LAYER</h2></li>
+</ul>
+<h1 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h1><ul>
+<li>Programming    model    for    expressing    distributed    computation    in massive-scale    systems.</li>
+<li>Open-source    implementation    called    Hadoop.<h2 id="MapReduce-process"><a href="#MapReduce-process" class="headerlink" title="MapReduce    process"></a>MapReduce    process</h2></li>
+<li>Iterate    over a large number of records.<br>‒ Extract    something    of interest from    each.(Map)<br>‒ Shuffle    and    sort intermediate    results.<br>‒ Aggregate    intermediate results into something usable.(Reduce)<br>‒ Generate final output.(Reduce)<h2 id="Distributed-File-System-DFS"><a href="#Distributed-File-System-DFS" class="headerlink" title="Distributed    File    System    (DFS)"></a>Distributed    File    System    (DFS)</h2></li>
+<li>move    workers    to    the    data:<ul>
+<li>Not    enough    RAM    to    hold    all    the    data    in    memory</li>
+<li>Disk access is slow,    but    disk throughput is reasonable</li>
+</ul>
+</li>
+</ul>
 
     </div>
 
@@ -457,7 +484,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Big-Data-Definitions"><span class="nav-number">1.</span> <span class="nav-text">Big Data Definitions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Volume"><span class="nav-number">1.1.</span> <span class="nav-text">Volume</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Velocity"><span class="nav-number">1.2.</span> <span class="nav-text">Velocity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Variety"><span class="nav-number">1.3.</span> <span class="nav-text">Variety</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Veracity"><span class="nav-number">1.4.</span> <span class="nav-text">Veracity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Value"><span class="nav-number">1.5.</span> <span class="nav-text">Value</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Big-Data-Examples"><span class="nav-number">2.</span> <span class="nav-text">Big Data Examples</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HIGH-LEVEL-ARCHITECTURE"><span class="nav-number">3.</span> <span class="nav-text">HIGH LEVEL ARCHITECTURE</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Big-Data-Definitions"><span class="nav-number">1.</span> <span class="nav-text">Big Data Definitions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Volume"><span class="nav-number">1.1.</span> <span class="nav-text">Volume</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Velocity"><span class="nav-number">1.2.</span> <span class="nav-text">Velocity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Variety"><span class="nav-number">1.3.</span> <span class="nav-text">Variety</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Veracity"><span class="nav-number">1.4.</span> <span class="nav-text">Veracity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Value"><span class="nav-number">1.5.</span> <span class="nav-text">Value</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Big-Data-Examples"><span class="nav-number">2.</span> <span class="nav-text">Big Data Examples</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HIGH-LEVEL-ARCHITECTURE"><span class="nav-number">3.</span> <span class="nav-text">HIGH LEVEL ARCHITECTURE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Big-Data-sources"><span class="nav-number">3.1.</span> <span class="nav-text">Big Data sources</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-messaging-and-store-layer"><span class="nav-number">3.2.</span> <span class="nav-text">Data messaging and store layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Analysis-layer"><span class="nav-number">3.3.</span> <span class="nav-text">Analysis layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CONSUMPTION-LAYER"><span class="nav-number">3.4.</span> <span class="nav-text">CONSUMPTION LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#INFORMATION-INTEGRATION-LAYER"><span class="nav-number">3.5.</span> <span class="nav-text">INFORMATION    INTEGRATION    LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DATA-GOVERNANCE-LAYER"><span class="nav-number">3.6.</span> <span class="nav-text">DATA    GOVERNANCE    LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SYSTEM-MANAGEMENT-layer"><span class="nav-number">3.7.</span> <span class="nav-text">SYSTEM    MANAGEMENT    layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QUALITY-OF-SERVICE-QOS-LAYER"><span class="nav-number">3.8.</span> <span class="nav-text">QUALITY OF    SERVICE    (QOS)    LAYER</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MapReduce"><span class="nav-number">4.</span> <span class="nav-text">MapReduce</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MapReduce-process"><span class="nav-number">4.1.</span> <span class="nav-text">MapReduce    process</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Distributed-File-System-DFS"><span class="nav-number">4.2.</span> <span class="nav-text">Distributed    File    System    (DFS)</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -544,12 +571,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">40k</span>
+    <span title="Symbols count total">42k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">37 mins.</span>
+    <span title="Reading time total">38 mins.</span>
 </div><span id="sitetime"></span>
 <script language=javascript>
 function siteTime(){

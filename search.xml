@@ -38,7 +38,34 @@
 <li>recommender systems</li>
 <li>finance</li>
 </ul>
-<h1 id="HIGH-LEVEL-ARCHITECTURE"><a href="#HIGH-LEVEL-ARCHITECTURE" class="headerlink" title="HIGH LEVEL ARCHITECTURE"></a>HIGH LEVEL ARCHITECTURE</h1><p>The challenge of Big Data is how can we possibly deal with data that fits    these characteristics, both individually and collectively.<br>The core of the answer lies in using distributed resources.<br>The    sources    layer    refers to all    of the data available for analysis, coming in from all channels.    The    type of analysis and sources are closely related.</p>
+<h1 id="HIGH-LEVEL-ARCHITECTURE"><a href="#HIGH-LEVEL-ARCHITECTURE" class="headerlink" title="HIGH LEVEL ARCHITECTURE"></a>HIGH LEVEL ARCHITECTURE</h1><ul>
+<li>The challenge of Big Data is how can we possibly deal with data that fits    these characteristics, both individually and collectively.</li>
+<li>The core of the answer lies in using distributed resources.<h2 id="Big-Data-sources"><a href="#Big-Data-sources" class="headerlink" title="Big Data sources"></a>Big Data sources</h2></li>
+<li>The    sources    layer    refers to all    of the data available for analysis, coming in from all channels.    The    type of analysis and sources are closely related.<h2 id="Data-messaging-and-store-layer"><a href="#Data-messaging-and-store-layer" class="headerlink" title="Data messaging and store layer"></a>Data messaging and store layer</h2></li>
+<li>is responsible for acquiring data from data sources.</li>
+<li>If    necessary,    the    layer    will also be responsible    for    converting    the    data    to    a format    that    suits    how    the    data will    be analysed.</li>
+<li>Data acquisition</li>
+<li>Data digest</li>
+<li>Distributed file storage<h2 id="Analysis-layer"><a href="#Analysis-layer" class="headerlink" title="Analysis layer"></a>Analysis layer</h2></li>
+<li>The    analysis layer reads the data digested by the data massaging    and    store    layer    (in    some    cases, it accesses data directly from the data source).</li>
+<li>Entity indentification</li>
+<li>Analytics engine</li>
+<li>Model management<h2 id="CONSUMPTION-LAYER"><a href="#CONSUMPTION-LAYER" class="headerlink" title="CONSUMPTION LAYER"></a>CONSUMPTION LAYER</h2></li>
+<li>This    layer    consumes    the    output    provided    by    the    analysis    layer.<h2 id="INFORMATION-INTEGRATION-LAYER"><a href="#INFORMATION-INTEGRATION-LAYER" class="headerlink" title="INFORMATION    INTEGRATION    LAYER"></a>INFORMATION    INTEGRATION    LAYER</h2></li>
+<li>Responsible    for    connecting    to    various    data    sources.</li>
+<li>Requires    quality    connectors &amp;    adapters<h2 id="DATA-GOVERNANCE-LAYER"><a href="#DATA-GOVERNANCE-LAYER" class="headerlink" title="DATA    GOVERNANCE    LAYER"></a>DATA    GOVERNANCE    LAYER</h2></li>
+<li>GDPR:    General    Data    Protection    Regulation<h2 id="SYSTEM-MANAGEMENT-layer"><a href="#SYSTEM-MANAGEMENT-layer" class="headerlink" title="SYSTEM    MANAGEMENT    layer"></a>SYSTEM    MANAGEMENT    layer</h2><h2 id="QUALITY-OF-SERVICE-QOS-LAYER"><a href="#QUALITY-OF-SERVICE-QOS-LAYER" class="headerlink" title="QUALITY OF    SERVICE    (QOS)    LAYER"></a>QUALITY OF    SERVICE    (QOS)    LAYER</h2></li>
+</ul>
+<h1 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h1><ul>
+<li>Programming    model    for    expressing    distributed    computation    in massive-scale    systems.</li>
+<li>Open-source    implementation    called    Hadoop.<h2 id="MapReduce-process"><a href="#MapReduce-process" class="headerlink" title="MapReduce    process"></a>MapReduce    process</h2></li>
+<li>Iterate    over a large number of records.<br>‒ Extract    something    of interest from    each.(Map)<br>‒ Shuffle    and    sort intermediate    results.<br>‒ Aggregate    intermediate results into something usable.(Reduce)<br>‒ Generate final output.(Reduce)<h2 id="Distributed-File-System-DFS"><a href="#Distributed-File-System-DFS" class="headerlink" title="Distributed    File    System    (DFS)"></a>Distributed    File    System    (DFS)</h2></li>
+<li>move    workers    to    the    data:<ul>
+<li>Not    enough    RAM    to    hold    all    the    data    in    memory</li>
+<li>Disk access is slow,    but    disk throughput is reasonable</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>Notes</category>
@@ -79,7 +106,11 @@
   <entry>
     <title>COVID-19</title>
     <url>/posts/42fc5b46/</url>
-    <content><![CDATA[<p>待更新。</p>
+    <content><![CDATA[<blockquote>
+<p>最近看COVID-19的疫情统计，发现WHO的统计数据总是落后于各地政府的数据</p>
+</blockquote>
+<p>WHO(World Health Organization 世界卫生组织) 从1月21号开始，每天于欧洲中部时间(Central European Time)24H以内的数据，迄今为止，已经发布了共计66个每日报告了。<br>Data as reported by national authorities by 10:00 CET<br>但即使对于同一天的统计数据，依旧比政府的统计数据落后不少，原因如下：</p>
+<p>Due to differences in reporting methods, retrospective data consolidation, and reporting delays, the number of new cases may not always reflect the exact difference between yesterday’s and today’s totals. WHO COVID-19 Situation Reports present official counts of confirmed COVID-19 cases, thus differences between WHO reports and other sources of COVID-19 data using different inclusion criteria and different data cutoff times are to be expected.</p>
 ]]></content>
       <categories>
         <category>Others</category>
