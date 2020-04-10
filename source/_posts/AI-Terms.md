@@ -9,6 +9,7 @@ date: 2020-03-07 22:16:00
 1. In general
 - a self-starting process that is supposed to proceed without external input.
 
+<!-- more -->
 2. In computer technology(usually shortened to booting)
 - the process of loading the basic software into the memory of a computer after power-on or general reset, especially the operating system which will then take care of loading other softwares as needed.
 - Booting is the process of starting a computer, specifically with regard to starting its software.

@@ -14,7 +14,7 @@ var todayDate = today.getDate();
 var todayHour = today.getHours();
 var todayMinute = today.getMinutes();
 var todaySecond = today.getSeconds();
-var t1 = Date.UTC(2020,02,13,00,00,00); // 设置建立网站的时间
+var t1 = Date.UTC(2020,02,13,00,00,00); // Set a tiem to build the website
 var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
 var diff = t2-t1;
 var diffYears = Math.floor(diff/years);
@@ -22,7 +22,7 @@ var diffDays = Math.floor((diff/days)-diffYears*365);
 var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
 var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
 var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
-document.getElementById("sitetime").innerHTML=" 已运行"+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+document.getElementById("sitetime").innerHTML="I have been waiting for you "+diffYears+" year "+diffDays+" days "+diffHours+" hours "+diffMinutes+" mins "+diffSeconds+" seconds";
 }
 siteTime();
 </script>

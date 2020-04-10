@@ -8,7 +8,8 @@ date: 2020-02-21 15:06:56
 {% note info %}
 针对第三周实验的一些简单个人理解，有错误请指出。
 {% endnote %}
-# 1- Initial system setup
+<!-- more -->
+# Initial system setup
 1. `whoami`: 显示当前用户
 虚拟机进入时默认为root。
 2. `su hduser`: su命令用于切换为`hduser`用户(hadoop user为该hadoop实例下自带的用户)
@@ -23,7 +24,7 @@ date: 2020-02-21 15:06:56
 7. `echo $HADOOP_HOME`: 这里用来显示`$HADOOP_HOME`环境变量值，指定`Hadoop`运行环境的路径
 `~/.bashrc`这里储存了当前用户下的所有环境变量，只会对当前用户有效，每次启动`shell`自动被读取
 8. `source .bashrc`: 运行此命令，使新建立的环境变量在当前shell中起作用，否则只能下次启动shell时激活该环境变量。
-# 2- Setting up Hadoop and HDFS
+# Setting up Hadoop and HDFS
 {% note info %}
 这一部分主要是配置`Hadoop`存储数据文件的路径，监听端口。
 `hdfsTMP`用来储存临时文件
@@ -34,13 +35,12 @@ date: 2020-02-21 15:06:56
 `vi/vim core-site.xml`: 常用操作：`i`(进入编辑模式)，`ESC`(退出编辑模式)，`:wq`(保存并退出)，`:q`(退出不保存)，`:q!`(强制退出)
 2. `mkdir -p ~/hdfsTMP/namenode`: `-p`递归创建多个目录
 3. `unset HADOOP_OPTS`: 清除环境变量`$HADOOP_OPTS`
-# 3- Formatting HDFS
+# Formatting HDFS
 {% note info %}
 创建Hadoop file system
 {% endnote %}
 1. `start-all.sh`: 没有权限时需要使用`chmod u+x 文件名.sh`来给可执行权限，不过该实验不用。
 bash脚本执行方法：当前目录下，`./start-all.sh` 或 `sh start-all.sh`
-# 4- Uploading data to HDFS
-# 5- Creating a MapReduce Java application
-这里有个坑，
-`hadoop jar OurMapReduceJob.jar org.myorg.WordCount hdfsbook.txt output`跑完之后会报找不到main方法的错，原因是环境变量中的引号可能是中文的，回去检查一下。
+# Uploading data to HDFS
+# Creating a MapReduce Java application
+这里有个坑，`hadoop jar OurMapReduceJob.jar org.myorg.WordCount hdfsbook.txt output`跑完之后会报找不到main方法的错，原因是环境变量中的引号可能是中文的，回去检查一下。

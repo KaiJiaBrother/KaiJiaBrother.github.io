@@ -9,6 +9,7 @@ date: 2020-03-10 17:13:01
 ## general concept
 a heuristic is a technique designed for solving a problem more quickly when classic methods are too slow, or for finding an approximate solution when classic methods fail to find any exact solution. This is achieved by trading optimality, completeness, accuracy, or precision for speed. In a way, it can be considered a shortcut.
 
+<!-- more -->
 ## Travelling salesman problem(TSP)
 > Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city and returns to the origin city?
 

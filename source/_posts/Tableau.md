@@ -4,6 +4,8 @@ abbrlink: 9c9742d
 date: 2020-03-11 10:10:24
 tags:
 ---
+> Just reord some issues when I use Tableau.
+<!-- more -->
 1. Create a Top N Filter顺序问题
 From the Data pane, drag City to the Filters shelf：filter的City还是原数据里的所有City，不是通过filter State之后的City(top N filter or the set filter排序问题)
 原因：Tableau Order of Operations(the order that Tableau performs various actions, such as the order in which it applies your filters to the view.)

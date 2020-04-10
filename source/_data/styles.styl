@@ -65,6 +65,12 @@ body {
 //  color: #fff;
 //}
 
+.header {
+  @media (max-width: 991px) {
+    //width: calc(100% - 20px)!important;
+  }
+}
+
 .header-inner {
   margin-top: $site-top-margin;
   border-radius: $site-card-radius;
@@ -76,6 +82,10 @@ body {
     border-bottom-right-radius: $site-card-radius;
     border-bottom-left-radius: $site-card-radius;
   }
+}
+
+.site-brand-container{
+  background: #A67E64;
 }
 
 .sidebar-inner {
@@ -219,12 +229,12 @@ blockquote p, .post-body .note {
   border:none;
 }
 .pagination .page-number.current {
-  border-radius: 100%;
-  background: #34495e;
+  //border-radius: 50%;
+  background: #A67E64;
 }
 .pagination {
-  background: none;
-  box-shadow: none;
+  //background: none;
+  //box-shadow: none;
 }
 
 //修改阅读全文按钮样式
@@ -239,13 +249,13 @@ blockquote p, .post-body .note {
 .btn {
   padding: 3px 15px
   color: #fff !important;
-  background-color: #bdc3c7;
+  background-color: #A67E64;
   border: 0px;
-  border-radius: 15px;
+  border-radius: 12px;
 
   &:hover {
     color: #fff !important;
-    background: #34495e;
+    background: #648CA6;
     text-decoration: none !important;
   }
 }
@@ -339,5 +349,5 @@ blockquote p, .post-body .note {
 //页脚
 .footer, .footer a{
   color: #000000;
-//  font-weight: bold;
+  font-weight: bold;
 }

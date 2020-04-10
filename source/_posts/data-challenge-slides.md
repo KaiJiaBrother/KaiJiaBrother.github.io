@@ -4,6 +4,8 @@ abbrlink: 70cdea1a
 date: 2020-02-25 17:00:46
 tags: Data challenge
 ---
+> The slides that I use in Data Challenge.
+<!-- more -->
 ![page1](/images/data-challenge-slides/1.PNG)
 ![page2](/images/data-challenge-slides/2.PNG)
 ![page3](/images/data-challenge-slides/3.PNG)

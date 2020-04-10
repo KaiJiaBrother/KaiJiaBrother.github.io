@@ -5,6 +5,8 @@ categories: Notes
 abbrlink: c94f917b
 date: 2020-02-20 11:04:59
 ---
+> What I learned in Data Mining.
+<!-- more -->
 # Information Extraction
 ## Information Extraction(IE) and Information Retrieval(IR)
 IE pulls facts and structured information from the content of large text collections (usually corpora).

@@ -6,6 +6,8 @@ abbrlink: cf5e19f
 date: 2020-03-06 15:57:12
 ---
 > I\'m going to record the errors when I\'m doing my Data Mining coursework here
+
+<!-- more -->
 1. reindex() missing 1 required positional argument: 'self'
 ```python
 tweet_df = pd.DataFrame.reindex(index=range(df.shape[0]))

@@ -7,7 +7,7 @@ date: 2020-02-18 15:04:59
 ---
 > 奶奶居住过的老宅孤独寂寞，亦破败不堪。这正如以往年迈的奶奶，那屋檐上的杂草见证了人事间世事的冷暖。
 > The lonely house where grandma lived was secluded and dilapidated. Just like the aged grandma in the past, the weeds on the eaves have witnessed the warmth and coldness of the world.
-
+<!-- more -->
 (1929-2020/2/18)
 奶奶永远的睡着了，奶奶一路走好。
 
