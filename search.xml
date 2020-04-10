@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>why my website is not secure?</title>
+    <title>Why my website is not secure?</title>
     <url>/posts/4d1d841d/</url>
     <content><![CDATA[<blockquote class="blockquote-center">
             <i class="fa fa-quote-left"></i>
-            <p>My confusions in English study. Practice oral English every day.</p>
+            <p>After I updated NexT from v7.7.1 to the latest version(v7.8.0), the secure site suffers from the problem of mixed content.</p>
 
             <i class="fa fa-quote-right"></i>
           </blockquote>
 <a id="more"></a>
+<p><img data-src="/images/why-my-website-is-not-secure/1.png" alt="Enforce HTTPS"><br>Using HTTPS instead of HTTP means that communications between your browser and a website is encrypted via the use of an SSL (Secure Socket Layer). Even if your website doesn’t handle sensitive data, it’s a good idea to make sure your website loads securely over HTTPS. It’s now becoming a requirement for many new browser features as well as potentially having an impact on search engine rankings.</p>
+<p>When I use <code>Enforce HTTPS</code>, the website is available over HTTPS, but today I found the website became not secure.<br><img data-src="/images/why-my-website-is-not-secure/2.png" alt="Not fully secure"></p>
+<p>So I checked the certificate to ensure it was still valid.<br><img data-src="/images/why-my-website-is-not-secure/3.png" alt="The certificate is still within its validity"></p>
+<p>Next, I checked the Console and found the problem.<br><img data-src="/images/why-my-website-is-not-secure/4.png" alt="it was a problem of mixed content!"></p>
+<p>And mixed content means the green padlock icon will not be displayed for an https:// site because, in fact, it’s not truly secure.</p>
+<p>Here’s the problem: if an https:// website includes any content from a site (even its own) served over http://, the green padlock can’t be displayed. That’s because resources like images, JavaScript, audio, video etc. included over http:// open up a security hole into the secure website. A backdoor to trouble.</p>
+<p>Today, Google Chrome shows a circled i on any https:// that has insecure content.</p>
+<p>To get a green padlock from either of these browsers requires every single subresource (resource loaded by a page) to be served over HTTPS.</p>
+<p>So where is the insecure image <code>http://www.baidu.com/search/error.html</code> from?<br><img data-src="/images/why-my-website-is-not-secure/5.png" alt="I found the link!"></p>
+<p>I went to Resources and found this link. The Status Code is <code>307 Internal Redirect</code> which means that we need to check previous requests!<br><img data-src="/images/why-my-website-is-not-secure/7.png" alt="Check previous requests from Request initiator chain"></p>
+<p>An interesting finding! The link <code>https://zz.bdstatic.com/linksubmit/push.js</code> works but the link <code>https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif?l=https://kaijiadage.com/</code> has a problem, what are they doing here?</p>
+<p>According to this <a href="https://ziyuan.baidu.com/college/articleinfo?id=1587" target="_blank" rel="noopener">article</a> and the results that we can see from the Request initiator chain. the two links are used when we push our blogs to baidu platform for SEO.</p>
+<p><img data-src="/images/why-my-website-is-not-secure/6.png" alt="The baidu JavaScript"></p>
+<p>As we can see from this picture, we can clearly know where the previous link <code>.../push.js</code> comes from.</p>
+<p>And when we open this file, we can clearly see where the latter link comes form.</p>
+<p><img data-src="/images/why-my-website-is-not-secure/8.png" alt="The latter link"></p>
+<p>when this link doesn’t work, it would go to the error page. So that’s the problem.</p>
+<p><img data-src="/images/why-my-website-is-not-secure/9.png" alt="The latter link"></p>
+<p>More importantly, how can we solve this problem?</p>
+<ol>
+<li>Obviously, <code>baidupush</code> function is not really necessary, so we can simply turn off it.</li>
+<li>If we still need to use this function, we need to learn more about how this funtion work. So let’s go!</li>
+</ol>
+<p>只要把这段代码放入你的每个页面中，每当用户访问这些页面时，就会通过这段脚本从百度下载一个1x1的gif，同时记录页面此时此刻的URL地址。</p>
+<p>Reference:</p>
+<ol>
+<li><a href="https://www.20i.com/support/ssl-certificates/force-https" target="_blank" rel="noopener">20i.com</a></li>
+<li><a href="https://blog.cloudflare.com/fixing-the-mixed-content-problem-with-automatic-https-rewrites/" target="_blank" rel="noopener">blog.cloudflare.com</a></li>
+<li><a href="https://ziyuan.baidu.com/college/articleinfo?id=1587" target="_blank" rel="noopener">ziyuan.baidu.com</a></li>
+</ol>
 ]]></content>
       <categories>
         <category>hexo</category>
