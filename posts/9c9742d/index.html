@@ -20,19 +20,20 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"kaijiadage.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"kaijiadage.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Just reord some issues when I use Tableau.">
+  <meta name="description" content="Some issues that I encounter when I use Tableau.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tableau">
 <meta property="og:url" content="https://kaijiadage.com/posts/9c9742d/index.html">
 <meta property="og:site_name" content="DEC-10 Lab">
-<meta property="og:description" content="Just reord some issues when I use Tableau.">
+<meta property="og:description" content="Some issues that I encounter when I use Tableau.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-11T10:10:24.000Z">
-<meta property="article:modified_time" content="2020-03-19T22:23:13.234Z">
+<meta property="article:modified_time" content="2020-04-10T16:18:14.900Z">
 <meta property="article:author" content="Jerry Jia">
+<meta property="article:tag" content="Tableau">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://kaijiadage.com/posts/9c9742d/">
@@ -239,8 +240,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-19 22:23:13" itemprop="dateModified" datetime="2020-03-19T22:23:13+00:00">2020-03-19</time>
+                <time title="Modified: 2020-04-10 17:18:14" itemprop="dateModified" datetime="2020-04-10T17:18:14+01:00">2020-04-10</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tableau/" itemprop="url" rel="index"><span itemprop="name">Tableau</span></a>
+                </span>
+            </span>
 
           
             <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
@@ -268,7 +278,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>425</span>
+              <span>430</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -286,9 +296,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <blockquote>
-<p>Just reord some issues when I use Tableau.</p>
-</blockquote>
+        <blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>Some issues that I encounter when I use Tableau.</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
 <a id="more"></a>
 <ol>
 <li>Create a Top N Filter顺序问题<br>From the Data pane, drag City to the Filters shelf：filter的City还是原数据里的所有City，不是通过filter State之后的City(top N filter or the set filter排序问题)<br>原因：Tableau Order of Operations(the order that Tableau performs various actions, such as the order in which it applies your filters to the view.)</li>
@@ -345,6 +358,10 @@
 
 
       <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Tableau/" rel="tag"><i class="fa fa-tag"></i> Tableau</a>
+          </div>
 
         
 
@@ -433,20 +450,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -511,7 +528,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">44 mins.</span>
+    <span title="Reading time total">45 mins.</span>
 </div><span id="sitetime"></span>
 <script language=javascript>
 function siteTime(){
@@ -580,6 +597,7 @@ siteTime();
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 

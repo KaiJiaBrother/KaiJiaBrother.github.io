@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>why my website is not secure?</title>
+    <url>/posts/4d1d841d/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>My confusions in English study. Practice oral English every day.</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>English study</title>
     <url>/posts/91367a05/</url>
     <content><![CDATA[<blockquote class="blockquote-center">
@@ -227,9 +245,14 @@
   <entry>
     <title>COVID-19</title>
     <url>/posts/42fc5b46/</url>
-    <content><![CDATA[<blockquote>
-<p>最近看COVID-19的疫情统计，发现WHO的统计数据总是落后于各地政府的数据</p>
-</blockquote>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>最近看COVID-19的疫情统计，发现WHO的统计数据总是落后于各地政府的数据，按理说这很正常，但</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+
 <p>WHO(World Health Organization 世界卫生组织) 从1月21号开始，每天于欧洲中部时间(Central European Time)24H以内的数据，迄今为止，已经发布了共计66个每日报告了。<br>Data as reported by national authorities by 10:00 CET<br>但即使对于同一天的统计数据，依旧比政府的统计数据落后不少，原因如下：</p>
 <p>Due to differences in reporting methods, retrospective data consolidation, and reporting delays, the number of new cases may not always reflect the exact difference between yesterday’s and today’s totals. WHO COVID-19 Situation Reports present official counts of confirmed COVID-19 cases, thus differences between WHO reports and other sources of COVID-19 data using different inclusion criteria and different data cutoff times are to be expected.</p>
 ]]></content>
@@ -243,9 +266,12 @@
   <entry>
     <title>Inspired</title>
     <url>/posts/bf1390a3/</url>
-    <content><![CDATA[<blockquote>
-<p>An email to record the concerns that I have recently. And thanks Professor Netta.</p>
-</blockquote>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>An email to record the concerns that I have recently. And thanks Professor Netta.</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
 <a id="more"></a>
 <p>Dear Netta,</p>
 <p>I’m still at leeds now,  in residence during this time. I don’t have any plan to go back home in the near future.</p>
@@ -267,9 +293,12 @@
   <entry>
     <title>Tableau</title>
     <url>/posts/9c9742d/</url>
-    <content><![CDATA[<blockquote>
-<p>Just reord some issues when I use Tableau.</p>
-</blockquote>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>Some issues that I encounter when I use Tableau.</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
 <a id="more"></a>
 <ol>
 <li>Create a Top N Filter顺序问题<br>From the Data pane, drag City to the Filters shelf：filter的City还是原数据里的所有City，不是通过filter State之后的City(top N filter or the set filter排序问题)<br>原因：Tableau Order of Operations(the order that Tableau performs various actions, such as the order in which it applies your filters to the view.)</li>
@@ -280,12 +309,24 @@
 <li><a href="https://help.tableau.com/current/guides/get-started-tutorial/en-us/get-started-tutorial-drilldown.htm" target="_blank" rel="noopener">help.tableau.com</a></li>
 </ol>
 ]]></content>
+      <categories>
+        <category>Tableau</category>
+      </categories>
+      <tags>
+        <tag>Tableau</tag>
+      </tags>
   </entry>
   <entry>
     <title>Heuristic Algorithm(启发式算法)</title>
     <url>/posts/f7ee5063/</url>
-    <content><![CDATA[<h1 id="Heuristic-Algorithm-启发式算法"><a href="#Heuristic-Algorithm-启发式算法" class="headerlink" title="Heuristic Algorithm(启发式算法)"></a>Heuristic Algorithm(启发式算法)</h1><h2 id="general-concept"><a href="#general-concept" class="headerlink" title="general concept"></a>general concept</h2><p>a heuristic is a technique designed for solving a problem more quickly when classic methods are too slow, or for finding an approximate solution when classic methods fail to find any exact solution. This is achieved by trading optimality, completeness, accuracy, or precision for speed. In a way, it can be considered a shortcut.</p>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>Some understandings on Heuristic Algorithm(启发式算法).</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
 <a id="more"></a>
+<h1 id="Heuristic-Algorithm-启发式算法"><a href="#Heuristic-Algorithm-启发式算法" class="headerlink" title="Heuristic Algorithm(启发式算法)"></a>Heuristic Algorithm(启发式算法)</h1><h2 id="general-concept"><a href="#general-concept" class="headerlink" title="general concept"></a>general concept</h2><p>a heuristic is a technique designed for solving a problem more quickly when classic methods are too slow, or for finding an approximate solution when classic methods fail to find any exact solution. This is achieved by trading optimality, completeness, accuracy, or precision for speed. In a way, it can be considered a shortcut.</p>
 <h2 id="Travelling-salesman-problem-TSP"><a href="#Travelling-salesman-problem-TSP" class="headerlink" title="Travelling salesman problem(TSP)"></a>Travelling salesman problem(TSP)</h2><blockquote>
 <p>Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city and returns to the origin city?</p>
 </blockquote>
@@ -351,7 +392,7 @@
 <p>A CPU can never be fully replaced by a GPU: a GPU complements CPU architecture by allowing repetitive calculations within an application to be run in parallel while the main program continues to run on the CPU. The CPU can be thought of as the taskmaster of the entire system, coordinating a wide range of general-purpose computing tasks, with the GPU performing a narrower range of more specialized tasks (usually mathematical). Using the power of parallelism, a GPU can complete more work in the same amount of time as compared to a CPU.</p>
 <p><code>The main difference</code> between CPU and GPU architecture is that a CPU is designed to handle a wide-range of tasks quickly (as measured by CPU clock speed), but are limited in the concurrency of tasks that can be running. A GPU is designed to quickly render high-resolution images and video concurrently.</p>
 <p>Because GPUs can perform parallel operations on multiple sets of data, they are also commonly used for non-graphical tasks such as machine learning and scientific computation. Designed with thousands of processor cores running simultaneously, GPUs enable massive parallelism where each core is focused on making efficient calculations.</p>
-<p><img src="/images/cpu_vs_gpu.png" alt="cpu vs gpu"></p>
+<p><img data-src="/images/cpu_vs_gpu.png" alt="cpu vs gpu"></p>
 <p>GPU needs to use cuda, so programming on GPU is more complicated</p>
 <p>GPU has better energy efficiency in design than CPU.</p>
 <p>Field Programmable Gate Array (FPGA), a reconfigurable integrated circuit.</p>
@@ -555,7 +596,7 @@
 <li>而采用区间估计的区间都包含了真实的期望值（真实的平均身高）</li>
 <li>问题又来了，这样不知道哪个区间估计更好</li>
 <li>95% 的置信区间，就是有95%的概率使估计的区间内包含期望值（构造100个这样的区间，大约会有95个区间包含期望值）</li>
-<li>The 95% confidence interval defines a range of values that you can be 95% certain contains the population mean. With large samples, you know that mean with much more precision than you do with a small sample, so the confidence interval is quite narrow when computed from a large sample.<br><img src="/images/confidence_interval.jpg" alt="confidence interval"></li>
+<li>The 95% confidence interval defines a range of values that you can be 95% certain contains the population mean. With large samples, you know that mean with much more precision than you do with a small sample, so the confidence interval is quite narrow when computed from a large sample.<br><img data-src="/images/confidence_interval.jpg" alt="confidence interval"></li>
 </ul>
 </li>
 </ul>
@@ -611,7 +652,7 @@
 <p><code>Stop words</code>: <code>Stop Words</code> are words which do not contain important significance to be used in Search Queries. Usually, these words are filtered out from search queries because they return a vast amount of unnecessary information. Each programming language will give its own list of stop words to use. Mostly they are words that are commonly used in the English language such as ‘as, the, be, are’ etc.</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">import</span> nltk</span><br><span class="line"> nltk.download(<span class="string">'stopwords'</span>)</span><br><span class="line"></span><br><span class="line"> <span class="keyword">from</span> wordcloud <span class="keyword">import</span> STOPWORDS</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">stop_words</span><span class="params">()</span>:</span></span><br><span class="line">   <span class="keyword">from</span> nltk.corpus <span class="keyword">import</span> stopwords</span><br><span class="line">   <span class="comment"># 179 words</span></span><br><span class="line">   stop_words_list = stopwords.words(<span class="string">'english'</span>)</span><br><span class="line">   <span class="keyword">return</span> stop_words_list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 179 words</span></span><br><span class="line">nltk_list = stop_words()</span><br><span class="line"><span class="comment"># 190 words</span></span><br><span class="line">wordcloud_list = list(STOPWORDS)</span><br></pre></td></tr></table></figure>
-<p><img src="/images/stopwords.png" alt="stopwords"><br><a href="https://www.nltk.org/book/ch02.html" target="_blank" rel="noopener">here</a></p>
+<p><img data-src="/images/stopwords.png" alt="stopwords"><br><a href="https://www.nltk.org/book/ch02.html" target="_blank" rel="noopener">here</a></p>
 </li>
 </ol>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 基于Porter词干提取算法</span></span><br><span class="line"><span class="keyword">from</span> nltk.stem.porter <span class="keyword">import</span> PorterStemmer</span><br><span class="line">porter_stemmer = PorterStemmer()</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'maximum'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'prints'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'printed'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'printing'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'this'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'am'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'is'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'are'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'car\'s'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'cars\''</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'leaves'</span>))</span><br><span class="line">print(<span class="string">'-------------------------------------------'</span>)</span><br><span class="line"><span class="comment"># 基于Lancaster 词干提取算法</span></span><br><span class="line"><span class="keyword">from</span> nltk.stem.lancaster <span class="keyword">import</span> LancasterStemmer</span><br><span class="line">lancaster_stemmer = LancasterStemmer()</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'maximum'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'prints'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'printed'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'printing'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'this'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'am'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'is'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'are'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'car\'s'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'cars\''</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'leaves'</span>))</span><br><span class="line">print(<span class="string">'-------------------------------------------'</span>)</span><br><span class="line"><span class="comment"># 基于Snowball 词干提取算法</span></span><br><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> SnowballStemmer</span><br><span class="line">snowball_stemmer = SnowballStemmer(<span class="string">'english'</span>)</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'maximum'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'prints'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'printed'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'printing'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'this'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'am'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'is'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'are'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'car\'s'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'cars\''</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'leaves'</span>))</span><br></pre></td></tr></table></figure>
@@ -681,13 +722,13 @@
 <p>The slides that I use in Data Challenge.</p>
 </blockquote>
 <a id="more"></a>
-<p><img src="/images/data-challenge-slides/1.PNG" alt="page1"><br><img src="/images/data-challenge-slides/2.PNG" alt="page2"><br><img src="/images/data-challenge-slides/3.PNG" alt="page3"><br><img src="/images/data-challenge-slides/4.PNG" alt="page4"><br><img src="/images/data-challenge-slides/5.PNG" alt="page5"><br><img src="/images/data-challenge-slides/6.PNG" alt="page6"><br><img src="/images/data-challenge-slides/7.PNG" alt="page7"><br><img src="/images/data-challenge-slides/8.PNG" alt="page8"><br><img src="/images/data-challenge-slides/9.PNG" alt="page9"><br><img src="/images/data-challenge-slides/10.PNG" alt="page10"><br><img src="/images/data-challenge-slides/11.PNG" alt="page11"><br><img src="/images/data-challenge-slides/12.PNG" alt="page12"><br><img src="/images/data-challenge-slides/13.PNG" alt="page13"><br><img src="/images/data-challenge-slides/14.PNG" alt="page14"><br><img src="/images/data-challenge-slides/15.PNG" alt="page15"><br><img src="/images/data-challenge-slides/16.PNG" alt="page16"><br><img src="/images/data-challenge-slides/17.PNG" alt="page17"></p>
+<p><img data-src="/images/data-challenge-slides/1.PNG" alt="page1"><br><img data-src="/images/data-challenge-slides/2.PNG" alt="page2"><br><img data-src="/images/data-challenge-slides/3.PNG" alt="page3"><br><img data-src="/images/data-challenge-slides/4.PNG" alt="page4"><br><img data-src="/images/data-challenge-slides/5.PNG" alt="page5"><br><img data-src="/images/data-challenge-slides/6.PNG" alt="page6"><br><img data-src="/images/data-challenge-slides/7.PNG" alt="page7"><br><img data-src="/images/data-challenge-slides/8.PNG" alt="page8"><br><img data-src="/images/data-challenge-slides/9.PNG" alt="page9"><br><img data-src="/images/data-challenge-slides/10.PNG" alt="page10"><br><img data-src="/images/data-challenge-slides/11.PNG" alt="page11"><br><img data-src="/images/data-challenge-slides/12.PNG" alt="page12"><br><img data-src="/images/data-challenge-slides/13.PNG" alt="page13"><br><img data-src="/images/data-challenge-slides/14.PNG" alt="page14"><br><img data-src="/images/data-challenge-slides/15.PNG" alt="page15"><br><img data-src="/images/data-challenge-slides/16.PNG" alt="page16"><br><img data-src="/images/data-challenge-slides/17.PNG" alt="page17"></p>
 <div class="note info no-icon">
             <p>In addition, we use sql programming to deal with the data and use Mice method to replace the null value in python.</p>
           </div>
 
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> impyute.imputation.cs <span class="keyword">import</span> mice</span><br><span class="line">imputer_mice = mice(data)</span><br></pre></td></tr></table></figure>
-<p><img src="/images/data-challenge-slides/sql.png" alt="sql"></p>
+<p><img data-src="/images/data-challenge-slides/sql.png" alt="sql"></p>
 ]]></content>
       <tags>
         <tag>Data challenge</tag>
@@ -868,7 +909,7 @@
 <p>Reocrd the issues when I use pytorch.</p>
 </blockquote>
 <a id="more"></a>
-<h1 id="momentum的用处"><a href="#momentum的用处" class="headerlink" title="momentum的用处"></a>momentum的用处</h1><p><img src="/images/pytorch/momentum.png" alt="momentum"></p>
+<h1 id="momentum的用处"><a href="#momentum的用处" class="headerlink" title="momentum的用处"></a>momentum的用处</h1><p><img data-src="/images/pytorch/momentum.png" alt="momentum"></p>
 <div class="note info">
             <p>Image from <a href="https://pytorch.org/docs/stable/optim.html" target="_blank" rel="noopener">SGD</a></p>
           </div>
@@ -894,7 +935,7 @@
 <a id="more"></a>
 <p>(1929-2020/2/18)<br>奶奶永远的睡着了，奶奶一路走好。</p>
 <p>若不是那个电话，我不知道我可能会被瞒多久。<br>远在英国，妈妈最初只是说奶奶出了点事情，爸爸不在家，便扯开话题，聊些别的。我心里已经有了不祥的预感，这语气似乎过于委婉，又似乎夹杂着些许犹豫。<br>正值疫情严重之时，各路口都布满了层层关卡。<br>我不知道要聊些什么，聊了几句便沉默了。<br>还是沉默。<br>妈妈对着镜头看着我，我移开视线，拨弄着盘子里的食物，把薯条一根一根叉起来，慢慢的嚼。<br>妈妈说这回奶奶病得很重，似乎还在掩饰着什么。<br>姐姐也接通了，有些急，问我懂不懂妈妈的意思。<br>我已经懂了，只是不愿意把这个词说出来。<br>小的时候，每次回奶奶家，离开的时候，奶奶和爷爷都会互相搀扶着，颤颤巍巍地走到路口送我们。<br>过了几年，只有奶奶送我们。<br>现在，再也没有人了。<br>奶奶只是睡着了。<br>希望奶奶睡得安稳，睡得安详。</p>
-<p><img src="/images/in-memory-of-grandma/in-memory-of-grandma.jpg" alt="in-memory-of-grandma"></p>
+<p><img data-src="/images/in-memory-of-grandma/in-memory-of-grandma.jpg" alt="in-memory-of-grandma"></p>
 <div class="note info">
             <p>Image by <a href="https://pixabay.com/users/geralt-9301/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3064504" target="_blank" rel="noopener">Gerd Altmann</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3064504" target="_blank" rel="noopener">Pixabay</a></p>
           </div>
@@ -920,7 +961,7 @@
   <entry>
     <title>武汉加油 (Stay Strong Wuhan)</title>
     <url>/posts/69e98808/</url>
-    <content><![CDATA[<p><img src="/images/stay-strong-wuhan/stay-strong-wuhan.jpg" alt="Stay_Strong_Wuhan"></p>
+    <content><![CDATA[<p><img data-src="/images/stay-strong-wuhan/stay-strong-wuhan.jpg" alt="Stay_Strong_Wuhan"></p>
 <div class="note info">
             <p>Image from <a href="http://opinion.people.com.cn/n1/2020/0215/c1003-31588403.html" target="_blank" rel="noopener">people.cn</a></p>
           </div>
