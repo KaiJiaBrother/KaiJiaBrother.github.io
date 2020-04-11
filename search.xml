@@ -30,8 +30,8 @@
 <li>Next, I checked the Console and found the problem.</li>
 </ol>
 <p><img data-src="/images/why-my-website-is-not-secure/4.png" alt="It was a problem of Mixed Content!"></p>
-<div class="note info no-icon">
-            <p>Mixed content means the green padlock icon will not be displayed for an <code>https://</code> site because, in fact, it’s not truly secure.</p><p>Here’s the problem: if an <code>https://</code> website includes any content from a site (even its own) served over <code>http://</code>, the green padlock can’t be displayed. That’s because resources like images, JavaScript, audio, video etc. included over <code>http://</code> open up a security hole into the secure website. A backdoor to trouble.</p><p>Today, Google Chrome shows a circled i on any <code>https://</code> that has insecure content.</p><p>To get a green padlock from either of these browsers requires every single subresource (resource loaded by a page) to be served over HTTPS.</p>
+<div class="note info">
+            <p>Mixed content means the green padlock icon will not be displayed for an <code>https://</code> site because, in fact, it’s not truly secure.</p><p>Here’s the problem: if an <code>https://</code> website includes any content from a site (even its own) served over <code>http://</code>, the green padlock can’t be displayed. That’s because resources like images, JavaScript, audio, video etc. included over <code>http://</code> open up a security hole into the secure website. A backdoor to trouble.</p><p>Today, Google Chrome shows a <code>circled i</code> on any <code>https://</code> that has insecure content.</p><p>To get a green padlock from either of these browsers requires every single subresource (resource loaded by a page) to be served over HTTPS.</p>
           </div>
 
 <ol start="5">
@@ -56,7 +56,7 @@
 </ol>
 <p><img data-src="/images/why-my-website-is-not-secure/8.png" alt="The latter link"></p>
 <ol start="10">
-<li>when the latter link didn’t work, it navigated to the error page. So that’s the problem.</li>
+<li>when the latter link didn’t work, it navigated to the error page. So that was the problem.</li>
 </ol>
 <p><img data-src="/images/why-my-website-is-not-secure/9.png" alt="The latter link"></p>
 <ol start="11">
@@ -66,7 +66,8 @@
 <li>Obviously, <code>baidupush</code> function is not really necessary, so we can simply turn off it.</li>
 <li>If we still need to use this function, we need to learn more about how this funtion work. So here we go!</li>
 <li>刚才在第8点里，我们提到了一段JavaScript代码，只要把这段代码放入每个页面中（这个<code>hexo</code>已经做了），每当用户访问这些页面时，就会通过这段JavaScript从百度下载一个1x1的<code>gif</code>（即出错的链接来源），将window.location.href等信息推送给百度，同时记录页面此时此刻的URL地址（出错链接传参就是页面URL地址）。</li>
-<li>暂时未想到方法，先关闭这个推送功能。</li>
+<li>More solutions could be found in <a href="https://blog.cloudflare.com/fixing-the-mixed-content-problem-with-automatic-https-rewrites/" target="_blank" rel="noopener">this post</a></li>
+<li>暂时未想到其他方法，先关闭百度推送功能。</li>
 </ul>
 <p>Reference:</p>
 <ol>
