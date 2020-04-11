@@ -50,9 +50,10 @@
 </ol>
 <p><img data-src="/images/why-my-website-is-not-secure/6.png" alt="The baidu JavaScript for pushing code to baidu"></p>
 <ol start="9">
-<li>As we can see from this picture, we can clearly know where the previous link <code>.../push.js</code> comes from.</li>
-</ol>
+<li><p>As we can see from this picture, we can clearly know where the previous link <code>.../push.js</code> comes from.</p>
 <p>And when we open this JavaScript file, we can clearly see where the latter link comes form.</p>
+</li>
+</ol>
 <p><img data-src="/images/why-my-website-is-not-secure/8.png" alt="The latter link"></p>
 <ol start="10">
 <li>when the latter link didn’t work, it navigated to the error page. So that’s the problem.</li>
