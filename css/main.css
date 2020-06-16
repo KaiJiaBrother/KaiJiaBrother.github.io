@@ -1263,7 +1263,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #4d3993;
+  background: #62d165;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2873,7 +2873,7 @@ body {
 .v .vlist .vcard .vhead .vsys {
   display: none !important;
 }
-#valine-comments .info {
+#valine-comments .vpower {
   display: none;
 }
 .posts-expand .post-meta time {
