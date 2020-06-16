@@ -1263,7 +1263,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #62ff3d;
+  background: #33ff21;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2870,7 +2870,7 @@ body {
 #valine-comments button:hover {
   background-color: #06446c;
 }
-.v .vcards .vcard .vh .vhead .vsys {
+.v[data-class=v] .vsys {
   display: none !important;
 }
 #valine-comments .vpower {
