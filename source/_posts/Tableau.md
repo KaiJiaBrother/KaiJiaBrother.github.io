@@ -2,9 +2,10 @@
 title: Tableau
 abbrlink: 9c9742d
 date: 2020-03-11 10:10:24
-tags:
+tags: Tableau
+categories: Tableau
 ---
-> Just reord some issues when I use Tableau.
+{% cq %}Some issues that I encounter when I use Tableau.{% endcq %}
 <!-- more -->
 1. Create a Top N Filter顺序问题
 From the Data pane, drag City to the Filters shelf：filter的City还是原数据里的所有City，不是通过filter State之后的City(top N filter or the set filter排序问题)

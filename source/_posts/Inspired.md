@@ -5,7 +5,7 @@ categories: Others
 abbrlink: bf1390a3
 date: 2020-03-19 17:49:29
 ---
-> An email to record the concerns that I have recently. And thanks Professor Netta.
+{% cq %}An email to record the concerns that I have recently. And thanks Professor Netta.{% endcq %}
 <!-- more -->
 Dear Netta,
 

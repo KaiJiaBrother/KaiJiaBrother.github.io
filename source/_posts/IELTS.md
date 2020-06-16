@@ -80,5 +80,68 @@ My teacher told me that I did a really good job and he was pretty proud of me.
 That is the day I realized that rather than fearing challenges we should welcome them.
 Challenges not only make life more exciting but also more meaningful.
 
+The person who formed the concept of wearing uniform in educational institutes, as well as offices, is really praised by everyone because uniform doesn’t let people discriminate each other. Everyone is considered as same in uniform. I still have a uniform which I used to wear in school. It is in a beautiful combination of red and white. I still remember we had two different uniforms which we used to wear on alternative days. But my fav was in a combination of red white which I still have as a memory. When I got enrolled in school, everything was entirely different. When our principal changed, she used her innovative ideas in school for different purposes.
+
 Reference:
 1. [ieltspracticeonline.com](https://ieltspracticeonline.com/cue-card-2020-16-describe-a-difficult-challenge-that-you-completed-met/)
+
+# Describe a uniform you wear (at your school or company)
+- When you wear it? - in the primary school
+- Who bought it for you? - we were asked to wear the uniform in weekdays
+- What does it look like? - white and blue
+- How you feel about it? - be proud of it.
+
+Uniform is very important to maintain discipline in schools or even at workplace.
+It also helps in distinguishing between customer and employees or students of different schools.
+This is why every place has a different uniform.
+I do not wear any uniform now, but I used to wear one in my school.
+In fact, in my school we had different uniforms for weekdays and different for Saturday which was the games day.
+For the weekdays, the students had to wear white shirt with steel grey bottoms along with a tie, belt and black shoes.
+But for the games day, it was coloured T-shirts and white bottoms with the school belt and canvas shoes.
+During the winters, we also had to wear a blue coloured blazer with the school motto
+woven on its pocket.
+This was my favourite part of the uniform as I looked really handsome after wearing it.
+Also, our school uniform was comparatively better looking as compared to other schools in town, so I felt a little bit proud about it as well.
+But I really hated wearing the games day uniform because the white color gets dirty very easily.
+My parents used to buy the uniforms for me.
+They bought it every alternate year because of my physical growth the old uniforms would get shorter.
+I also remember that I used to take great care of my uniform and kept it neat and tidy.
+This also got me compliments from my teachers.
+In the end I would like to say that not many students understand the importance of wearing uniform, but it must be taught to them.
+
+# Describe a team where you were a member.
+- What it was like? - a team comprises 5 people from different contries
+- Why you joined it? - a coursework given by the teacher
+- What you did in it? - clean the data
+- And how you felt about it? - more confident
+
+I'd like to talk about a good experience while working in a team about 2 months ago.
+It was in the Data-Mining class and all of the students were given a coursewok working in a team of up to 5 team mates.
+
+I didn't know much about others so I selected my team mates randomly.
+We were mixed different contries, different ethnic backgrounds.
+As I was also less confident about my oral English, I was very apprehensive at the beginning, but it all changed with time.
+
+The coursework was to identify the offensive tweets and inoffensive tweets, which means there was a lot of work to do.
+We divided our work into several parts and I was in charge of cleaning the data.
+I used 'pandas' to read the data, made some rules to deal with the data, picked the words that appeared more than 10 times.
+When we faced some problems, we would discuss them together and all the other team members also helped.
+I still remember how we spent every afternoon sitting and reading books on the topic in the library.
+We also read some journals on the topic on the internet.
+It was during this part that we became really good friends.
+
+The last part of the project was a team presentation.
+I was really afraid as I found speaking in front of people really daunting.
+But my team mates really helped me then. I think we practiced giving the presentation three four times and that made me much more confident.
+
+I think it was because I had a good rapport with the team members and also because the role, I undertook was something I enjoyed a lot.
+
+
+
+it was in the last year . an opportunity in a new department .
+
+im optimistic but then i faced ptoblems.
+
+beginer , nervous, we start from the begining of the project.
+ask the manager or other colleagues,
+more importantly, learn the method to tackle the problems. more confident, coworking , independent thinking,
