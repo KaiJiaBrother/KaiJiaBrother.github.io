@@ -13,14 +13,14 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
   <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"kaijiadage.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"kaijiadage.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="I&#39;m going to record the errors when I&#39;m doing my Data Mining coursework here">
@@ -31,7 +31,7 @@
 <meta property="og:description" content="I&#39;m going to record the errors when I&#39;m doing my Data Mining coursework here">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kaijiadage.com/images/stopwords.png">
-<meta property="article:published_time" content="2020-03-06T15:57:12.000Z">
+<meta property="article:published_time" content="2020-03-06T07:57:12.000Z">
 <meta property="article:modified_time" content="2020-03-19T22:09:06.352Z">
 <meta property="article:author" content="Jerry Jia">
 <meta property="article:tag" content="Data mining">
@@ -45,8 +45,9 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
   };
 </script>
 
@@ -115,45 +116,48 @@
 
   <div class="site-meta">
 
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">DEC-10 Lab</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DEC-10 Lab</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
   </div>
 
-  <div class="site-nav-right"></div>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
 
 
+
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -161,16 +165,18 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="Searching..." spellcheck="false"
            type="search" class="search-input">
   </div>
@@ -178,12 +184,15 @@
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
   </div>
+</div>
+
+    </div>
+  </div>
+
 </div>
     </header>
 
@@ -196,14 +205,13 @@
         <div class="content-wrap">
           
 
-          <div class="content">
+          <div class="content post posts-expand">
             
 
-  <div class="posts-expand">
-      
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://kaijiadage.com/posts/cf5e19f/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,28 +231,26 @@
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-03-06 15:57:12" itemprop="dateCreated datePublished" datetime="2020-03-06T15:57:12+00:00">2020-03-06</time>
+              <time title="Created: 2020-03-06 15:57:12" itemprop="dateCreated datePublished" datetime="2020-03-06T15:57:12+08:00">2020-03-06</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-19 22:09:06" itemprop="dateModified" datetime="2020-03-19T22:09:06+00:00">2020-03-19</time>
+                <time title="Modified: 2020-03-20 06:09:06" itemprop="dateModified" datetime="2020-03-20T06:09:06+08:00">2020-03-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Data-mining/" itemprop="url" rel="index">
-                    <span itemprop="name">Data mining</span>
-                  </a>
+                  <a href="/categories/Data-mining/" itemprop="url" rel="index"><span itemprop="name">Data mining</span></a>
                 </span>
             </span>
 
@@ -260,7 +266,7 @@
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Valine: </span>
     
@@ -269,16 +275,16 @@
     </a>
   </span>
   
-  <br>
+  
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
+                <i class="far fa-file-word"></i>
               </span>
               <span>6.3k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
+                <i class="far fa-clock"></i>
               </span>
               <span>6 mins.</span>
             </span>
@@ -314,7 +320,7 @@
 <p><code>Stop words</code>: <code>Stop Words</code> are words which do not contain important significance to be used in Search Queries. Usually, these words are filtered out from search queries because they return a vast amount of unnecessary information. Each programming language will give its own list of stop words to use. Mostly they are words that are commonly used in the English language such as ‘as, the, be, are’ etc.</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">import</span> nltk</span><br><span class="line"> nltk.download(<span class="string">'stopwords'</span>)</span><br><span class="line"></span><br><span class="line"> <span class="keyword">from</span> wordcloud <span class="keyword">import</span> STOPWORDS</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">stop_words</span><span class="params">()</span>:</span></span><br><span class="line">   <span class="keyword">from</span> nltk.corpus <span class="keyword">import</span> stopwords</span><br><span class="line">   <span class="comment"># 179 words</span></span><br><span class="line">   stop_words_list = stopwords.words(<span class="string">'english'</span>)</span><br><span class="line">   <span class="keyword">return</span> stop_words_list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 179 words</span></span><br><span class="line">nltk_list = stop_words()</span><br><span class="line"><span class="comment"># 190 words</span></span><br><span class="line">wordcloud_list = list(STOPWORDS)</span><br></pre></td></tr></table></figure>
-<p><img src="/images/stopwords.png" alt="stopwords"><br><a href="https://www.nltk.org/book/ch02.html" target="_blank" rel="noopener">here</a></p>
+<p><img data-src="/images/stopwords.png" alt="stopwords"><br><a href="https://www.nltk.org/book/ch02.html" target="_blank" rel="noopener">here</a></p>
 </li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基于Porter词干提取算法</span></span><br><span class="line"><span class="keyword">from</span> nltk.stem.porter <span class="keyword">import</span> PorterStemmer</span><br><span class="line">porter_stemmer = PorterStemmer()</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'maximum'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'prints'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'printed'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'printing'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'this'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'am'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'is'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'are'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'car\'s'</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'cars\''</span>))</span><br><span class="line">print(porter_stemmer.stem(<span class="string">'leaves'</span>))</span><br><span class="line">print(<span class="string">'-------------------------------------------'</span>)</span><br><span class="line"><span class="comment"># 基于Lancaster 词干提取算法</span></span><br><span class="line"><span class="keyword">from</span> nltk.stem.lancaster <span class="keyword">import</span> LancasterStemmer</span><br><span class="line">lancaster_stemmer = LancasterStemmer()</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'maximum'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'prints'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'printed'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'printing'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'this'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'am'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'is'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'are'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'car\'s'</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'cars\''</span>))</span><br><span class="line">print(lancaster_stemmer.stem(<span class="string">'leaves'</span>))</span><br><span class="line">print(<span class="string">'-------------------------------------------'</span>)</span><br><span class="line"><span class="comment"># 基于Snowball 词干提取算法</span></span><br><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> SnowballStemmer</span><br><span class="line">snowball_stemmer = SnowballStemmer(<span class="string">'english'</span>)</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'maximum'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'prints'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'printed'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'printing'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'this'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'am'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'is'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'are'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'car\'s'</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'cars\''</span>))</span><br><span class="line">print(snowball_stemmer.stem(<span class="string">'leaves'</span>))</span><br></pre></td></tr></table></figure>
@@ -379,7 +385,7 @@
   <div class="popular-posts-header">Related Posts</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\posts\c94f917b\" rel="bookmark">Data mining notes & weka notes</a></div>
+      <div class="popular-posts-title"><a href="\posts\c94f917b\" rel="bookmark">Data mining之weka使用踩坑心得</a></div>
     </li>
   </ul>
 
@@ -415,7 +421,7 @@
     <a href="https://kaijiadage.com/posts/cf5e19f/" title="Data mining coursework">https://kaijiadage.com/posts/cf5e19f/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/en" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/en" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
   </li>
 </ul>
 </div>
@@ -448,7 +454,6 @@
   
   
 
-  </div>
 
 
           </div>
@@ -457,7 +462,7 @@
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
@@ -515,36 +520,36 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="mailto:sc19yj@leeds.ac.uk" title="E-Mail → mailto:sc19yj@leeds.ac.uk" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+        <a href="mailto:jiayk@big.ac.cn" title="E-Mail → mailto:jiayk@big.ac.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://gitlab.com/j646941811" title="Gitlab → https:&#x2F;&#x2F;gitlab.com&#x2F;j646941811" rel="noopener" target="_blank"><i class="fa fa-fw fa-gitlab"></i></a>
+        <a href="https://gitlab.com/j646941811" title="Gitlab → https:&#x2F;&#x2F;gitlab.com&#x2F;j646941811" rel="noopener" target="_blank"><i class="fab fa-gitlab fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://www.linkedin.com/in/yaokai-jia-767472194/" title="linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;yaokai-jia-767472194&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a>
+        <a href="https://www.linkedin.com/in/yaokai-jia-767472194/" title="linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;yaokai-jia-767472194&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://www.weibo.com/u/3877817196" title="Weibo → https:&#x2F;&#x2F;www.weibo.com&#x2F;u&#x2F;3877817196" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+        <a href="https://www.weibo.com/u/3877817196" title="Weibo → https:&#x2F;&#x2F;www.weibo.com&#x2F;u&#x2F;3877817196" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -570,6 +575,8 @@
     <footer class="footer">
       <div class="footer-inner">
         
+
+        
   <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">鄂ICP备16008371号-1 </a>
       <img src="/images/beian_icon.png" style="display: inline-block;">
   </div>
@@ -579,19 +586,19 @@
   &copy; 2016 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-qq"></i>
+    <i class="fas fa-globe"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Jerry Jia</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
+      <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">49k</span>
+    <span title="Symbols count total">57k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">44 mins.</span>
+    <span title="Reading time total">52 mins.</span>
 </div><span id="sitetime"></span>
 <script language=javascript>
 function siteTime(){
@@ -624,7 +631,7 @@ siteTime();
 
         
 <div class="busuanzi-count">
-  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -660,6 +667,7 @@ siteTime();
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
@@ -680,6 +688,7 @@ var pjax = new Pjax({
     '#page-configurations',
     '.content-wrap',
     '.post-toc-wrap',
+    '.languages',
     '#pjax'
   ],
   switches: {
@@ -691,7 +700,7 @@ var pjax = new Pjax({
 });
 
 window.addEventListener('pjax:success', () => {
-  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
     var code = element.text || element.textContent || element.innerHTML || '';
     var parent = element.parentNode;
     parent.removeChild(element);
@@ -710,8 +719,8 @@ window.addEventListener('pjax:success', () => {
       // Force synchronous loading of peripheral JS.
       script.async = false;
     }
-    if (element.getAttribute('pjax') !== null) {
-      script.setAttribute('pjax', '');
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
     }
     if (code !== '') {
       script.appendChild(document.createTextNode(code));
@@ -735,15 +744,6 @@ window.addEventListener('pjax:success', () => {
 
 
   
-  <script pjax>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
 
 
 
