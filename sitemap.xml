@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kaijiadage.com/about/index.html</loc>
+    
+    <lastmod>2022-10-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kaijiadage.com/posts/6a3e8990/</loc>
     
     <lastmod>2020-04-16</lastmod>
@@ -209,15 +218,6 @@
   </url>
   
   <url>
-    <loc>https://kaijiadage.com/about/index.html</loc>
-    
-    <lastmod>2020-02-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kaijiadage.com/posts/39d23ebd/</loc>
     
     <lastmod>2020-02-21</lastmod>
@@ -310,7 +310,7 @@
 
   <url>
     <loc>https://kaijiadage.com/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -318,105 +318,105 @@
   
   <url>
     <loc>https://kaijiadage.com/tags/Big-Data/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/tags/Artificial-Intelligence/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/tags/Life/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/tags/Data-mining/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kaijiadage.com/tags/English-study/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/tags/Development/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://kaijiadage.com/tags/Cloud-Computing/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kaijiadage.com/tags/hexo/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <loc>https://kaijiadage.com/tags/English-study/</loc>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/tags/Tableau/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://kaijiadage.com/tags/competition/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <loc>https://kaijiadage.com/tags/hexo/</loc>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/tags/Data-challenge/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://kaijiadage.com/tags/Competition/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <loc>https://kaijiadage.com/tags/Cloud-Computing/</loc>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://kaijiadage.com/tags/Machine-Learning/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <loc>https://kaijiadage.com/tags/competition/</loc>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/tags/University-of-Leeds/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kaijiadage.com/tags/Competition/</loc>
+    <lastmod>2022-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kaijiadage.com/tags/Machine-Learning/</loc>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/tags/papers/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -425,84 +425,84 @@
   
   <url>
     <loc>https://kaijiadage.com/categories/Linux/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/categories/Artificial-Intelligence/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/categories/Others/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/categories/Notes/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kaijiadage.com/categories/English-study/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/categories/Data-mining/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://kaijiadage.com/categories/hexo/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <loc>https://kaijiadage.com/categories/English-study/</loc>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/categories/Tableau/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kaijiadage.com/categories/hexo/</loc>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/categories/Data-Analytics/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/categories/Code/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/categories/Deep-Learning/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/categories/papers/</loc>
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
