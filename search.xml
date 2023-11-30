@@ -1,6 +1,619 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Why my website is not secure?</title>
+    <url>/posts/4d1d841d/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>After I updated NexT from v7.7.1 to the latest version(v7.8.0), the secure site suffers from the problem of mixed content.</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+
+<blockquote>
+<p>Using <code>HTTPS</code> instead of <code>HTTP</code> means that communications between your browser and a website is encrypted via the use of an <code>SSL (Secure Socket Layer)</code>. Even if your website doesn’t handle sensitive data, it’s a good idea to make sure your website loads securely over HTTPS. It’s now becoming a requirement for many new browser features as well as potentially having an impact on search engine rankings.</p>
+</blockquote>
+<ol>
+<li>When I enable <code>Enforce HTTPS</code>, the website is available over HTTPS.</li>
+</ol>
+<p><img data-src="/images/why-my-website-is-not-secure/1.png" alt="Enforce HTTPS"></p>
+<ol start="2">
+<li>However, today I found the website became not secure.</li>
+</ol>
+<p><img data-src="/images/why-my-website-is-not-secure/2.png" alt="Not fully secure"></p>
+<ol start="3">
+<li>So I checked the certificate to ensure it was still valid.</li>
+</ol>
+<p><img data-src="/images/why-my-website-is-not-secure/3.png" alt="The certificate is still within its validity"></p>
+<ol start="4">
+<li>Next, I checked the Console and found the problem.</li>
+</ol>
+<p><img data-src="/images/why-my-website-is-not-secure/4.png" alt="It was a problem of Mixed Content!"></p>
+<div class="note info">
+            <p>Mixed content means the green padlock icon will not be displayed for an <code>https://</code> site because, in fact, it’s not truly secure.</p><p>Here’s the problem: if an <code>https://</code> website includes any content from a site (even its own) served over <code>http://</code>, the green padlock can’t be displayed. That’s because resources like images, JavaScript, audio, video etc. included over <code>http://</code> open up a security hole into the secure website. A backdoor to trouble.</p><p>Today, Google Chrome shows a <code>circled i</code> on any <code>https://</code> that has insecure content.</p><p>To get a green padlock from either of these browsers requires every single subresource (resource loaded by a page) to be served over HTTPS.</p>
+          </div>
+
+<ol start="5">
+<li>So where is the insecure image <code>http://www.baidu.com/search/error.html</code> from?</li>
+</ol>
+<p><img data-src="/images/why-my-website-is-not-secure/5.png" alt="I found the link!"></p>
+<ol start="6">
+<li>After that, I went to Resources and found this link. The <span class="label danger">Status Code</span> is <code>307 Internal Redirect</code> which means we need to check previous requests!</li>
+</ol>
+<p><img data-src="/images/why-my-website-is-not-secure/7.png" alt="Check previous requests from Request initiator chain"></p>
+<ol start="7">
+<li><p>An exciting finding! The link <code>https://zz.bdstatic.com/linksubmit/push.js</code> works but the link <code>https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif?l=https://kaijiadage.com/</code> has a problem, how do they work here?</p>
+</li>
+<li><p>According to <a href="https://ziyuan.baidu.com/college/articleinfo?id=1587" target="_blank" rel="noopener">this article</a> from baidu platform and the results that we can see from <code>Request initiator chain</code>. Both two links are used when our blogs are pushed to baidu for SEO.</p>
+</li>
+</ol>
+<p><img data-src="/images/why-my-website-is-not-secure/6.png" alt="The baidu JavaScript for pushing code to baidu"></p>
+<ol start="9">
+<li><p>As we can see from this picture, we can clearly know where the previous link <code>.../push.js</code> comes from.</p>
+<p>And when we open this JavaScript file, we can clearly see where the latter link comes form.</p>
+</li>
+</ol>
+<p><img data-src="/images/why-my-website-is-not-secure/8.png" alt="The latter link"></p>
+<ol start="10">
+<li>when the latter link didn’t work, it navigated to the error page. So that was the problem.</li>
+</ol>
+<p><img data-src="/images/why-my-website-is-not-secure/9.png" alt="The latter link"></p>
+<ol start="11">
+<li>More importantly, how can we solve this problem?</li>
+</ol>
+<ul>
+<li>Obviously, <code>baidupush</code> function is not really necessary, so we can simply turn off it.</li>
+<li>If we still need to use this function, we need to learn more about how this funtion work. So here we go!</li>
+<li>刚才在第8点里，我们提到了一段JavaScript代码，只要把这段代码放入每个页面中（这个<code>hexo</code>已经做了），每当用户访问这些页面时，就会通过这段JavaScript从百度下载一个1x1的<code>gif</code>（即出错的链接来源），将window.location.href等信息推送给百度，同时记录页面此时此刻的URL地址（出错链接传参就是页面URL地址）。</li>
+<li>More solutions could be found in <a href="https://blog.cloudflare.com/fixing-the-mixed-content-problem-with-automatic-https-rewrites/" target="_blank" rel="noopener">this post</a></li>
+<li>暂时未想到其他方法，先关闭百度推送功能。</li>
+</ul>
+<p>Reference:</p>
+<ol>
+<li><a href="https://www.20i.com/support/ssl-certificates/force-https" target="_blank" rel="noopener">20i.com</a></li>
+<li><a href="https://blog.cloudflare.com/fixing-the-mixed-content-problem-with-automatic-https-rewrites/" target="_blank" rel="noopener">blog.cloudflare.com</a></li>
+<li><a href="https://ziyuan.baidu.com/college/articleinfo?id=1587" target="_blank" rel="noopener">ziyuan.baidu.com</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>English study</title>
+    <url>/posts/91367a05/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>My confusions in English study. Practice oral English every day.</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+
+<h1 id="The-difference-between-and"><a href="#The-difference-between-and" class="headerlink" title="The difference between  and "></a>The difference between <span class="label danger">forever</span> and <span class="label success">for ever</span></h1><ul>
+<li>In American English, the one-word version is the only version for the adverb meaning continually, incessantly, or eternally.</li>
+<li>In other words, the British seem to be coming around to the American usage here.</li>
+<li>Conclusion: Use <span class="label danger">forever</span> instead of <span class="label success">for ever</span></li>
+</ul>
+<p>Reference:</p>
+<ol>
+<li><a href="https://www.grammarphobia.com/blog/2012/02/forever.html" target="_blank" rel="noopener">grammarphobia.com</a></li>
+</ol>
+<h1 id="The-difference-between-and-1"><a href="#The-difference-between-and-1" class="headerlink" title="The difference between  and "></a>The difference between <span class="label warning">everyday</span> and <span class="label primary">every day</span></h1><ul>
+<li><span class="label warning">everyday</span> is an `adjective` we use to describe something that's seen or used every day. It means `ordinary` or `typical`. `Everyday clothing`, then, refers to the ordinary clothes you wear on regular days, as opposed to outfits designated for special events or holidays. Occasionally, people use everyday as a noun—it’s a shorthand way of referring to their everyday routines.</li>
+<li><span class="label primary">every day</span> is a phrase that simply means `each day`. Because of the space separating the two words, 'every' is simply an adjective modifying the word 'day'.
+
+</li>
+</ul>
+<p>Reference:</p>
+<ol>
+<li><a href="https://www.grammarly.com/blog/everyday-every-day/" target="_blank" rel="noopener">grammarly.com</a></li>
+</ol>
+<h1 id="The-difference-between-and-2"><a href="#The-difference-between-and-2" class="headerlink" title="The difference between  and "></a>The difference between <span class="label success">what's he/she like</span> and <span class="label info">what does he/she look like</span></h1><ul>
+<li>If you want to know about personality, if he’s easy-going or nervous, bossy or relaxed, you ask: <span class="label success">what's he/she like</span>.</li>
+<li>And if you want to know about his physical appearance, if he’s tall or short, fat or skinny, with a head full of dense, luxurious blond hair or bald as a billiard ball, you ask: <span class="label info">what does he/she look like</span>.</li>
+</ul>
+<p>Reference:</p>
+<ol>
+<li><a href="http://masterkeyenglish.com/how-is-he-what-is-he-like-what-does-he-look-like/" target="_blank" rel="noopener">masterkeyenglish.com</a></li>
+</ol>
+<h1 id="physician-and-physicist"><a href="#physician-and-physicist" class="headerlink" title="physician and physicist"></a>physician and physicist</h1><ul>
+<li><code>Physician</code> is a medical doctor, especially one who has general skill and is not a surgeon.</li>
+<li><code>Physicist</code> is a person who studies physics or whose job is connected with physics.</li>
+</ul>
+<p>Reference:</p>
+<ol>
+<li><a href="https://dictionary.cambridge.org/dictionary/english/physicist" target="_blank" rel="noopener">dictionary.cambridge.org</a></li>
+</ol>
+<h1 id="and"><a href="#and" class="headerlink" title=" and ?"></a><span class="label primary">lack</span> and <span class="label info">lack of</span>?</h1><ul>
+<li>When <span class="label primary">lack</span> is used as a <code>verb</code>, we do not use <code>of</code>. We just say <span class="label primary">lack</span> followed by the thing that is missing or that there isn’t enough of. Here are some more examples:<ul>
+<li>The project lacked funding, so it was canceled.</li>
+<li>He lacks motivation to study.</li>
+<li>I just started working, so I’m lacking experience.</li>
+</ul>
+</li>
+<li><span class="label primary">lack</span> can ALSO be used as a `noun`! And when <span class="label primary">lack</span> is used as a `noun`, then we do say <span class="label info">lack of</span> + the thing that is missing or insufficient. Look at these examples of lack being used as a `noun`:
+<ul>
+<li>The project was canceled due to a lack of funding.</li>
+<li>His lack of motivation to study results in bad grades.</li>
+<li>I was disqualified from the job based on my lack of experience.</li>
+</ul>
+</li>
+<li>Conclusion:<ul>
+<li>When using <span class="label primary">lack</span> as a <code>verb</code>, it’s followed directly by an object.</li>
+<li>When using <span class="label primary">lack</span> as a <code>noun</code>, we say <span class="label info">lack of</span> + the object.</li>
+</ul>
+</li>
+</ul>
+<p>Reference:</p>
+<ol>
+<li><a href="https://www.espressoenglish.net/english-grammar-lack-or-lack-of/" target="_blank" rel="noopener">espressoenglish.net</a></li>
+<li><a href="https://dictionary.cambridge.org/dictionary/english/lack" target="_blank" rel="noopener">dictionary.cambridge.org</a></li>
+</ol>
+<h1 id="and-1"><a href="#and-1" class="headerlink" title=" and ?"></a><span class="label warning">do the shopping</span> and <span class="label primary">go shopping</span>?</h1><ul>
+<li><code>To do the shopping</code> describes the regular process of going to the supermarket to buy food and the other necessary items we need to live on a day to day basis. There is an aspect of doing this regularly and it is more of an obligation than an enjoyable activity, for most.</li>
+<li><code>To go shopping</code> means that your intentions are to buy things because you want to or because you need a new version of something. There isn’t necessarily any routine aspect to this action.</li>
+</ul>
+<p>Reference:</p>
+<ol>
+<li><a href="https://www.tofluency.com/do-go-shopping/" target="_blank" rel="noopener">tofluency.com</a></li>
+<li><a href="http://masterkeyenglish.com/to-go-shopping-vs-to-do-the-shopping/" target="_blank" rel="noopener">masterkeyenglish.com</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>English study</category>
+      </categories>
+      <tags>
+        <tag>English study</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>debate</title>
+    <url>/posts/ddc4a368/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>Some debate topics in English. Practice oral English every day.</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+<h1 id="Can-people-work-from-home"><a href="#Can-people-work-from-home" class="headerlink" title="Can people work from home?"></a>Can people work from home?</h1><h2 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages"></a>Advantages</h2><h2 id="Disadvantages"><a href="#Disadvantages" class="headerlink" title="Disadvantages"></a>Disadvantages</h2><ol>
+<li>different industry, actor , hotel stores ,designer need to collect some info with people. some work like recruiting need to face to face commucation. Most of the time, they need to haave a look. TO keep the staff working ,boss need to keep an eye on the employees.For the majority of company, even people are statying in the workplace, the y make mistakes.</li>
+<li>psychology idea, people and human being need to social, they can create new and ideas when they face to face, build a relationshiop with customers, but phone cannot. observing their body language, gestures, eye contact. Face to face talk is easy to show your facial emotions, they can ask questions.</li>
+<li>senior manager, they need to have a meeting, decisive decision? show their power,if this is very important and interesting for you, you need to find it, if it’s wrong,you need to make sure everything is under control. contract is face to face, if they have a contract online, it&#39;s not reliable.</li>
+</ol>
+]]></content>
+      <categories>
+        <category>English study</category>
+      </categories>
+      <tags>
+        <tag>English study</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IELTS</title>
+    <url>/posts/6a3e8990/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>The latest IELTS topics in part2 and part3. Practice oral English every day.</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+<h1 id="IELTS-CUE-CARD-–-Talk-about-a-person-who-taught-you-something-important"><a href="#IELTS-CUE-CARD-–-Talk-about-a-person-who-taught-you-something-important" class="headerlink" title="IELTS CUE CARD – Talk about a person who taught you something important"></a>IELTS CUE CARD – Talk about a person who taught you something important</h1><ul>
+<li>Who the person is? - mother</li>
+<li>What he/she is like? - never scolded me, encouraged me, positive attitude, patient, motivate me. an excellent cook</li>
+<li>What he/she taught you? - cooking, accompany her, washing all the stuff, stand beside her, have a try</li>
+<li>How you felt about him/ her? - grateful to her</li>
+</ul>
+<p>I&#39;d like to talk about my mother, from whom I&#39;ve learned considerable knowledge. Out of diverse skills she taught me, I would focus on cooking.</p>
+<p>She never scolded me and always encouraged me with a positive attitude. She is the most patient person I&#39;ve ever come across and even when I made some mistakes she continued to motivate me and turned my fears into cheers. Besides that, she is an excellent cook and I, of course, is lucky to enjoy different tasty dishes each day.</p>
+<p>Ever since I made a plan to go abroad for my higher education, my mother started involving me in the kitchen with great patience, for I should look after myself without her being around.</p>
+<p>Knowing that I had no idea of cooking and foods, she asked me to accompany her to the supermarket to get familiarized with various food. Then I was put in charge of washing all the stuff we bought for cooking and was made to stand beside her when she cooked, showing me how to do things. After a week&#39;s time, she left me to have a try, though I felt I was not ready. Encouraged and instructed by her, I made my first dish, although it was not as delicious as that made by my mother. Anyhow, I made it. My mother was much happier than I did, saying that I would surely be a good cook like her.</p>
+<p>Busy with my study, I still cook when I&#39;m on a day off. Sometimes, I will try a different way to cook, and I&#39;d like to share my experience with mother about cooking, which she is eager to listen to and she is happy to try a new way, too. Learning to cook makes my life much easier and independent, and it&#39;s inevitable that I&#39;ll be able to use it for the rest of my life. So I feel grateful to my mother.</p>
+<p>Follow Ups:</p>
+<ul>
+<li>What do you think is the best age for children to go to school?<br>From my perspective, the best age for children to go to school is around 6 years old because at that time, children’s cognition and ability have reached a level that allows them to understand what the teachers are going to say in the class. That is also a period that children may have a lot of questions and they want the answers desperately. The subject that concludes a comprehensive knowledge goal may enable them to get these old questions done in a scientific way. In addition, children at 6 may have developed a good habit that they can sit patiently and quietly in the class and follow the classroom’s regulations set by the teachers.</li>
+<li>Do you prefer to study by yourself or with friends?</li>
+</ul>
+<p>Reference:</p>
+<ol>
+<li><a href="https://ieltsfever.org/person-who-taught-you-a-useful-skill/" target="_blank" rel="noopener">IELTS Fever</a></li>
+<li>YaSiGe app</li>
+</ol>
+<h1 id="Describe-one-of-your-family-members-you-spend-most-of-the-time-with"><a href="#Describe-one-of-your-family-members-you-spend-most-of-the-time-with" class="headerlink" title="Describe one of your family members you spend most of the time with?"></a>Describe one of your family members you spend most of the time with?</h1><ul>
+<li>who it is</li>
+<li>when you are usually together</li>
+<li>what you do together</li>
+<li>and explain why you spend the most time with this member of your family</li>
+</ul>
+<p>I have always been interested in spending time with superior people because, in this way, I could learn new things from them and learn approaches to survive in this challenging world. I’d like to talk about one family member with whom I want to spend my quality time.</p>
+<p>He is my grandfather. My grandfather is in his 70s. But he is still energetic and lively. He likes to do some outdoor activities, such as fishing and strolling.</p>
+<p>He is a very extroverted and talktive person. He is a knowledgeable person, so I always take help in my studies. He was a history teacher before so he enjoys to tell the stories to others. My Grandfather gave excellent knowledge about our earlier history.</p>
+<p>There are many reasons why I like to spend time with him. First of all, he always encourages me to face any challenge in my life. For example,<br>In addition, I like to share knowledge with him because he has excellent experience with their life; hence he always gives me the best advice and wishes to take notice from him.</p>
+<p>Furthermore, He always supports me in every work, and he teaches me what thing is right or wrong for me. Apart from it, He has a whimsical nature, so sometimes he makes some fun. He gives me information about our history. Last but not least,</p>
+<h1 id="Describe-a-difficult-challenge-that-you-completed-met"><a href="#Describe-a-difficult-challenge-that-you-completed-met" class="headerlink" title="Describe a difficult challenge that you completed/met"></a>Describe a difficult challenge that you completed/met</h1><ul>
+<li>What was the challenge? - an English speech contest, I agreed, benefits,  10 mins</li>
+<li>When and where did you complete/met it? - 2 years ago,</li>
+<li>Why was it difficult? - lack public speaking skills, be afraid of public speaking.</li>
+<li>How you felt about it? - became more confident</li>
+</ul>
+<p>A difficult challenge that I completed was 2 years ago. One day, my English teacher asked me whether I’d like to take part in an English speech contest. I agreed cause I believed it was a good opportunity to enhance my oral English as well as develop the self-confidence.<br>The speech contest sounds really daunting to me, as I had to talk 10 minutes on the environment.<br>Actually, I lacked public speaking skills and was very afraid of public speaking.<br>I was quite comfortable when talking with my friends but when I had to talk in front of strangers especially judges, teachers and other students, I choked.</p>
+<p>I was really worried and so I went to my teacher who regularly gave speeches in public for advice.<br>He told me that the key to a good speech is mastery over the subject matter.<br>So, I spent one whole week memorizing the content.<br>The next thing he told me to do was to divide the topic in different sections.<br>I divided my speech into five halves of 2 minutes each.<br>The first half was for introducing the topic and the last half for concluding the topic.<br>The remaining three halves were for the main content.<br>After breaking the speech into sections, I felt a lot more confident.<br>My friends also knew about my fear of public speaking and so every evening they used to come to my dormitory and help me prepare.<br>Slowly, I started feeling that it was doable.<br>I was nervous but I wasn’t worried anymore.</p>
+<p>When finally, the day of the speech contest arrived, I not only gave the whole speech but also received the second prize for it.<br>My teacher told me that I did a really good job and he was pretty proud of me.<br>That is the day I realized that rather than fearing challenges we should welcome them.<br>Challenges not only make life more exciting but also more meaningful.</p>
+<p>The person who formed the concept of wearing uniform in educational institutes, as well as offices, is really praised by everyone because uniform doesn’t let people discriminate each other. Everyone is considered as same in uniform. I still have a uniform which I used to wear in school. It is in a beautiful combination of red and white. I still remember we had two different uniforms which we used to wear on alternative days. But my fav was in a combination of red white which I still have as a memory. When I got enrolled in school, everything was entirely different. When our principal changed, she used her innovative ideas in school for different purposes.</p>
+<p>Reference:</p>
+<ol>
+<li><a href="https://ieltspracticeonline.com/cue-card-2020-16-describe-a-difficult-challenge-that-you-completed-met/" target="_blank" rel="noopener">ieltspracticeonline.com</a></li>
+</ol>
+<h1 id="Describe-a-uniform-you-wear-at-your-school-or-company"><a href="#Describe-a-uniform-you-wear-at-your-school-or-company" class="headerlink" title="Describe a uniform you wear (at your school or company)"></a>Describe a uniform you wear (at your school or company)</h1><ul>
+<li>When you wear it? - in the primary school</li>
+<li>Who bought it for you? - we were asked to wear the uniform in weekdays</li>
+<li>What does it look like? - white and blue</li>
+<li>How you feel about it? - be proud of it.</li>
+</ul>
+<p>Uniform is very important to maintain discipline in schools or even at workplace.<br>It also helps in distinguishing between customer and employees or students of different schools.<br>This is why every place has a different uniform.<br>I do not wear any uniform now, but I used to wear one in my school.<br>In fact, in my school we had different uniforms for weekdays and different for Saturday which was the games day.<br>For the weekdays, the students had to wear white shirt with steel grey bottoms along with a tie, belt and black shoes.<br>But for the games day, it was coloured T-shirts and white bottoms with the school belt and canvas shoes.<br>During the winters, we also had to wear a blue coloured blazer with the school motto<br>woven on its pocket.<br>This was my favourite part of the uniform as I looked really handsome after wearing it.<br>Also, our school uniform was comparatively better looking as compared to other schools in town, so I felt a little bit proud about it as well.<br>But I really hated wearing the games day uniform because the white color gets dirty very easily.<br>My parents used to buy the uniforms for me.<br>They bought it every alternate year because of my physical growth the old uniforms would get shorter.<br>I also remember that I used to take great care of my uniform and kept it neat and tidy.<br>This also got me compliments from my teachers.<br>In the end I would like to say that not many students understand the importance of wearing uniform, but it must be taught to them.</p>
+<h1 id="Describe-a-team-where-you-were-a-member"><a href="#Describe-a-team-where-you-were-a-member" class="headerlink" title="Describe a team where you were a member."></a>Describe a team where you were a member.</h1><ul>
+<li>What it was like? - a team comprises 5 people from different contries</li>
+<li>Why you joined it? - a coursework given by the teacher</li>
+<li>What you did in it? - clean the data</li>
+<li>And how you felt about it? - more confident</li>
+</ul>
+<p>I’d like to talk about a good experience while working in a team about 2 months ago.<br>It was in the Data-Mining class and all of the students were given a coursewok working in a team of up to 5 team mates.</p>
+<p>I didn’t know much about others so I selected my team mates randomly.<br>We were mixed different contries, different ethnic backgrounds.<br>As I was also less confident about my oral English, I was very apprehensive at the beginning, but it all changed with time.</p>
+<p>The coursework was to identify the offensive tweets and inoffensive tweets, which means there was a lot of work to do.<br>We divided our work into several parts and I was in charge of cleaning the data.<br>I used ‘pandas’ to read the data, made some rules to deal with the data, picked the words that appeared more than 10 times.<br>When we faced some problems, we would discuss them together and all the other team members also helped.<br>I still remember how we spent every afternoon sitting and reading books on the topic in the library.<br>We also read some journals on the topic on the internet.<br>It was during this part that we became really good friends.</p>
+<p>The last part of the project was a team presentation.<br>I was really afraid as I found speaking in front of people really daunting.<br>But my team mates really helped me then. I think we practiced giving the presentation three four times and that made me much more confident.</p>
+<p>I think it was because I had a good rapport with the team members and also because the role, I undertook was something I enjoyed a lot.</p>
+<p>it was in the last year . an opportunity in a new department .</p>
+<p>im optimistic but then i faced ptoblems.</p>
+<p>beginer , nervous, we start from the begining of the project.<br>ask the manager or other colleagues,<br>more importantly, learn the method to tackle the problems. more confident, coworking , independent thinking,</p>
+]]></content>
+      <categories>
+        <category>English study</category>
+      </categories>
+      <tags>
+        <tag>English study</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>big data revision</title>
+    <url>/posts/1984119a/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>A revision for Big Data System.</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+<h1 id="Big-Data-Definitions"><a href="#Big-Data-Definitions" class="headerlink" title="Big Data Definitions"></a>Big Data Definitions</h1><ul>
+<li>huge volumes of data</li>
+<li>the challenges, risks, and rewards of storing and extracting meaningful information from this data</li>
+<li>it becomes difficult to process using on-hand data management tools or traditional data processing applications<h2 id="Volume"><a href="#Volume" class="headerlink" title="Volume"></a>Volume</h2></li>
+<li>Sheer size of data in terms of storage and access.</li>
+<li>Many different factors can contribute to the increase in data volume.<h2 id="Velocity"><a href="#Velocity" class="headerlink" title="Velocity"></a>Velocity</h2></li>
+<li>Speed of incoming data and the time it takes to process.</li>
+<li>Data velocity is both the speed at which data streams in, and the timely manner in which data must be dealt with to maintain time based relevance.<h2 id="Variety"><a href="#Variety" class="headerlink" title="Variety"></a>Variety</h2></li>
+<li>Types of files and formats of data as well as sources.</li>
+<li>Data comes in all kinds of formats, but can be grouped into two types: structured and unstructured.</li>
+<li>Structured data is the numeric data in traditional databases. Created from line-of-business and pre-formatted data collected over time.</li>
+<li>Unstructured data is the relational and seemingly unrelated data that comes from unstructured sources (social media, text documents, email, video, audio, etc.)</li>
+</ul>
+<blockquote>
+<p>Extra Vs have been proposed, these typically describe characteristics rather than being definitional</p>
+</blockquote>
+<h2 id="Veracity"><a href="#Veracity" class="headerlink" title="Veracity"></a>Veracity</h2><ul>
+<li>How accurate and meaningful is the data?<h2 id="Value"><a href="#Value" class="headerlink" title="Value"></a>Value</h2></li>
+<li>How can value be derived from a big dataset?</li>
+</ul>
+<h1 id="Big-Data-Examples"><a href="#Big-Data-Examples" class="headerlink" title="Big Data Examples"></a>Big Data Examples</h1><ul>
+<li>smart healthcare</li>
+<li>wearable devices</li>
+<li>smart retail</li>
+<li>equipment health management</li>
+<li>connected/smart cars</li>
+<li>intelligent transport</li>
+<li>smart grid</li>
+<li>smart cities</li>
+<li>recommender systems</li>
+<li>finance</li>
+</ul>
+<h1 id="HIGH-LEVEL-ARCHITECTURE"><a href="#HIGH-LEVEL-ARCHITECTURE" class="headerlink" title="HIGH LEVEL ARCHITECTURE"></a>HIGH LEVEL ARCHITECTURE</h1><ul>
+<li>The challenge of Big Data is how can we possibly deal with data that fits    these characteristics, both individually and collectively.</li>
+<li>The core of the answer lies in using distributed resources.<h2 id="Big-Data-sources"><a href="#Big-Data-sources" class="headerlink" title="Big Data sources"></a>Big Data sources</h2></li>
+<li>The    sources    layer    refers to all    of the data available for analysis, coming in from all channels.    The    type of analysis and sources are closely related.<h2 id="Data-messaging-and-store-layer"><a href="#Data-messaging-and-store-layer" class="headerlink" title="Data messaging and store layer"></a>Data messaging and store layer</h2></li>
+<li>is responsible for acquiring data from data sources.</li>
+<li>If    necessary,    the    layer    will also be responsible    for    converting    the    data    to    a format    that    suits    how    the    data will    be analysed.</li>
+<li>Data acquisition</li>
+<li>Data digest</li>
+<li>Distributed file storage<h2 id="Analysis-layer"><a href="#Analysis-layer" class="headerlink" title="Analysis layer"></a>Analysis layer</h2></li>
+<li>The    analysis layer reads the data digested by the data massaging    and    store    layer    (in    some    cases, it accesses data directly from the data source).</li>
+<li>Entity indentification</li>
+<li>Analytics engine</li>
+<li>Model management<h2 id="CONSUMPTION-LAYER"><a href="#CONSUMPTION-LAYER" class="headerlink" title="CONSUMPTION LAYER"></a>CONSUMPTION LAYER</h2></li>
+<li>This    layer    consumes    the    output    provided    by    the    analysis    layer.<h2 id="INFORMATION-INTEGRATION-LAYER"><a href="#INFORMATION-INTEGRATION-LAYER" class="headerlink" title="INFORMATION    INTEGRATION    LAYER"></a>INFORMATION    INTEGRATION    LAYER</h2></li>
+<li>Responsible    for    connecting    to    various    data    sources.</li>
+<li>Requires    quality    connectors &amp;    adapters<h2 id="DATA-GOVERNANCE-LAYER"><a href="#DATA-GOVERNANCE-LAYER" class="headerlink" title="DATA    GOVERNANCE    LAYER"></a>DATA    GOVERNANCE    LAYER</h2></li>
+<li>GDPR:    General    Data    Protection    Regulation<h2 id="SYSTEM-MANAGEMENT-layer"><a href="#SYSTEM-MANAGEMENT-layer" class="headerlink" title="SYSTEM    MANAGEMENT    layer"></a>SYSTEM    MANAGEMENT    layer</h2><h2 id="QUALITY-OF-SERVICE-QOS-LAYER"><a href="#QUALITY-OF-SERVICE-QOS-LAYER" class="headerlink" title="QUALITY OF    SERVICE    (QOS)    LAYER"></a>QUALITY OF    SERVICE    (QOS)    LAYER</h2></li>
+</ul>
+<h1 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h1><ul>
+<li>Programming    model    for    expressing    distributed    computation    in massive-scale    systems.</li>
+<li>Open-source    implementation    called    Hadoop.<h2 id="MapReduce-process"><a href="#MapReduce-process" class="headerlink" title="MapReduce    process"></a>MapReduce    process</h2></li>
+<li>Iterate    over a large number of records.<br>‒ Extract    something    of interest from    each.(Map)<br>‒ Shuffle    and    sort intermediate    results.<br>‒ Aggregate    intermediate results into something usable.(Reduce)<br>‒ Generate final output.(Reduce)<h2 id="Distributed-File-System-DFS"><a href="#Distributed-File-System-DFS" class="headerlink" title="Distributed    File    System    (DFS)"></a>Distributed    File    System    (DFS)</h2></li>
+<li>move    workers    to    the    data:<ul>
+<li>Not    enough    RAM    to    hold    all    the    data    in    memory</li>
+<li>Disk access is slow,    but    disk throughput is reasonable</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Notes</category>
+      </categories>
+      <tags>
+        <tag>Big Data</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>papers summary</title>
+    <url>/posts/7cd80329/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>A summary of the papers that I read for the project.</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+<div class="note danger no-icon">
+            <p>Please provide a brief summary including</p><ol><li>What did they do and why?</li><li>What did they find?</li><li>Are there any issues/challenges with the research?</li><li>How is their work relevant to your project?</li></ol>
+          </div>
+
+<div class="note info no-icon">
+            <p>N. Valakunde and S. Ravikumar, “Prediction of Addiction to Social Media,” 2019 IEEE International Conference on Electrical, Computer and Communication Technologies (ICECCT), Coimbatore, India, 2019, pp. 1-6.</p><ol><li><p>The problem of social media addiction has only been observed and studied in the previous research papers, but no solution has been presented to date. This study aims to solve the problem of addiction by implementing machine learning using Linear Regression through Least Square Method and recommending certain positive exercises and practices which can help an individual to refrain from high usage of social media.</p></li><li><p>The data collected is analyzed with the help of graphs plotted by using the users’ data. The inputs are taken from the user from the respective questions asked to him/her, and a point is plotted for the user’s values in the respective graphs. By plotting the points on these graphs and comparing them, the machine is able to determine the problem faced by an individual and help him/her by giving out suggestions in the form of helpline numbers, motivational videos and/or inspiring speeches from successful people. This is a small and effective method to help people get rid of addiction to social media and lead a better life.</p></li><li><p>The research uses a very simple and basic algorithm(Linear Regression using Least Square Method). More complex and advanced machine learning algorithms can be used to achieve higher levels of accuracy in predictions. Besides, the research only contains the user data collected of 287 users, more data should be collected to make result become much more intelligent and accurate.</p></li><li><p>The research uses Linear Regression algorithm to indicate whether the user is addicted to social media or not and gives some recommendation to them like cutting down on their social media usage. This work can be used to predict the user behaviors to indicate how much the user would get addicted to the social media.</p></li></ol>
+          </div>
+
+<div class="note warning no-icon">
+            <p>M. Meghawat, S. Yadav, D. Mahata, Y. Yin, R. R. Shah and R. Zimmermann, “A Multimodal Approach to Predict Social Media Popularity,” 2018 IEEE Conference on Multimedia Information Processing and Retrieval (MIPR), Miami, FL, 2018, pp. 190-195.</p><ol><li><p>First, they use a random forest approach on available social and contextual information. Next, they apply a CNN model on available social and contextual information. Moreover, they apply transfer learning on image content information using the pre-trained InceptionResnet V2 model. Finally, in their multimodal approach, they combine all features derived from earlier steps and apply a convolutional model. The first reason is that most of previous researches just focused on information provided in the SMP-T1 dataset which includes average counts for views, comments, tags, groups, members, and lengths of title and description. No such multimodal dataset exists for the prediction of social media photos. So they propose a new dataset, called multimodal-SMP-dataset, by augmenting the existing SMP-T1 dataset with additional contextual information such as titles, descriptions, and tags of social media photos in addition to crawling image content (actual photos). The second reason is that one modality might not be enough to solve a complex problem like popularity prediction, so their proposed system exploits multimodal information.</p></li><li><p>Experimental results confirm that despite they use half of the training set, their multimodal approach gives comparable performance to that of state-of-the-art. Moreover, they have provided a multimodal dataset for social media popularity prediction to research community.</p></li><li><p>In their research, they explored different models for social media popularity prediction and got different results (Spearman RHO, Mean Absolute Error (MAE), and Mean Squared Error (MSE)) for each model. The issue is that they didn’t mention how many times they did those experiments for each model. I do not know whether they used an average result of several experiments or just an optimal result of single experiment.</p></li><li><p>This research uses a multimodal approach to predict the social media popularity, which could help me consider to use a multimodal approach (including image content) to do my project instead of focusing on a single model. Besides, it reminds me that I could also expand the dataset if necessary.</p></li></ol>
+          </div>
+
+<div class="note success no-icon">
+            
+          </div>
+]]></content>
+      <categories>
+        <category>papers</category>
+      </categories>
+      <tags>
+        <tag>papers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>COVID-19</title>
+    <url>/posts/42fc5b46/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>最近看COVID-19的疫情统计，发现WHO的统计数据总是落后于各地政府的数据，按理说这很正常，但</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+
+<p>WHO(World Health Organization 世界卫生组织) 从1月21号开始，每天于欧洲中部时间(Central European Time)24H以内的数据，迄今为止，已经发布了共计66个每日报告了。<br>Data as reported by national authorities by 10:00 CET<br>但即使对于同一天的统计数据，依旧比政府的统计数据落后不少，原因如下：</p>
+<p>Due to differences in reporting methods, retrospective data consolidation, and reporting delays, the number of new cases may not always reflect the exact difference between yesterday’s and today’s totals. WHO COVID-19 Situation Reports present official counts of confirmed COVID-19 cases, thus differences between WHO reports and other sources of COVID-19 data using different inclusion criteria and different data cutoff times are to be expected.</p>
+]]></content>
+      <categories>
+        <category>Others</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Inspired</title>
+    <url>/posts/bf1390a3/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>An email to record the concerns that I have recently. And thanks Professor Netta.</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+<p>Dear Netta,</p>
+<p>I’m still at leeds now,  in residence during this time. I don’t have any plan to go back home in the near future.</p>
+<p>– Ok, thanks!</p>
+<p>When I went shopping, I found only myself wearing the mask, which made me feel a little uncomfortable. Some of my Chinese friends suffered from discrimination maybe because they are Chinese and they wear the masks.</p>
+<p>– I also wore a mask yesterday and was also the only one in the shop and also got some funny looks. I think in general, we should expect a range of reactions. Some people think this is all crazy overreaction, others are down right panicking. If you experience any discrimination, please do let me know! Regardless, please don’t put yourself at risk just because of other people’s reactions.</p>
+<p>I know self-control is pretty important, but when I study at home, I’m not very efficient. I tried to focus on the subjects that I’m interest in, maybe that’s one of the solutions.</p>
+<p>–Jerry, this is not going to be easy. Remember that we are planning on a marathon, not a sprint. I would not expect you to work full hours initially. You need to set yourself up and gradually create an environment and routine that work for you. Go easy on yourself. One step at a time…</p>
+<p>– take care! Netta</p>
+<p>All the best to you and yours,<br>Jerry</p>
+]]></content>
+      <categories>
+        <category>Others</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tableau</title>
+    <url>/posts/9c9742d/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>Some issues that I encounter when I use Tableau.</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+<ol>
+<li>Create a Top N Filter顺序问题<br>From the Data pane, drag City to the Filters shelf：filter的City还是原数据里的所有City，不是通过filter State之后的City(top N filter or the set filter排序问题)<br>原因：Tableau Order of Operations(the order that Tableau performs various actions, such as the order in which it applies your filters to the view.)</li>
+</ol>
+<p>解决方法：On the Filters shelf, right-click the Inclusions (Country, State) (Country, State) set and select Add to Context.</p>
+<p>Reference:</p>
+<ol>
+<li><a href="https://help.tableau.com/current/guides/get-started-tutorial/en-us/get-started-tutorial-drilldown.htm" target="_blank" rel="noopener">help.tableau.com</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Tableau</category>
+      </categories>
+      <tags>
+        <tag>Tableau</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Heuristic Algorithm(启发式算法)</title>
+    <url>/posts/f7ee5063/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>Some understandings on Heuristic Algorithm(启发式算法).</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+<h1 id="Heuristic-Algorithm-启发式算法"><a href="#Heuristic-Algorithm-启发式算法" class="headerlink" title="Heuristic Algorithm(启发式算法)"></a>Heuristic Algorithm(启发式算法)</h1><h2 id="general-concept"><a href="#general-concept" class="headerlink" title="general concept"></a>general concept</h2><p>a heuristic is a technique designed for solving a problem more quickly when classic methods are too slow, or for finding an approximate solution when classic methods fail to find any exact solution. This is achieved by trading optimality, completeness, accuracy, or precision for speed. In a way, it can be considered a shortcut.</p>
+<h2 id="Travelling-salesman-problem-TSP"><a href="#Travelling-salesman-problem-TSP" class="headerlink" title="Travelling salesman problem(TSP)"></a>Travelling salesman problem(TSP)</h2><blockquote>
+<p>Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city and returns to the origin city?</p>
+</blockquote>
+<p>TSP is known to be NP-Hard so an optimal solution for even a moderate size problem is difficult to solve. Instead, the greedy algorithm can be used to give a good but not optimal solution (it is an approximation to the optimal answer) in a reasonably short amount of time. The greedy algorithm heuristic says to pick whatever is currently the best next step regardless of whether that prevents (or even makes impossible) good steps later. It is a heuristic in that practice says it is a good enough solution, theory says there are better solutions (and even can tell how much better in some cases).</p>
+<h2 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h2><p>Another example of heuristic making an algorithm faster occurs in certain search problems. Initially, the heuristic tries every possibility at each step, like the full-space search algorithm. But it can stop the search at any time if the current possibility is already worse than the best solution already found. In such search problems, a heuristic can be used to try good choices first so that bad paths can be eliminated early (see alpha-beta pruning). In the case of best-first search algorithms, such as A* search, the heuristic improves the algorithm’s convergence while maintaining its correctness as long as the heuristic is admissible.</p>
+<h2 id="Antivirus-software"><a href="#Antivirus-software" class="headerlink" title="Antivirus software"></a>Antivirus software</h2><p>Antivirus software often uses heuristic rules for detecting viruses and other forms of malware. Heuristic scanning looks for code and/or behavioral patterns common to a class or family of viruses, with different sets of rules for different viruses. If a file or executing process is found to contain matching code patterns and/or to be performing that set of activities, then the scanner infers that the file is infected. The most advanced part of behavior-based heuristic scanning is that it can work against highly randomized self-modifying/mutating (polymorphic) viruses that cannot be reliably detected by simpler string scanning methods. Heuristic scanning has the potential to detect future viruses without requiring the virus to be first detected somewhere else, submitted to the virus scanner developer, analyzed, and a detection update for the scanner provided to the scanner’s users.</p>
+<h2 id="启发式算法"><a href="#启发式算法" class="headerlink" title="启发式算法"></a>启发式算法</h2><p>一个基于直观或经验构造的算法，在可接受的花费（指计算时间和空间）下给出待解决组合优化问题每一个实例的一个可行解，该可行解与最优解的偏离程度一般不能被预计。现阶段，启发式算法以仿自然体算法为主，主要有蚁群算法、模拟退火法、神经网络等。</p>
+<h1 id="P-Problem-vs-NP-Problem"><a href="#P-Problem-vs-NP-Problem" class="headerlink" title="P-Problem vs NP-Problem"></a>P-Problem vs NP-Problem</h1><h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><ul>
+<li>时间复杂度则表示这个算法运行得到想要的解所需的计算工作量，他探讨的是当输入值接近无穷时，算法所需工作量的变化快慢程度。<h2 id="P-Problem-polynomial"><a href="#P-Problem-polynomial" class="headerlink" title="P-Problem(polynomial)"></a>P-Problem(polynomial)</h2></li>
+<li>A problem is assigned to the P (polynomial time) class if there exists at least one algorithm to solve that problem, such that the number of steps of the algorithm is bounded by a polynomial in n, where n is the length of the input.</li>
+<li>算法的步数可以用多项式来表示</li>
+<li>P类问题：如果一个问题可以找到一个能在多项式的时间里解决它的算法</li>
+</ul>
+<h2 id="NP-Problem-non-deterministic-polynomial-time-不确定性多项式时间"><a href="#NP-Problem-non-deterministic-polynomial-time-不确定性多项式时间" class="headerlink" title="NP-Problem(non-deterministic polynomial time)不确定性多项式时间"></a>NP-Problem(non-deterministic polynomial time)不确定性多项式时间</h2><ul>
+<li>A problem is assigned to the NP (nondeterministic polynomial time) class if it is solvable in polynomial time by a nondeterministic Turing machine.</li>
+<li></li>
+<li>A P-problem (whose solution time is bounded by a polynomial) is always also NP. If a problem is known to be NP, and a solution to the problem is somehow known, then demonstrating the correctness of the solution can always be reduced to a single P (polynomial time) verification. If P and NP are not equivalent, then the solution of NP-problems requires (in the worst case) an exhaustive search.</li>
+<li></li>
+<li>NP问题：可以在多项式的时间里验证一个解的问题/可以在多项式的时间里猜出一个解的问题</li>
+<li>所有的P类问题都是NP问题。</li>
+<li>不知道这个问题是不是存在多项式时间内的算法，所以叫non-deterministic不确定性，但是我们可以在多项式时间内验证并得出这个问题的一个正确解。</li>
+</ul>
+<h2 id="NPC-problem-non-deterministic-polynomial-complete"><a href="#NPC-problem-non-deterministic-polynomial-complete" class="headerlink" title="NPC problem(non-deterministic polynomial complete)"></a>NPC problem(non-deterministic polynomial complete)</h2><ul>
+<li>如果所有NP问题都能在多项式时间内转化为最难的一个NP类问题（被约化成的问题应具有比前一个问题更复杂的时间复杂度），则称该NP问题为NPC问题</li>
+</ul>
+<h2 id="NP-hard-Problem"><a href="#NP-hard-Problem" class="headerlink" title="NP-hard Problem"></a>NP-hard Problem</h2><ul>
+<li><p>A problem is said to be NP-hard if an algorithm for solving it can be translated into one for solving any other NP-problem. It is much easier to show that a problem is NP than to show that it is NP-hard. A problem which is both NP and NP-hard is called an NP-complete problem.</p>
+</li>
+<li><p>我们又叫NP难问题，他不是一个NP问题，然后所有的NPC问题都可以在多项式时间内转化为他的话，我们就叫他NPH（hard）问题。</p>
+</li>
+</ul>
+<p>Reference:</p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Heuristic_(computer_science)" target="_blank" rel="noopener">wikipedia</a></li>
+<li><a href="https://mathworld.wolfram.com/NP-Problem.html" target="_blank" rel="noopener">mathworld</a></li>
+<li><a href="http://www.matrix67.com/blog/archives/105" target="_blank" rel="noopener">matrix67.com</a></li>
+<li><a href="https://blog.csdn.net/databatman/article/details/49304295" target="_blank" rel="noopener">blog.csdn</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Artificial Intelligence</category>
+      </categories>
+      <tags>
+        <tag>Artificial Intelligence</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cloud computing notes</title>
+    <url>/posts/983f472e/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Notes</category>
+      </categories>
+      <tags>
+        <tag>Cloud Computing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>big data notes</title>
+    <url>/posts/b96255d4/</url>
+    <content><![CDATA[<h1 id="CPU-vs-GPU-vs-FPGA"><a href="#CPU-vs-GPU-vs-FPGA" class="headerlink" title="CPU vs GPU vs FPGA"></a>CPU vs GPU vs FPGA</h1><p>A CPU (central processing unit) works together with a GPU (graphics processing unit) to increase the throughput of data and the number of concurrent calculations within an application.</p>
+<a id="more"></a>
+<p>A CPU can never be fully replaced by a GPU: a GPU complements CPU architecture by allowing repetitive calculations within an application to be run in parallel while the main program continues to run on the CPU. The CPU can be thought of as the taskmaster of the entire system, coordinating a wide range of general-purpose computing tasks, with the GPU performing a narrower range of more specialized tasks (usually mathematical). Using the power of parallelism, a GPU can complete more work in the same amount of time as compared to a CPU.</p>
+<p><code>The main difference</code> between CPU and GPU architecture is that a CPU is designed to handle a wide-range of tasks quickly (as measured by CPU clock speed), but are limited in the concurrency of tasks that can be running. A GPU is designed to quickly render high-resolution images and video concurrently.</p>
+<p>Because GPUs can perform parallel operations on multiple sets of data, they are also commonly used for non-graphical tasks such as machine learning and scientific computation. Designed with thousands of processor cores running simultaneously, GPUs enable massive parallelism where each core is focused on making efficient calculations.</p>
+<p><img data-src="/images/cpu_vs_gpu.png" alt="cpu vs gpu"></p>
+<p>GPU needs to use cuda, so programming on GPU is more complicated</p>
+<p>GPU has better energy efficiency in design than CPU.</p>
+<p>Field Programmable Gate Array (FPGA), a reconfigurable integrated circuit.</p>
+<p>You can configure the FPGA to become any circuit you want to (as long as it fits on the FPGA). This is quite a bit different than the instruction-based hardware most programmers are used to, such as CPUs and GPUs. Instruction-based hardware is configured via software, whereas FPGAs are instead configured by specifying a hardware circuit.</p>
+<p>Low latency<br>This is where FPGAs are much better than CPUs (or GPUs, which have to communicate via the CPU). With an FPGA it is feasible to get a latency around or below 1 microsecond, whereas with a CPU a latency smaller than 50 microseconds is already very good.</p>
+<p>Reference:</p>
+<ol>
+<li>lectures from university of leeds</li>
+<li><a href="https://www.omnisci.com/technical-glossary/cpu-vs-gpu" target="_blank" rel="noopener">omnisci</a></li>
+<li><a href="https://blog.esciencecenter.nl/why-use-an-fpga-instead-of-a-cpu-or-gpu-b234cd4f309c" target="_blank" rel="noopener">esciencecenter</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Notes</category>
+      </categories>
+      <tags>
+        <tag>Big Data</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>3月7日游Chester Zoo及七种迹象，暗示你的生活正在慢慢变好</title>
+    <url>/posts/537a960e/</url>
+    <content><![CDATA[<h2 id="3月7日游Chester-Zoo"><a href="#3月7日游Chester-Zoo" class="headerlink" title="3月7日游Chester Zoo"></a>3月7日游Chester Zoo</h2><p>今天去了一趟Chester Zoo，去的时候和旁边的越南同学聊了一路，回的时候和日本同学聊了一路。</p>
+<a id="more"></a>
+<p>和越南同学聊，一直讲英语，后边问她会不会说中文，会，就穿插着用中文聊了，哈哈哈，越南同学真厉害。回的时候是日本同学，正好对日本动漫（火影忍者啥的），一些乐队（goose house），cartoon(久石让，宫崎骏)，一些风景名胜（fuji mountain，北海道），一些文化（招财猫，日本古人画像，日本天皇，doll）感兴趣，问了很多问题，还给日本同学分享了自己游玩明十三陵（一些帝王陵墓的讲究，比如有个棂星门），天安门广场（看了降旗仪式的视频），故宫里的珍妃井的故事和大戏台，聊得很开心，1个半小时很快就过去了。晚上吃过饭瞌睡，就在床上小憩了一会儿，醒来之后四周都是黑的，突然，一股难以言表的感觉浮上心头，这一天就这么过去了，时间过得好快啊。</p>
+<p>最近英国疫情稍稍严峻了一些（昨天是116例了），今天第一次基本全程戴口罩，刚开始戴口罩还是很不舒服的，不过很快就习惯了。到了动物园，碰到的外国人没一个人戴口罩（此时应无视他人异样的目光），周围没人的时候就解下来，大口吸口气，哈哈哈！动物园里有很多小孩，凑我旁边问我为什么戴口罩。还好戴着口罩，化解了我脸上的尴尬。</p>
+<p>刚好来利兹前去了一趟大连野生动物园，就说下最大的对比吧。这里每种动物相对少一点，人离得近一点，比如老虎区，人不是高高在上的站在围墙外面参观，而是基本水平的参观。工作人员讲解很耐心，很多景点碰到了讲解就停下来听一听。印象最深刻的就是蝙蝠馆（Fruit bat forest），蝙蝠就在身边飞啊飞，里面很臭。问了工作人员两个傻逼问题，为什么臭啊，这些蝙蝠带病毒不，哈哈哈。</p>
+<p>正好看到人民日报的励志文，记录一下，当自己颓废的时候激励自己。</p>
+<h2 id="重视健康和快乐"><a href="#重视健康和快乐" class="headerlink" title="重视健康和快乐"></a>重视健康和快乐</h2><ul>
+<li>按时吃饭，睡觉，用心对待一日三餐，控糖戒辣，少吃高热的垃圾食品，多吃蔬菜水果，坚持锻炼，明白熬夜的坏处，规律作息，多腾出时间给自己，感受并珍惜寻常日子的小幸福。</li>
+<li>健康太重要了，前段时间看了《急诊室故事》，生和死就是一瞬间的事，太脆弱了。</li>
+</ul>
+<h2 id="做事积极且自律"><a href="#做事积极且自律" class="headerlink" title="做事积极且自律"></a>做事积极且自律</h2><ul>
+<li>自律，自律，自律</li>
+<li>不要被懒惰控制，不要再荒废时光，钻研有意思的领域，不断提升自己的实力和才华</li>
+<li>早早起床</li>
+<li>不找借口，不畏失败，步履不停，积极且热忱地奔赴自己想要的人生。</li>
+<li>这个品质可是最重要的一点啊，想要做到，就别拖，做就行了。</li>
+</ul>
+<h2 id="保持干净的气质"><a href="#保持干净的气质" class="headerlink" title="保持干净的气质"></a>保持干净的气质</h2><ul>
+<li>干净卫生，良好的个人习惯</li>
+<li>远离无意义社交</li>
+</ul>
+<h2 id="拥有治愈自己的能力"><a href="#拥有治愈自己的能力" class="headerlink" title="拥有治愈自己的能力"></a>拥有治愈自己的能力</h2><ul>
+<li>沮丧低落的时候，和自己和解，治愈自己</li>
+<li>生活真的有美食，美景和爱你的人</li>
+</ul>
+<h2 id="不要太在意别人的眼光"><a href="#不要太在意别人的眼光" class="headerlink" title="不要太在意别人的眼光"></a>不要太在意别人的眼光</h2><ul>
+<li>忠于自己，无论是追求梦想，对待爱情，保护好那份热忱和怦然心动（单身的借口？哈哈哈）</li>
+<li>按照自己的节奏踏实前行，不焦虑，不气馁，静得下心，沉得住气</li>
+</ul>
+<h2 id="懂得控制自己的情绪"><a href="#懂得控制自己的情绪" class="headerlink" title="懂得控制自己的情绪"></a>懂得控制自己的情绪</h2><ul>
+<li>保持情绪稳定，工作的时候会遇到很多难题，不如开心地去想解决办法</li>
+<li>生活里面难免遇上糟心事，别冲动。不要用别人的错误来惩罚自己。</li>
+<li>善待家人</li>
+<li>别说伤感情的话，别说负能量的话，少一点指责，多一点将心比心</li>
+</ul>
+<h2 id="心里始终装着善良和温柔"><a href="#心里始终装着善良和温柔" class="headerlink" title="心里始终装着善良和温柔"></a>心里始终装着善良和温柔</h2><ul>
+<li>自觉垃圾分类，爱护小动物，不让陌生人难堪</li>
+</ul>
+<blockquote>
+<p>愿你在平凡的一天，炙热地活，快乐地爱，不辜负时间，不错付真心，不敷衍自己。愿你成为一个温暖、善良且有力量的人，真切地为自己的人生感到骄傲。</p>
+</blockquote>
+<p>From 人民日报</p>
+]]></content>
+      <categories>
+        <category>Others</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AI Terms</title>
     <url>/posts/d96bcfee/</url>
     <content><![CDATA[<h1 id="Bootstrapping"><a href="#Bootstrapping" class="headerlink" title="Bootstrapping"></a>Bootstrapping</h1><ol>
@@ -163,59 +776,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Data mining notes &amp; weka notes</title>
-    <url>/posts/c94f917b/</url>
-    <content><![CDATA[<blockquote>
-<p>What I learned in Data Mining.</p>
-</blockquote>
-<a id="more"></a>
-<h1 id="Information-Extraction"><a href="#Information-Extraction" class="headerlink" title="Information Extraction"></a>Information Extraction</h1><h2 id="Information-Extraction-IE-and-Information-Retrieval-IR"><a href="#Information-Extraction-IE-and-Information-Retrieval-IR" class="headerlink" title="Information Extraction(IE) and Information Retrieval(IR)"></a>Information Extraction(IE) and Information Retrieval(IR)</h2><p>IE pulls facts and structured information from the content of large text collections (usually corpora).<br>IR pulls documents from large text collections (usually the Web) in response to specific keywords or queries.<br>With traditional query engines, getting the facts can be hard and slow.</p>
-<ul>
-<li>IE would return information in a structured way</li>
-<li>IR would return documents containing the relevant information somewhere (if you were lucky)<br>IE returns knowledge at a much deeper level than IR.<br>When would you use IE?</li>
-<li>For access to news</li>
-<li>For access to scientific reports<h2 id="Named-Entity-Recognition"><a href="#Named-Entity-Recognition" class="headerlink" title="Named Entity Recognition"></a>Named Entity Recognition</h2>Identification of proper names in texts, and their classification into a set of predefined categories of interest</li>
-</ul>
-<h2 id="MUSE-–-MUlti-Source-Entity-Recognition"><a href="#MUSE-–-MUlti-Source-Entity-Recognition" class="headerlink" title="MUSE – MUlti-Source Entity Recognition"></a>MUSE – MUlti-Source Entity Recognition</h2><p>An IE system developed within GATE</p>
-<h1 id="Language-and-Computers"><a href="#Language-and-Computers" class="headerlink" title="Language and Computers"></a>Language and Computers</h1><h2 id="Document-classification-sort-documents-into-user-defined-classes"><a href="#Document-classification-sort-documents-into-user-defined-classes" class="headerlink" title="Document classification = sort documents into user-defined classes"></a>Document classification = sort documents into user-defined classes</h2><p>classification tasks, such as sentiment analysis<br>One simple technique for identifying languages is to use <code>n-grams</code>(stretch of n tokens(i.e., letters or words)).<br>Document classification is an example of a computer science activity called machine learning, which is itself part of the subfield of artificial intelligence</p>
-<p>Supervised learning: training set and test set have been labeled with desired “correct answers”.<br>Unsupervised learning: assume there are no pre-specified categories.</p>
-<p>First step in classifying or clustering documents:<br>identify properties most relevant to the decision we want to make, i.e., features<br>To make a useful system we need to tell the computer two things:</p>
-<ol>
-<li>Exactly which features are used and exactly how to detect them</li>
-</ol>
-<ul>
-<li>feature engineering</li>
-<li>Hard to automate this step</li>
-</ul>
-<ol start="2">
-<li>How to weight the evidence provided by the features</li>
-</ol>
-<ul>
-<li>Often works well to use machine learning for this<br>feature engineering:</li>
-<li>Kitchen sink strategy</li>
-<li>Hand-crafted strategy<br>The best features may be hard to collect reliably<br>bag of words assumption<br>Imagine that we cut up a document and put the words in a bag<br>Record the odds ratio for ham to spam as 12.5/0.8.<br>Idea of Naive Bayes: count things that occur in the test set</li>
-</ul>
-<h2 id="authorship-attribution"><a href="#authorship-attribution" class="headerlink" title="authorship attribution"></a>authorship attribution</h2><p>Stylometry<br>Lexical style markers</p>
-<h2 id="plagiarism"><a href="#plagiarism" class="headerlink" title="plagiarism"></a>plagiarism</h2><h1 id="Data-Warehousing"><a href="#Data-Warehousing" class="headerlink" title="Data Warehousing"></a>Data Warehousing</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>We have lots of data, the point of data mining is to extract the information, knowledge and particularly get the right knowledge at the right time. The idea of data Warehousing is to make data avaliable to do data mining. you need to have a static snap-shot of data to do the evaluation.</p>
-<h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><ul>
-<li>a standardized data store</li>
-<li>a process for bringing together disparate data from throughout an organization for decision-support purposes.</li>
-</ul>
-<p>use different algorithms to compare results to know which algo is better to use the same data.<br>store in the database rather in one format.</p>
-<p>subject-oriented: discriminating similar languages, has a particular topic<br>integrated: harvested from different sources into a single standard format(database, social media)<br>time-variant: twitter, news(data change every time, not predicting in the future)<br>non-volatile: static snap-shot, use the same dataset(pick the data at a particular time)</p>
-<p>copy of transaction data, query and analysis</p>
-<h2 id="Data-Mart"><a href="#Data-Mart" class="headerlink" title="Data Mart"></a>Data Mart</h2><p>smaller, more focused data warehouse - a mini-warehouse<br>reflects the business rules of a specific business unit within an enterprise.</p>
-<h2 id="Generic-Architecture-of-Data"><a href="#Generic-Architecture-of-Data" class="headerlink" title="Generic Architecture of Data"></a>Generic Architecture of Data</h2><p>transaction data: base level of data- raw material for understanding customer behavior<br>operational sumamary data: summaries are for a specific time period and utilize the transaction data for that time period.<br>decision support summary data: used to help make decisions about the business.<br>database schema: defines the structure of data, not the values of the data.<br>metadata: data<br>business rules: highest level of abstraction from operational data.<br>OLAP(ONline Analytical Processing): Data representation for ease of visualization.</p>
-<p>is any data-set a data warehouse?<br>sis: no<br>library catalogue: no<br>vle: no<br>text in a textbook: yes</p>
-]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>Data mining</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Data mining coursework</title>
     <url>/posts/cf5e19f/</url>
     <content><![CDATA[<blockquote>
@@ -304,6 +864,56 @@
       </tags>
   </entry>
   <entry>
+    <title>Data Challenge slides</title>
+    <url>/posts/70cdea1a/</url>
+    <content><![CDATA[<blockquote>
+<p>The slides that I use in Data Challenge.</p>
+</blockquote>
+<a id="more"></a>
+<p><img data-src="/images/data-challenge-slides/1.PNG" alt="page1"><br><img data-src="/images/data-challenge-slides/2.PNG" alt="page2"><br><img data-src="/images/data-challenge-slides/3.PNG" alt="page3"><br><img data-src="/images/data-challenge-slides/4.PNG" alt="page4"><br><img data-src="/images/data-challenge-slides/5.PNG" alt="page5"><br><img data-src="/images/data-challenge-slides/6.PNG" alt="page6"><br><img data-src="/images/data-challenge-slides/7.PNG" alt="page7"><br><img data-src="/images/data-challenge-slides/8.PNG" alt="page8"><br><img data-src="/images/data-challenge-slides/9.PNG" alt="page9"><br><img data-src="/images/data-challenge-slides/10.PNG" alt="page10"><br><img data-src="/images/data-challenge-slides/11.PNG" alt="page11"><br><img data-src="/images/data-challenge-slides/12.PNG" alt="page12"><br><img data-src="/images/data-challenge-slides/13.PNG" alt="page13"><br><img data-src="/images/data-challenge-slides/14.PNG" alt="page14"><br><img data-src="/images/data-challenge-slides/15.PNG" alt="page15"><br><img data-src="/images/data-challenge-slides/16.PNG" alt="page16"><br><img data-src="/images/data-challenge-slides/17.PNG" alt="page17"></p>
+<div class="note info no-icon">
+            <p>In addition, we use sql programming to deal with the data and use Mice method to replace the null value in python.</p>
+          </div>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> impyute.imputation.cs <span class="keyword">import</span> mice</span><br><span class="line">imputer_mice = mice(data)</span><br></pre></td></tr></table></figure>
+<p><img data-src="/images/data-challenge-slides/sql.png" alt="sql"></p>
+]]></content>
+      <tags>
+        <tag>Data challenge</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>云计算学习笔记之Docker(Cloud Computing Lab -- Docker)</title>
+    <url>/posts/db3e7c66/</url>
+    <content><![CDATA[<blockquote>
+<p>Record the issues when I use Docker.</p>
+</blockquote>
+<a id="more"></a>
+<ul>
+<li>Docker在产业里的应用比VM更多</li>
+<li>VM和Docker的区别在于：VM是由Hypervisor统一管理，使用Guest OS；而Docker通过Docker Engine</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Development</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode</title>
+    <url>/posts/39d23ebd/</url>
+    <content><![CDATA[<p>这里分享leetcode编程练习中遇到的不错的代码。</p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+      <tags>
+        <tag>Competition</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Big Data Systems Lab Session Running Hadoop on a Single Node</title>
     <url>/posts/e8018068/</url>
     <content><![CDATA[<div class="note info">
@@ -340,282 +950,9 @@
       </tags>
   </entry>
   <entry>
-    <title>COVID-19</title>
-    <url>/posts/42fc5b46/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>最近看COVID-19的疫情统计，发现WHO的统计数据总是落后于各地政府的数据，按理说这很正常，但</p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-<a id="more"></a>
-
-<p>WHO(World Health Organization 世界卫生组织) 从1月21号开始，每天于欧洲中部时间(Central European Time)24H以内的数据，迄今为止，已经发布了共计66个每日报告了。<br>Data as reported by national authorities by 10:00 CET<br>但即使对于同一天的统计数据，依旧比政府的统计数据落后不少，原因如下：</p>
-<p>Due to differences in reporting methods, retrospective data consolidation, and reporting delays, the number of new cases may not always reflect the exact difference between yesterday’s and today’s totals. WHO COVID-19 Situation Reports present official counts of confirmed COVID-19 cases, thus differences between WHO reports and other sources of COVID-19 data using different inclusion criteria and different data cutoff times are to be expected.</p>
-]]></content>
-      <categories>
-        <category>Others</category>
-      </categories>
-      <tags>
-        <tag>Life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>English study</title>
-    <url>/posts/91367a05/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>My confusions in English study. Practice oral English every day.</p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-<a id="more"></a>
-
-<h1 id="The-difference-between-and"><a href="#The-difference-between-and" class="headerlink" title="The difference between  and "></a>The difference between <span class="label danger">forever</span> and <span class="label success">for ever</span></h1><ul>
-<li>In American English, the one-word version is the only version for the adverb meaning continually, incessantly, or eternally.</li>
-<li>In other words, the British seem to be coming around to the American usage here.</li>
-<li>Conclusion: Use <span class="label danger">forever</span> instead of <span class="label success">for ever</span></li>
-</ul>
-<p>Reference:</p>
-<ol>
-<li><a href="https://www.grammarphobia.com/blog/2012/02/forever.html" target="_blank" rel="noopener">grammarphobia.com</a></li>
-</ol>
-<h1 id="The-difference-between-and-1"><a href="#The-difference-between-and-1" class="headerlink" title="The difference between  and "></a>The difference between <span class="label warning">everyday</span> and <span class="label primary">every day</span></h1><ul>
-<li><span class="label warning">everyday</span> is an `adjective` we use to describe something that's seen or used every day. It means `ordinary` or `typical`. `Everyday clothing`, then, refers to the ordinary clothes you wear on regular days, as opposed to outfits designated for special events or holidays. Occasionally, people use everyday as a noun—it’s a shorthand way of referring to their everyday routines.</li>
-<li><span class="label primary">every day</span> is a phrase that simply means `each day`. Because of the space separating the two words, 'every' is simply an adjective modifying the word 'day'.
-
-</li>
-</ul>
-<p>Reference:</p>
-<ol>
-<li><a href="https://www.grammarly.com/blog/everyday-every-day/" target="_blank" rel="noopener">grammarly.com</a></li>
-</ol>
-<h1 id="The-difference-between-and-2"><a href="#The-difference-between-and-2" class="headerlink" title="The difference between  and "></a>The difference between <span class="label success">what's he/she like</span> and <span class="label info">what does he/she look like</span></h1><ul>
-<li>If you want to know about personality, if he’s easy-going or nervous, bossy or relaxed, you ask: <span class="label success">what's he/she like</span>.</li>
-<li>And if you want to know about his physical appearance, if he’s tall or short, fat or skinny, with a head full of dense, luxurious blond hair or bald as a billiard ball, you ask: <span class="label info">what does he/she look like</span>.</li>
-</ul>
-<p>Reference:</p>
-<ol>
-<li><a href="http://masterkeyenglish.com/how-is-he-what-is-he-like-what-does-he-look-like/" target="_blank" rel="noopener">masterkeyenglish.com</a></li>
-</ol>
-<h1 id="physician-and-physicist"><a href="#physician-and-physicist" class="headerlink" title="physician and physicist"></a>physician and physicist</h1><ul>
-<li><code>Physician</code> is a medical doctor, especially one who has general skill and is not a surgeon.</li>
-<li><code>Physicist</code> is a person who studies physics or whose job is connected with physics.</li>
-</ul>
-<p>Reference:</p>
-<ol>
-<li><a href="https://dictionary.cambridge.org/dictionary/english/physicist" target="_blank" rel="noopener">dictionary.cambridge.org</a></li>
-</ol>
-<h1 id="and"><a href="#and" class="headerlink" title=" and ?"></a><span class="label primary">lack</span> and <span class="label info">lack of</span>?</h1><ul>
-<li>When <span class="label primary">lack</span> is used as a <code>verb</code>, we do not use <code>of</code>. We just say <span class="label primary">lack</span> followed by the thing that is missing or that there isn’t enough of. Here are some more examples:<ul>
-<li>The project lacked funding, so it was canceled.</li>
-<li>He lacks motivation to study.</li>
-<li>I just started working, so I’m lacking experience.</li>
-</ul>
-</li>
-<li><span class="label primary">lack</span> can ALSO be used as a `noun`! And when <span class="label primary">lack</span> is used as a `noun`, then we do say <span class="label info">lack of</span> + the thing that is missing or insufficient. Look at these examples of lack being used as a `noun`:
-<ul>
-<li>The project was canceled due to a lack of funding.</li>
-<li>His lack of motivation to study results in bad grades.</li>
-<li>I was disqualified from the job based on my lack of experience.</li>
-</ul>
-</li>
-<li>Conclusion:<ul>
-<li>When using <span class="label primary">lack</span> as a <code>verb</code>, it’s followed directly by an object.</li>
-<li>When using <span class="label primary">lack</span> as a <code>noun</code>, we say <span class="label info">lack of</span> + the object.</li>
-</ul>
-</li>
-</ul>
-<p>Reference:</p>
-<ol>
-<li><a href="https://www.espressoenglish.net/english-grammar-lack-or-lack-of/" target="_blank" rel="noopener">espressoenglish.net</a></li>
-<li><a href="https://dictionary.cambridge.org/dictionary/english/lack" target="_blank" rel="noopener">dictionary.cambridge.org</a></li>
-</ol>
-<h1 id="and-1"><a href="#and-1" class="headerlink" title=" and ?"></a><span class="label warning">do the shopping</span> and <span class="label primary">go shopping</span>?</h1><ul>
-<li><code>To do the shopping</code> describes the regular process of going to the supermarket to buy food and the other necessary items we need to live on a day to day basis. There is an aspect of doing this regularly and it is more of an obligation than an enjoyable activity, for most.</li>
-<li><code>To go shopping</code> means that your intentions are to buy things because you want to or because you need a new version of something. There isn’t necessarily any routine aspect to this action.</li>
-</ul>
-<p>Reference:</p>
-<ol>
-<li><a href="https://www.tofluency.com/do-go-shopping/" target="_blank" rel="noopener">tofluency.com</a></li>
-<li><a href="http://masterkeyenglish.com/to-go-shopping-vs-to-do-the-shopping/" target="_blank" rel="noopener">masterkeyenglish.com</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>English study</category>
-      </categories>
-      <tags>
-        <tag>English study</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IELTS</title>
-    <url>/posts/6a3e8990/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>The latest IELTS topics in part2 and part3. Practice oral English every day.</p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-<a id="more"></a>
-<h1 id="IELTS-CUE-CARD-–-Talk-about-a-person-who-taught-you-something-important"><a href="#IELTS-CUE-CARD-–-Talk-about-a-person-who-taught-you-something-important" class="headerlink" title="IELTS CUE CARD – Talk about a person who taught you something important"></a>IELTS CUE CARD – Talk about a person who taught you something important</h1><ul>
-<li>Who the person is? - mother</li>
-<li>What he/she is like? - never scolded me, encouraged me, positive attitude, patient, motivate me. an excellent cook</li>
-<li>What he/she taught you? - cooking, accompany her, washing all the stuff, stand beside her, have a try</li>
-<li>How you felt about him/ her? - grateful to her</li>
-</ul>
-<p>I&#39;d like to talk about my mother, from whom I&#39;ve learned considerable knowledge. Out of diverse skills she taught me, I would focus on cooking.</p>
-<p>She never scolded me and always encouraged me with a positive attitude. She is the most patient person I&#39;ve ever come across and even when I made some mistakes she continued to motivate me and turned my fears into cheers. Besides that, she is an excellent cook and I, of course, is lucky to enjoy different tasty dishes each day.</p>
-<p>Ever since I made a plan to go abroad for my higher education, my mother started involving me in the kitchen with great patience, for I should look after myself without her being around.</p>
-<p>Knowing that I had no idea of cooking and foods, she asked me to accompany her to the supermarket to get familiarized with various food. Then I was put in charge of washing all the stuff we bought for cooking and was made to stand beside her when she cooked, showing me how to do things. After a week&#39;s time, she left me to have a try, though I felt I was not ready. Encouraged and instructed by her, I made my first dish, although it was not as delicious as that made by my mother. Anyhow, I made it. My mother was much happier than I did, saying that I would surely be a good cook like her.</p>
-<p>Busy with my study, I still cook when I&#39;m on a day off. Sometimes, I will try a different way to cook, and I&#39;d like to share my experience with mother about cooking, which she is eager to listen to and she is happy to try a new way, too. Learning to cook makes my life much easier and independent, and it&#39;s inevitable that I&#39;ll be able to use it for the rest of my life. So I feel grateful to my mother.</p>
-<p>Follow Ups:</p>
-<ul>
-<li>What do you think is the best age for children to go to school?<br>From my perspective, the best age for children to go to school is around 6 years old because at that time, children’s cognition and ability have reached a level that allows them to understand what the teachers are going to say in the class. That is also a period that children may have a lot of questions and they want the answers desperately. The subject that concludes a comprehensive knowledge goal may enable them to get these old questions done in a scientific way. In addition, children at 6 may have developed a good habit that they can sit patiently and quietly in the class and follow the classroom’s regulations set by the teachers.</li>
-<li>Do you prefer to study by yourself or with friends?</li>
-</ul>
-<p>Reference:</p>
-<ol>
-<li><a href="https://ieltsfever.org/person-who-taught-you-a-useful-skill/" target="_blank" rel="noopener">IELTS Fever</a></li>
-<li>YaSiGe app</li>
-</ol>
-<h1 id="Describe-one-of-your-family-members-you-spend-most-of-the-time-with"><a href="#Describe-one-of-your-family-members-you-spend-most-of-the-time-with" class="headerlink" title="Describe one of your family members you spend most of the time with?"></a>Describe one of your family members you spend most of the time with?</h1><ul>
-<li>who it is</li>
-<li>when you are usually together</li>
-<li>what you do together</li>
-<li>and explain why you spend the most time with this member of your family</li>
-</ul>
-<p>I have always been interested in spending time with superior people because, in this way, I could learn new things from them and learn approaches to survive in this challenging world. I’d like to talk about one family member with whom I want to spend my quality time.</p>
-<p>He is my grandfather. My grandfather is in his 70s. But he is still energetic and lively. He likes to do some outdoor activities, such as fishing and strolling.</p>
-<p>He is a very extroverted and talktive person. He is a knowledgeable person, so I always take help in my studies. He was a history teacher before so he enjoys to tell the stories to others. My Grandfather gave excellent knowledge about our earlier history.</p>
-<p>There are many reasons why I like to spend time with him. First of all, he always encourages me to face any challenge in my life. For example,<br>In addition, I like to share knowledge with him because he has excellent experience with their life; hence he always gives me the best advice and wishes to take notice from him.</p>
-<p>Furthermore, He always supports me in every work, and he teaches me what thing is right or wrong for me. Apart from it, He has a whimsical nature, so sometimes he makes some fun. He gives me information about our history. Last but not least,</p>
-<h1 id="Describe-a-difficult-challenge-that-you-completed-met"><a href="#Describe-a-difficult-challenge-that-you-completed-met" class="headerlink" title="Describe a difficult challenge that you completed/met"></a>Describe a difficult challenge that you completed/met</h1><ul>
-<li>What was the challenge? - an English speech contest, I agreed, benefits,  10 mins</li>
-<li>When and where did you complete/met it? - 2 years ago,</li>
-<li>Why was it difficult? - lack public speaking skills, be afraid of public speaking.</li>
-<li>How you felt about it? - became more confident</li>
-</ul>
-<p>A difficult challenge that I completed was 2 years ago. One day, my English teacher asked me whether I’d like to take part in an English speech contest. I agreed cause I believed it was a good opportunity to enhance my oral English as well as develop the self-confidence.<br>The speech contest sounds really daunting to me, as I had to talk 10 minutes on the environment.<br>Actually, I lacked public speaking skills and was very afraid of public speaking.<br>I was quite comfortable when talking with my friends but when I had to talk in front of strangers especially judges, teachers and other students, I choked.</p>
-<p>I was really worried and so I went to my teacher who regularly gave speeches in public for advice.<br>He told me that the key to a good speech is mastery over the subject matter.<br>So, I spent one whole week memorizing the content.<br>The next thing he told me to do was to divide the topic in different sections.<br>I divided my speech into five halves of 2 minutes each.<br>The first half was for introducing the topic and the last half for concluding the topic.<br>The remaining three halves were for the main content.<br>After breaking the speech into sections, I felt a lot more confident.<br>My friends also knew about my fear of public speaking and so every evening they used to come to my dormitory and help me prepare.<br>Slowly, I started feeling that it was doable.<br>I was nervous but I wasn’t worried anymore.</p>
-<p>When finally, the day of the speech contest arrived, I not only gave the whole speech but also received the second prize for it.<br>My teacher told me that I did a really good job and he was pretty proud of me.<br>That is the day I realized that rather than fearing challenges we should welcome them.<br>Challenges not only make life more exciting but also more meaningful.</p>
-<p>The person who formed the concept of wearing uniform in educational institutes, as well as offices, is really praised by everyone because uniform doesn’t let people discriminate each other. Everyone is considered as same in uniform. I still have a uniform which I used to wear in school. It is in a beautiful combination of red and white. I still remember we had two different uniforms which we used to wear on alternative days. But my fav was in a combination of red white which I still have as a memory. When I got enrolled in school, everything was entirely different. When our principal changed, she used her innovative ideas in school for different purposes.</p>
-<p>Reference:</p>
-<ol>
-<li><a href="https://ieltspracticeonline.com/cue-card-2020-16-describe-a-difficult-challenge-that-you-completed-met/" target="_blank" rel="noopener">ieltspracticeonline.com</a></li>
-</ol>
-<h1 id="Describe-a-uniform-you-wear-at-your-school-or-company"><a href="#Describe-a-uniform-you-wear-at-your-school-or-company" class="headerlink" title="Describe a uniform you wear (at your school or company)"></a>Describe a uniform you wear (at your school or company)</h1><ul>
-<li>When you wear it? - in the primary school</li>
-<li>Who bought it for you? - we were asked to wear the uniform in weekdays</li>
-<li>What does it look like? - white and blue</li>
-<li>How you feel about it? - be proud of it.</li>
-</ul>
-<p>Uniform is very important to maintain discipline in schools or even at workplace.<br>It also helps in distinguishing between customer and employees or students of different schools.<br>This is why every place has a different uniform.<br>I do not wear any uniform now, but I used to wear one in my school.<br>In fact, in my school we had different uniforms for weekdays and different for Saturday which was the games day.<br>For the weekdays, the students had to wear white shirt with steel grey bottoms along with a tie, belt and black shoes.<br>But for the games day, it was coloured T-shirts and white bottoms with the school belt and canvas shoes.<br>During the winters, we also had to wear a blue coloured blazer with the school motto<br>woven on its pocket.<br>This was my favourite part of the uniform as I looked really handsome after wearing it.<br>Also, our school uniform was comparatively better looking as compared to other schools in town, so I felt a little bit proud about it as well.<br>But I really hated wearing the games day uniform because the white color gets dirty very easily.<br>My parents used to buy the uniforms for me.<br>They bought it every alternate year because of my physical growth the old uniforms would get shorter.<br>I also remember that I used to take great care of my uniform and kept it neat and tidy.<br>This also got me compliments from my teachers.<br>In the end I would like to say that not many students understand the importance of wearing uniform, but it must be taught to them.</p>
-<h1 id="Describe-a-team-where-you-were-a-member"><a href="#Describe-a-team-where-you-were-a-member" class="headerlink" title="Describe a team where you were a member."></a>Describe a team where you were a member.</h1><ul>
-<li>What it was like? - a team comprises 5 people from different contries</li>
-<li>Why you joined it? - a coursework given by the teacher</li>
-<li>What you did in it? - clean the data</li>
-<li>And how you felt about it? - more confident</li>
-</ul>
-<p>I’d like to talk about a good experience while working in a team about 2 months ago.<br>It was in the Data-Mining class and all of the students were given a coursewok working in a team of up to 5 team mates.</p>
-<p>I didn’t know much about others so I selected my team mates randomly.<br>We were mixed different contries, different ethnic backgrounds.<br>As I was also less confident about my oral English, I was very apprehensive at the beginning, but it all changed with time.</p>
-<p>The coursework was to identify the offensive tweets and inoffensive tweets, which means there was a lot of work to do.<br>We divided our work into several parts and I was in charge of cleaning the data.<br>I used ‘pandas’ to read the data, made some rules to deal with the data, picked the words that appeared more than 10 times.<br>When we faced some problems, we would discuss them together and all the other team members also helped.<br>I still remember how we spent every afternoon sitting and reading books on the topic in the library.<br>We also read some journals on the topic on the internet.<br>It was during this part that we became really good friends.</p>
-<p>The last part of the project was a team presentation.<br>I was really afraid as I found speaking in front of people really daunting.<br>But my team mates really helped me then. I think we practiced giving the presentation three four times and that made me much more confident.</p>
-<p>I think it was because I had a good rapport with the team members and also because the role, I undertook was something I enjoyed a lot.</p>
-<p>it was in the last year . an opportunity in a new department .</p>
-<p>im optimistic but then i faced ptoblems.</p>
-<p>beginer , nervous, we start from the begining of the project.<br>ask the manager or other colleagues,<br>more importantly, learn the method to tackle the problems. more confident, coworking , independent thinking,</p>
-]]></content>
-      <categories>
-        <category>English study</category>
-      </categories>
-      <tags>
-        <tag>English study</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Heuristic Algorithm(启发式算法)</title>
-    <url>/posts/f7ee5063/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>Some understandings on Heuristic Algorithm(启发式算法).</p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-<a id="more"></a>
-<h1 id="Heuristic-Algorithm-启发式算法"><a href="#Heuristic-Algorithm-启发式算法" class="headerlink" title="Heuristic Algorithm(启发式算法)"></a>Heuristic Algorithm(启发式算法)</h1><h2 id="general-concept"><a href="#general-concept" class="headerlink" title="general concept"></a>general concept</h2><p>a heuristic is a technique designed for solving a problem more quickly when classic methods are too slow, or for finding an approximate solution when classic methods fail to find any exact solution. This is achieved by trading optimality, completeness, accuracy, or precision for speed. In a way, it can be considered a shortcut.</p>
-<h2 id="Travelling-salesman-problem-TSP"><a href="#Travelling-salesman-problem-TSP" class="headerlink" title="Travelling salesman problem(TSP)"></a>Travelling salesman problem(TSP)</h2><blockquote>
-<p>Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city and returns to the origin city?</p>
-</blockquote>
-<p>TSP is known to be NP-Hard so an optimal solution for even a moderate size problem is difficult to solve. Instead, the greedy algorithm can be used to give a good but not optimal solution (it is an approximation to the optimal answer) in a reasonably short amount of time. The greedy algorithm heuristic says to pick whatever is currently the best next step regardless of whether that prevents (or even makes impossible) good steps later. It is a heuristic in that practice says it is a good enough solution, theory says there are better solutions (and even can tell how much better in some cases).</p>
-<h2 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h2><p>Another example of heuristic making an algorithm faster occurs in certain search problems. Initially, the heuristic tries every possibility at each step, like the full-space search algorithm. But it can stop the search at any time if the current possibility is already worse than the best solution already found. In such search problems, a heuristic can be used to try good choices first so that bad paths can be eliminated early (see alpha-beta pruning). In the case of best-first search algorithms, such as A* search, the heuristic improves the algorithm’s convergence while maintaining its correctness as long as the heuristic is admissible.</p>
-<h2 id="Antivirus-software"><a href="#Antivirus-software" class="headerlink" title="Antivirus software"></a>Antivirus software</h2><p>Antivirus software often uses heuristic rules for detecting viruses and other forms of malware. Heuristic scanning looks for code and/or behavioral patterns common to a class or family of viruses, with different sets of rules for different viruses. If a file or executing process is found to contain matching code patterns and/or to be performing that set of activities, then the scanner infers that the file is infected. The most advanced part of behavior-based heuristic scanning is that it can work against highly randomized self-modifying/mutating (polymorphic) viruses that cannot be reliably detected by simpler string scanning methods. Heuristic scanning has the potential to detect future viruses without requiring the virus to be first detected somewhere else, submitted to the virus scanner developer, analyzed, and a detection update for the scanner provided to the scanner’s users.</p>
-<h2 id="启发式算法"><a href="#启发式算法" class="headerlink" title="启发式算法"></a>启发式算法</h2><p>一个基于直观或经验构造的算法，在可接受的花费（指计算时间和空间）下给出待解决组合优化问题每一个实例的一个可行解，该可行解与最优解的偏离程度一般不能被预计。现阶段，启发式算法以仿自然体算法为主，主要有蚁群算法、模拟退火法、神经网络等。</p>
-<h1 id="P-Problem-vs-NP-Problem"><a href="#P-Problem-vs-NP-Problem" class="headerlink" title="P-Problem vs NP-Problem"></a>P-Problem vs NP-Problem</h1><h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><ul>
-<li>时间复杂度则表示这个算法运行得到想要的解所需的计算工作量，他探讨的是当输入值接近无穷时，算法所需工作量的变化快慢程度。<h2 id="P-Problem-polynomial"><a href="#P-Problem-polynomial" class="headerlink" title="P-Problem(polynomial)"></a>P-Problem(polynomial)</h2></li>
-<li>A problem is assigned to the P (polynomial time) class if there exists at least one algorithm to solve that problem, such that the number of steps of the algorithm is bounded by a polynomial in n, where n is the length of the input.</li>
-<li>算法的步数可以用多项式来表示</li>
-<li>P类问题：如果一个问题可以找到一个能在多项式的时间里解决它的算法</li>
-</ul>
-<h2 id="NP-Problem-non-deterministic-polynomial-time-不确定性多项式时间"><a href="#NP-Problem-non-deterministic-polynomial-time-不确定性多项式时间" class="headerlink" title="NP-Problem(non-deterministic polynomial time)不确定性多项式时间"></a>NP-Problem(non-deterministic polynomial time)不确定性多项式时间</h2><ul>
-<li>A problem is assigned to the NP (nondeterministic polynomial time) class if it is solvable in polynomial time by a nondeterministic Turing machine.</li>
-<li></li>
-<li>A P-problem (whose solution time is bounded by a polynomial) is always also NP. If a problem is known to be NP, and a solution to the problem is somehow known, then demonstrating the correctness of the solution can always be reduced to a single P (polynomial time) verification. If P and NP are not equivalent, then the solution of NP-problems requires (in the worst case) an exhaustive search.</li>
-<li></li>
-<li>NP问题：可以在多项式的时间里验证一个解的问题/可以在多项式的时间里猜出一个解的问题</li>
-<li>所有的P类问题都是NP问题。</li>
-<li>不知道这个问题是不是存在多项式时间内的算法，所以叫non-deterministic不确定性，但是我们可以在多项式时间内验证并得出这个问题的一个正确解。</li>
-</ul>
-<h2 id="NPC-problem-non-deterministic-polynomial-complete"><a href="#NPC-problem-non-deterministic-polynomial-complete" class="headerlink" title="NPC problem(non-deterministic polynomial complete)"></a>NPC problem(non-deterministic polynomial complete)</h2><ul>
-<li>如果所有NP问题都能在多项式时间内转化为最难的一个NP类问题（被约化成的问题应具有比前一个问题更复杂的时间复杂度），则称该NP问题为NPC问题</li>
-</ul>
-<h2 id="NP-hard-Problem"><a href="#NP-hard-Problem" class="headerlink" title="NP-hard Problem"></a>NP-hard Problem</h2><ul>
-<li><p>A problem is said to be NP-hard if an algorithm for solving it can be translated into one for solving any other NP-problem. It is much easier to show that a problem is NP than to show that it is NP-hard. A problem which is both NP and NP-hard is called an NP-complete problem.</p>
-</li>
-<li><p>我们又叫NP难问题，他不是一个NP问题，然后所有的NPC问题都可以在多项式时间内转化为他的话，我们就叫他NPH（hard）问题。</p>
-</li>
-</ul>
-<p>Reference:</p>
-<ol>
-<li><a href="https://en.wikipedia.org/wiki/Heuristic_(computer_science)" target="_blank" rel="noopener">wikipedia</a></li>
-<li><a href="https://mathworld.wolfram.com/NP-Problem.html" target="_blank" rel="noopener">mathworld</a></li>
-<li><a href="http://www.matrix67.com/blog/archives/105" target="_blank" rel="noopener">matrix67.com</a></li>
-<li><a href="https://blog.csdn.net/databatman/article/details/49304295" target="_blank" rel="noopener">blog.csdn</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Artificial Intelligence</category>
-      </categories>
-      <tags>
-        <tag>Artificial Intelligence</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Inspired</title>
-    <url>/posts/bf1390a3/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>An email to record the concerns that I have recently. And thanks Professor Netta.</p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-<a id="more"></a>
-<p>Dear Netta,</p>
-<p>I’m still at leeds now,  in residence during this time. I don’t have any plan to go back home in the near future.</p>
-<p>– Ok, thanks!</p>
-<p>When I went shopping, I found only myself wearing the mask, which made me feel a little uncomfortable. Some of my Chinese friends suffered from discrimination maybe because they are Chinese and they wear the masks.</p>
-<p>– I also wore a mask yesterday and was also the only one in the shop and also got some funny looks. I think in general, we should expect a range of reactions. Some people think this is all crazy overreaction, others are down right panicking. If you experience any discrimination, please do let me know! Regardless, please don’t put yourself at risk just because of other people’s reactions.</p>
-<p>I know self-control is pretty important, but when I study at home, I’m not very efficient. I tried to focus on the subjects that I’m interest in, maybe that’s one of the solutions.</p>
-<p>–Jerry, this is not going to be easy. Remember that we are planning on a marathon, not a sprint. I would not expect you to work full hours initially. You need to set yourself up and gradually create an environment and routine that work for you. Go easy on yourself. One step at a time…</p>
-<p>– take care! Netta</p>
-<p>All the best to you and yours,<br>Jerry</p>
-]]></content>
-      <categories>
-        <category>Others</category>
-      </categories>
-      <tags>
-        <tag>Life</tag>
-      </tags>
+    <title>how to use gitlab and github at the same time</title>
+    <url>/posts/c406e4ba/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>送给25岁的你的10个礼物</title>
@@ -629,85 +966,6 @@
       </categories>
       <tags>
         <tag>Life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>3月7日游Chester Zoo及七种迹象，暗示你的生活正在慢慢变好</title>
-    <url>/posts/537a960e/</url>
-    <content><![CDATA[<h2 id="3月7日游Chester-Zoo"><a href="#3月7日游Chester-Zoo" class="headerlink" title="3月7日游Chester Zoo"></a>3月7日游Chester Zoo</h2><p>今天去了一趟Chester Zoo，去的时候和旁边的越南同学聊了一路，回的时候和日本同学聊了一路。</p>
-<a id="more"></a>
-<p>和越南同学聊，一直讲英语，后边问她会不会说中文，会，就穿插着用中文聊了，哈哈哈，越南同学真厉害。回的时候是日本同学，正好对日本动漫（火影忍者啥的），一些乐队（goose house），cartoon(久石让，宫崎骏)，一些风景名胜（fuji mountain，北海道），一些文化（招财猫，日本古人画像，日本天皇，doll）感兴趣，问了很多问题，还给日本同学分享了自己游玩明十三陵（一些帝王陵墓的讲究，比如有个棂星门），天安门广场（看了降旗仪式的视频），故宫里的珍妃井的故事和大戏台，聊得很开心，1个半小时很快就过去了。晚上吃过饭瞌睡，就在床上小憩了一会儿，醒来之后四周都是黑的，突然，一股难以言表的感觉浮上心头，这一天就这么过去了，时间过得好快啊。</p>
-<p>最近英国疫情稍稍严峻了一些（昨天是116例了），今天第一次基本全程戴口罩，刚开始戴口罩还是很不舒服的，不过很快就习惯了。到了动物园，碰到的外国人没一个人戴口罩（此时应无视他人异样的目光），周围没人的时候就解下来，大口吸口气，哈哈哈！动物园里有很多小孩，凑我旁边问我为什么戴口罩。还好戴着口罩，化解了我脸上的尴尬。</p>
-<p>刚好来利兹前去了一趟大连野生动物园，就说下最大的对比吧。这里每种动物相对少一点，人离得近一点，比如老虎区，人不是高高在上的站在围墙外面参观，而是基本水平的参观。工作人员讲解很耐心，很多景点碰到了讲解就停下来听一听。印象最深刻的就是蝙蝠馆（Fruit bat forest），蝙蝠就在身边飞啊飞，里面很臭。问了工作人员两个傻逼问题，为什么臭啊，这些蝙蝠带病毒不，哈哈哈。</p>
-<p>正好看到人民日报的励志文，记录一下，当自己颓废的时候激励自己。</p>
-<h2 id="重视健康和快乐"><a href="#重视健康和快乐" class="headerlink" title="重视健康和快乐"></a>重视健康和快乐</h2><ul>
-<li>按时吃饭，睡觉，用心对待一日三餐，控糖戒辣，少吃高热的垃圾食品，多吃蔬菜水果，坚持锻炼，明白熬夜的坏处，规律作息，多腾出时间给自己，感受并珍惜寻常日子的小幸福。</li>
-<li>健康太重要了，前段时间看了《急诊室故事》，生和死就是一瞬间的事，太脆弱了。</li>
-</ul>
-<h2 id="做事积极且自律"><a href="#做事积极且自律" class="headerlink" title="做事积极且自律"></a>做事积极且自律</h2><ul>
-<li>自律，自律，自律</li>
-<li>不要被懒惰控制，不要再荒废时光，钻研有意思的领域，不断提升自己的实力和才华</li>
-<li>早早起床</li>
-<li>不找借口，不畏失败，步履不停，积极且热忱地奔赴自己想要的人生。</li>
-<li>这个品质可是最重要的一点啊，想要做到，就别拖，做就行了。</li>
-</ul>
-<h2 id="保持干净的气质"><a href="#保持干净的气质" class="headerlink" title="保持干净的气质"></a>保持干净的气质</h2><ul>
-<li>干净卫生，良好的个人习惯</li>
-<li>远离无意义社交</li>
-</ul>
-<h2 id="拥有治愈自己的能力"><a href="#拥有治愈自己的能力" class="headerlink" title="拥有治愈自己的能力"></a>拥有治愈自己的能力</h2><ul>
-<li>沮丧低落的时候，和自己和解，治愈自己</li>
-<li>生活真的有美食，美景和爱你的人</li>
-</ul>
-<h2 id="不要太在意别人的眼光"><a href="#不要太在意别人的眼光" class="headerlink" title="不要太在意别人的眼光"></a>不要太在意别人的眼光</h2><ul>
-<li>忠于自己，无论是追求梦想，对待爱情，保护好那份热忱和怦然心动（单身的借口？哈哈哈）</li>
-<li>按照自己的节奏踏实前行，不焦虑，不气馁，静得下心，沉得住气</li>
-</ul>
-<h2 id="懂得控制自己的情绪"><a href="#懂得控制自己的情绪" class="headerlink" title="懂得控制自己的情绪"></a>懂得控制自己的情绪</h2><ul>
-<li>保持情绪稳定，工作的时候会遇到很多难题，不如开心地去想解决办法</li>
-<li>生活里面难免遇上糟心事，别冲动。不要用别人的错误来惩罚自己。</li>
-<li>善待家人</li>
-<li>别说伤感情的话，别说负能量的话，少一点指责，多一点将心比心</li>
-</ul>
-<h2 id="心里始终装着善良和温柔"><a href="#心里始终装着善良和温柔" class="headerlink" title="心里始终装着善良和温柔"></a>心里始终装着善良和温柔</h2><ul>
-<li>自觉垃圾分类，爱护小动物，不让陌生人难堪</li>
-</ul>
-<blockquote>
-<p>愿你在平凡的一天，炙热地活，快乐地爱，不辜负时间，不错付真心，不敷衍自己。愿你成为一个温暖、善良且有力量的人，真切地为自己的人生感到骄傲。</p>
-</blockquote>
-<p>From 人民日报</p>
-]]></content>
-      <categories>
-        <category>Others</category>
-      </categories>
-      <tags>
-        <tag>Life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Tableau</title>
-    <url>/posts/9c9742d/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>Some issues that I encounter when I use Tableau.</p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-<a id="more"></a>
-<ol>
-<li>Create a Top N Filter顺序问题<br>From the Data pane, drag City to the Filters shelf：filter的City还是原数据里的所有City，不是通过filter State之后的City(top N filter or the set filter排序问题)<br>原因：Tableau Order of Operations(the order that Tableau performs various actions, such as the order in which it applies your filters to the view.)</li>
-</ol>
-<p>解决方法：On the Filters shelf, right-click the Inclusions (Country, State) (Country, State) set and select Add to Context.</p>
-<p>Reference:</p>
-<ol>
-<li><a href="https://help.tableau.com/current/guides/get-started-tutorial/en-us/get-started-tutorial-drilldown.htm" target="_blank" rel="noopener">help.tableau.com</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Tableau</category>
-      </categories>
-      <tags>
-        <tag>Tableau</tag>
       </tags>
   </entry>
   <entry>
@@ -728,154 +986,56 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux command</title>
-    <url>/posts/ee36c540/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Development</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>big data revision</title>
-    <url>/posts/1984119a/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>A revision for Big Data System.</p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-<a id="more"></a>
-<h1 id="Big-Data-Definitions"><a href="#Big-Data-Definitions" class="headerlink" title="Big Data Definitions"></a>Big Data Definitions</h1><ul>
-<li>huge volumes of data</li>
-<li>the challenges, risks, and rewards of storing and extracting meaningful information from this data</li>
-<li>it becomes difficult to process using on-hand data management tools or traditional data processing applications<h2 id="Volume"><a href="#Volume" class="headerlink" title="Volume"></a>Volume</h2></li>
-<li>Sheer size of data in terms of storage and access.</li>
-<li>Many different factors can contribute to the increase in data volume.<h2 id="Velocity"><a href="#Velocity" class="headerlink" title="Velocity"></a>Velocity</h2></li>
-<li>Speed of incoming data and the time it takes to process.</li>
-<li>Data velocity is both the speed at which data streams in, and the timely manner in which data must be dealt with to maintain time based relevance.<h2 id="Variety"><a href="#Variety" class="headerlink" title="Variety"></a>Variety</h2></li>
-<li>Types of files and formats of data as well as sources.</li>
-<li>Data comes in all kinds of formats, but can be grouped into two types: structured and unstructured.</li>
-<li>Structured data is the numeric data in traditional databases. Created from line-of-business and pre-formatted data collected over time.</li>
-<li>Unstructured data is the relational and seemingly unrelated data that comes from unstructured sources (social media, text documents, email, video, audio, etc.)</li>
-</ul>
-<blockquote>
-<p>Extra Vs have been proposed, these typically describe characteristics rather than being definitional</p>
+    <title>Data mining notes &amp; weka notes</title>
+    <url>/posts/c94f917b/</url>
+    <content><![CDATA[<blockquote>
+<p>What I learned in Data Mining.</p>
 </blockquote>
-<h2 id="Veracity"><a href="#Veracity" class="headerlink" title="Veracity"></a>Veracity</h2><ul>
-<li>How accurate and meaningful is the data?<h2 id="Value"><a href="#Value" class="headerlink" title="Value"></a>Value</h2></li>
-<li>How can value be derived from a big dataset?</li>
-</ul>
-<h1 id="Big-Data-Examples"><a href="#Big-Data-Examples" class="headerlink" title="Big Data Examples"></a>Big Data Examples</h1><ul>
-<li>smart healthcare</li>
-<li>wearable devices</li>
-<li>smart retail</li>
-<li>equipment health management</li>
-<li>connected/smart cars</li>
-<li>intelligent transport</li>
-<li>smart grid</li>
-<li>smart cities</li>
-<li>recommender systems</li>
-<li>finance</li>
-</ul>
-<h1 id="HIGH-LEVEL-ARCHITECTURE"><a href="#HIGH-LEVEL-ARCHITECTURE" class="headerlink" title="HIGH LEVEL ARCHITECTURE"></a>HIGH LEVEL ARCHITECTURE</h1><ul>
-<li>The challenge of Big Data is how can we possibly deal with data that fits    these characteristics, both individually and collectively.</li>
-<li>The core of the answer lies in using distributed resources.<h2 id="Big-Data-sources"><a href="#Big-Data-sources" class="headerlink" title="Big Data sources"></a>Big Data sources</h2></li>
-<li>The    sources    layer    refers to all    of the data available for analysis, coming in from all channels.    The    type of analysis and sources are closely related.<h2 id="Data-messaging-and-store-layer"><a href="#Data-messaging-and-store-layer" class="headerlink" title="Data messaging and store layer"></a>Data messaging and store layer</h2></li>
-<li>is responsible for acquiring data from data sources.</li>
-<li>If    necessary,    the    layer    will also be responsible    for    converting    the    data    to    a format    that    suits    how    the    data will    be analysed.</li>
-<li>Data acquisition</li>
-<li>Data digest</li>
-<li>Distributed file storage<h2 id="Analysis-layer"><a href="#Analysis-layer" class="headerlink" title="Analysis layer"></a>Analysis layer</h2></li>
-<li>The    analysis layer reads the data digested by the data massaging    and    store    layer    (in    some    cases, it accesses data directly from the data source).</li>
-<li>Entity indentification</li>
-<li>Analytics engine</li>
-<li>Model management<h2 id="CONSUMPTION-LAYER"><a href="#CONSUMPTION-LAYER" class="headerlink" title="CONSUMPTION LAYER"></a>CONSUMPTION LAYER</h2></li>
-<li>This    layer    consumes    the    output    provided    by    the    analysis    layer.<h2 id="INFORMATION-INTEGRATION-LAYER"><a href="#INFORMATION-INTEGRATION-LAYER" class="headerlink" title="INFORMATION    INTEGRATION    LAYER"></a>INFORMATION    INTEGRATION    LAYER</h2></li>
-<li>Responsible    for    connecting    to    various    data    sources.</li>
-<li>Requires    quality    connectors &amp;    adapters<h2 id="DATA-GOVERNANCE-LAYER"><a href="#DATA-GOVERNANCE-LAYER" class="headerlink" title="DATA    GOVERNANCE    LAYER"></a>DATA    GOVERNANCE    LAYER</h2></li>
-<li>GDPR:    General    Data    Protection    Regulation<h2 id="SYSTEM-MANAGEMENT-layer"><a href="#SYSTEM-MANAGEMENT-layer" class="headerlink" title="SYSTEM    MANAGEMENT    layer"></a>SYSTEM    MANAGEMENT    layer</h2><h2 id="QUALITY-OF-SERVICE-QOS-LAYER"><a href="#QUALITY-OF-SERVICE-QOS-LAYER" class="headerlink" title="QUALITY OF    SERVICE    (QOS)    LAYER"></a>QUALITY OF    SERVICE    (QOS)    LAYER</h2></li>
-</ul>
-<h1 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h1><ul>
-<li>Programming    model    for    expressing    distributed    computation    in massive-scale    systems.</li>
-<li>Open-source    implementation    called    Hadoop.<h2 id="MapReduce-process"><a href="#MapReduce-process" class="headerlink" title="MapReduce    process"></a>MapReduce    process</h2></li>
-<li>Iterate    over a large number of records.<br>‒ Extract    something    of interest from    each.(Map)<br>‒ Shuffle    and    sort intermediate    results.<br>‒ Aggregate    intermediate results into something usable.(Reduce)<br>‒ Generate final output.(Reduce)<h2 id="Distributed-File-System-DFS"><a href="#Distributed-File-System-DFS" class="headerlink" title="Distributed    File    System    (DFS)"></a>Distributed    File    System    (DFS)</h2></li>
-<li>move    workers    to    the    data:<ul>
-<li>Not    enough    RAM    to    hold    all    the    data    in    memory</li>
-<li>Disk access is slow,    but    disk throughput is reasonable</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>Big Data</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>big data notes</title>
-    <url>/posts/b96255d4/</url>
-    <content><![CDATA[<h1 id="CPU-vs-GPU-vs-FPGA"><a href="#CPU-vs-GPU-vs-FPGA" class="headerlink" title="CPU vs GPU vs FPGA"></a>CPU vs GPU vs FPGA</h1><p>A CPU (central processing unit) works together with a GPU (graphics processing unit) to increase the throughput of data and the number of concurrent calculations within an application.</p>
 <a id="more"></a>
-<p>A CPU can never be fully replaced by a GPU: a GPU complements CPU architecture by allowing repetitive calculations within an application to be run in parallel while the main program continues to run on the CPU. The CPU can be thought of as the taskmaster of the entire system, coordinating a wide range of general-purpose computing tasks, with the GPU performing a narrower range of more specialized tasks (usually mathematical). Using the power of parallelism, a GPU can complete more work in the same amount of time as compared to a CPU.</p>
-<p><code>The main difference</code> between CPU and GPU architecture is that a CPU is designed to handle a wide-range of tasks quickly (as measured by CPU clock speed), but are limited in the concurrency of tasks that can be running. A GPU is designed to quickly render high-resolution images and video concurrently.</p>
-<p>Because GPUs can perform parallel operations on multiple sets of data, they are also commonly used for non-graphical tasks such as machine learning and scientific computation. Designed with thousands of processor cores running simultaneously, GPUs enable massive parallelism where each core is focused on making efficient calculations.</p>
-<p><img data-src="/images/cpu_vs_gpu.png" alt="cpu vs gpu"></p>
-<p>GPU needs to use cuda, so programming on GPU is more complicated</p>
-<p>GPU has better energy efficiency in design than CPU.</p>
-<p>Field Programmable Gate Array (FPGA), a reconfigurable integrated circuit.</p>
-<p>You can configure the FPGA to become any circuit you want to (as long as it fits on the FPGA). This is quite a bit different than the instruction-based hardware most programmers are used to, such as CPUs and GPUs. Instruction-based hardware is configured via software, whereas FPGAs are instead configured by specifying a hardware circuit.</p>
-<p>Low latency<br>This is where FPGAs are much better than CPUs (or GPUs, which have to communicate via the CPU). With an FPGA it is feasible to get a latency around or below 1 microsecond, whereas with a CPU a latency smaller than 50 microseconds is already very good.</p>
-<p>Reference:</p>
+<h1 id="Information-Extraction"><a href="#Information-Extraction" class="headerlink" title="Information Extraction"></a>Information Extraction</h1><h2 id="Information-Extraction-IE-and-Information-Retrieval-IR"><a href="#Information-Extraction-IE-and-Information-Retrieval-IR" class="headerlink" title="Information Extraction(IE) and Information Retrieval(IR)"></a>Information Extraction(IE) and Information Retrieval(IR)</h2><p>IE pulls facts and structured information from the content of large text collections (usually corpora).<br>IR pulls documents from large text collections (usually the Web) in response to specific keywords or queries.<br>With traditional query engines, getting the facts can be hard and slow.</p>
+<ul>
+<li>IE would return information in a structured way</li>
+<li>IR would return documents containing the relevant information somewhere (if you were lucky)<br>IE returns knowledge at a much deeper level than IR.<br>When would you use IE?</li>
+<li>For access to news</li>
+<li>For access to scientific reports<h2 id="Named-Entity-Recognition"><a href="#Named-Entity-Recognition" class="headerlink" title="Named Entity Recognition"></a>Named Entity Recognition</h2>Identification of proper names in texts, and their classification into a set of predefined categories of interest</li>
+</ul>
+<h2 id="MUSE-–-MUlti-Source-Entity-Recognition"><a href="#MUSE-–-MUlti-Source-Entity-Recognition" class="headerlink" title="MUSE – MUlti-Source Entity Recognition"></a>MUSE – MUlti-Source Entity Recognition</h2><p>An IE system developed within GATE</p>
+<h1 id="Language-and-Computers"><a href="#Language-and-Computers" class="headerlink" title="Language and Computers"></a>Language and Computers</h1><h2 id="Document-classification-sort-documents-into-user-defined-classes"><a href="#Document-classification-sort-documents-into-user-defined-classes" class="headerlink" title="Document classification = sort documents into user-defined classes"></a>Document classification = sort documents into user-defined classes</h2><p>classification tasks, such as sentiment analysis<br>One simple technique for identifying languages is to use <code>n-grams</code>(stretch of n tokens(i.e., letters or words)).<br>Document classification is an example of a computer science activity called machine learning, which is itself part of the subfield of artificial intelligence</p>
+<p>Supervised learning: training set and test set have been labeled with desired “correct answers”.<br>Unsupervised learning: assume there are no pre-specified categories.</p>
+<p>First step in classifying or clustering documents:<br>identify properties most relevant to the decision we want to make, i.e., features<br>To make a useful system we need to tell the computer two things:</p>
 <ol>
-<li>lectures from university of leeds</li>
-<li><a href="https://www.omnisci.com/technical-glossary/cpu-vs-gpu" target="_blank" rel="noopener">omnisci</a></li>
-<li><a href="https://blog.esciencecenter.nl/why-use-an-fpga-instead-of-a-cpu-or-gpu-b234cd4f309c" target="_blank" rel="noopener">esciencecenter</a></li>
+<li>Exactly which features are used and exactly how to detect them</li>
 </ol>
+<ul>
+<li>feature engineering</li>
+<li>Hard to automate this step</li>
+</ul>
+<ol start="2">
+<li>How to weight the evidence provided by the features</li>
+</ol>
+<ul>
+<li>Often works well to use machine learning for this<br>feature engineering:</li>
+<li>Kitchen sink strategy</li>
+<li>Hand-crafted strategy<br>The best features may be hard to collect reliably<br>bag of words assumption<br>Imagine that we cut up a document and put the words in a bag<br>Record the odds ratio for ham to spam as 12.5/0.8.<br>Idea of Naive Bayes: count things that occur in the test set</li>
+</ul>
+<h2 id="authorship-attribution"><a href="#authorship-attribution" class="headerlink" title="authorship attribution"></a>authorship attribution</h2><p>Stylometry<br>Lexical style markers</p>
+<h2 id="plagiarism"><a href="#plagiarism" class="headerlink" title="plagiarism"></a>plagiarism</h2><h1 id="Data-Warehousing"><a href="#Data-Warehousing" class="headerlink" title="Data Warehousing"></a>Data Warehousing</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>We have lots of data, the point of data mining is to extract the information, knowledge and particularly get the right knowledge at the right time. The idea of data Warehousing is to make data avaliable to do data mining. you need to have a static snap-shot of data to do the evaluation.</p>
+<h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><ul>
+<li>a standardized data store</li>
+<li>a process for bringing together disparate data from throughout an organization for decision-support purposes.</li>
+</ul>
+<p>use different algorithms to compare results to know which algo is better to use the same data.<br>store in the database rather in one format.</p>
+<p>subject-oriented: discriminating similar languages, has a particular topic<br>integrated: harvested from different sources into a single standard format(database, social media)<br>time-variant: twitter, news(data change every time, not predicting in the future)<br>non-volatile: static snap-shot, use the same dataset(pick the data at a particular time)</p>
+<p>copy of transaction data, query and analysis</p>
+<h2 id="Data-Mart"><a href="#Data-Mart" class="headerlink" title="Data Mart"></a>Data Mart</h2><p>smaller, more focused data warehouse - a mini-warehouse<br>reflects the business rules of a specific business unit within an enterprise.</p>
+<h2 id="Generic-Architecture-of-Data"><a href="#Generic-Architecture-of-Data" class="headerlink" title="Generic Architecture of Data"></a>Generic Architecture of Data</h2><p>transaction data: base level of data- raw material for understanding customer behavior<br>operational sumamary data: summaries are for a specific time period and utilize the transaction data for that time period.<br>decision support summary data: used to help make decisions about the business.<br>database schema: defines the structure of data, not the values of the data.<br>metadata: data<br>business rules: highest level of abstraction from operational data.<br>OLAP(ONline Analytical Processing): Data representation for ease of visualization.</p>
+<p>is any data-set a data warehouse?<br>sis: no<br>library catalogue: no<br>vle: no<br>text in a textbook: yes</p>
 ]]></content>
       <categories>
         <category>Notes</category>
       </categories>
       <tags>
-        <tag>Big Data</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>debate</title>
-    <url>/posts/ddc4a368/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>Some debate topics in English. Practice oral English every day.</p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-<a id="more"></a>
-<h1 id="Can-people-work-from-home"><a href="#Can-people-work-from-home" class="headerlink" title="Can people work from home?"></a>Can people work from home?</h1><h2 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages"></a>Advantages</h2><h2 id="Disadvantages"><a href="#Disadvantages" class="headerlink" title="Disadvantages"></a>Disadvantages</h2><ol>
-<li>different industry, actor , hotel stores ,designer need to collect some info with people. some work like recruiting need to face to face commucation. Most of the time, they need to haave a look. TO keep the staff working ,boss need to keep an eye on the employees.For the majority of company, even people are statying in the workplace, the y make mistakes.</li>
-<li>psychology idea, people and human being need to social, they can create new and ideas when they face to face, build a relationshiop with customers, but phone cannot. observing their body language, gestures, eye contact. Face to face talk is easy to show your facial emotions, they can ask questions.</li>
-<li>senior manager, they need to have a meeting, decisive decision? show their power,if this is very important and interesting for you, you need to find it, if it’s wrong,you need to make sure everything is under control. contract is face to face, if they have a contract online, it&#39;s not reliable.</li>
-</ol>
-]]></content>
-      <categories>
-        <category>English study</category>
-      </categories>
-      <tags>
-        <tag>English study</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cloud computing notes</title>
-    <url>/posts/983f472e/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>Cloud Computing</tag>
+        <tag>Data mining</tag>
       </tags>
   </entry>
   <entry>
@@ -891,53 +1051,27 @@
       </tags>
   </entry>
   <entry>
-    <title>This is a blog without any titles</title>
-    <url>/posts/58173337/</url>
-    <content><![CDATA[<h2 id="A-small-goal"><a href="#A-small-goal" class="headerlink" title="A small goal"></a>A small goal</h2><p>I&#39;m going to record <code>one Linux command</code> (<del>everyday</del>) once a week since (<del>today</del>) this week.<br>Let&#39;s see how long I can insist it.</p>
-]]></content>
-      <categories>
-        <category>Others</category>
-      </categories>
-      <tags>
-        <tag>Life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>云计算学习笔记之Docker(Cloud Computing Lab -- Docker)</title>
-    <url>/posts/db3e7c66/</url>
+    <title>pytorch踩坑心得</title>
+    <url>/posts/dadd677d/</url>
     <content><![CDATA[<blockquote>
-<p>Record the issues when I use Docker.</p>
+<p>Reocrd the issues when I use pytorch.</p>
 </blockquote>
 <a id="more"></a>
-<ul>
-<li>Docker在产业里的应用比VM更多</li>
-<li>VM和Docker的区别在于：VM是由Hypervisor统一管理，使用Guest OS；而Docker通过Docker Engine</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Development</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Data Challenge slides</title>
-    <url>/posts/70cdea1a/</url>
-    <content><![CDATA[<blockquote>
-<p>The slides that I use in Data Challenge.</p>
-</blockquote>
-<a id="more"></a>
-<p><img data-src="/images/data-challenge-slides/1.PNG" alt="page1"><br><img data-src="/images/data-challenge-slides/2.PNG" alt="page2"><br><img data-src="/images/data-challenge-slides/3.PNG" alt="page3"><br><img data-src="/images/data-challenge-slides/4.PNG" alt="page4"><br><img data-src="/images/data-challenge-slides/5.PNG" alt="page5"><br><img data-src="/images/data-challenge-slides/6.PNG" alt="page6"><br><img data-src="/images/data-challenge-slides/7.PNG" alt="page7"><br><img data-src="/images/data-challenge-slides/8.PNG" alt="page8"><br><img data-src="/images/data-challenge-slides/9.PNG" alt="page9"><br><img data-src="/images/data-challenge-slides/10.PNG" alt="page10"><br><img data-src="/images/data-challenge-slides/11.PNG" alt="page11"><br><img data-src="/images/data-challenge-slides/12.PNG" alt="page12"><br><img data-src="/images/data-challenge-slides/13.PNG" alt="page13"><br><img data-src="/images/data-challenge-slides/14.PNG" alt="page14"><br><img data-src="/images/data-challenge-slides/15.PNG" alt="page15"><br><img data-src="/images/data-challenge-slides/16.PNG" alt="page16"><br><img data-src="/images/data-challenge-slides/17.PNG" alt="page17"></p>
-<div class="note info no-icon">
-            <p>In addition, we use sql programming to deal with the data and use Mice method to replace the null value in python.</p>
+<h1 id="momentum的用处"><a href="#momentum的用处" class="headerlink" title="momentum的用处"></a>momentum的用处</h1><p><img data-src="/images/pytorch/momentum.png" alt="momentum"></p>
+<div class="note info">
+            <p>Image from <a href="https://pytorch.org/docs/stable/optim.html" target="_blank" rel="noopener">SGD</a></p>
           </div>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> impyute.imputation.cs <span class="keyword">import</span> mice</span><br><span class="line">imputer_mice = mice(data)</span><br></pre></td></tr></table></figure>
-<p><img data-src="/images/data-challenge-slides/sql.png" alt="sql"></p>
+<!-- more -->
+<h1 id="学习笔记"><a href="#学习笔记" class="headerlink" title="学习笔记"></a>学习笔记</h1><ul>
+<li>NumPy 的替代品，目的是可在GPU上使用</li>
+</ul>
+<p>待更新…</p>
 ]]></content>
+      <categories>
+        <category>Deep Learning</category>
+      </categories>
       <tags>
-        <tag>Data challenge</tag>
+        <tag>Machine Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -962,9 +1096,35 @@
       </tags>
   </entry>
   <entry>
-    <title>Introduction</title>
-    <url>/posts/ed318fdc/</url>
-    <content><![CDATA[<h2 id="My-first-blog"><a href="#My-first-blog" class="headerlink" title="My first blog"></a>My first blog</h2><p>The domain name <code>kaijiadage.com</code> is derived from the Chinese spelling of my nickname which is widely used in my social media. I bought this domain name on Apirl 22nd 2016 and ran my own .net project on this website until the graduation of the undergraduate.<br>Regrettably, the server was expired after my graduation. As a result, the website cannot work.<br>When it comes to the beginning of semester 2 in my Msc study, I reborn the idea of setting up a personal blog in order to record my study, my life.</p>
+    <title>Linux command</title>
+    <url>/posts/ee36c540/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Development</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>武汉加油 (Stay Strong Wuhan)</title>
+    <url>/posts/69e98808/</url>
+    <content><![CDATA[<p><img data-src="/images/stay-strong-wuhan/stay-strong-wuhan.jpg" alt="Stay_Strong_Wuhan"></p>
+<div class="note info">
+            <p>Image from <a href="http://opinion.people.com.cn/n1/2020/0215/c1003-31588403.html" target="_blank" rel="noopener">people.cn</a></p>
+          </div>
+]]></content>
+      <categories>
+        <category>Others</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>This is a blog without any titles</title>
+    <url>/posts/58173337/</url>
+    <content><![CDATA[<h2 id="A-small-goal"><a href="#A-small-goal" class="headerlink" title="A small goal"></a>A small goal</h2><p>I&#39;m going to record <code>one Linux command</code> (<del>everyday</del>) once a week since (<del>today</del>) this week.<br>Let&#39;s see how long I can insist it.</p>
 ]]></content>
       <categories>
         <category>Others</category>
@@ -1027,175 +1187,15 @@
       </tags>
   </entry>
   <entry>
-    <title>leetcode</title>
-    <url>/posts/39d23ebd/</url>
-    <content><![CDATA[<p>这里分享leetcode编程练习中遇到的不错的代码。</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-      <tags>
-        <tag>Competition</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>how to use gitlab and github at the same time</title>
-    <url>/posts/c406e4ba/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>papers summary</title>
-    <url>/posts/7cd80329/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>A summary of the papers that I read for the project.</p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-<a id="more"></a>
-<div class="note danger no-icon">
-            <p>Please provide a brief summary including</p><ol><li>What did they do and why?</li><li>What did they find?</li><li>Are there any issues/challenges with the research?</li><li>How is their work relevant to your project?</li></ol>
-          </div>
-
-<div class="note info no-icon">
-            <p>N. Valakunde and S. Ravikumar, “Prediction of Addiction to Social Media,” 2019 IEEE International Conference on Electrical, Computer and Communication Technologies (ICECCT), Coimbatore, India, 2019, pp. 1-6.</p><ol><li><p>The problem of social media addiction has only been observed and studied in the previous research papers, but no solution has been presented to date. This study aims to solve the problem of addiction by implementing machine learning using Linear Regression through Least Square Method and recommending certain positive exercises and practices which can help an individual to refrain from high usage of social media.</p></li><li><p>The data collected is analyzed with the help of graphs plotted by using the users’ data. The inputs are taken from the user from the respective questions asked to him/her, and a point is plotted for the user’s values in the respective graphs. By plotting the points on these graphs and comparing them, the machine is able to determine the problem faced by an individual and help him/her by giving out suggestions in the form of helpline numbers, motivational videos and/or inspiring speeches from successful people. This is a small and effective method to help people get rid of addiction to social media and lead a better life.</p></li><li><p>The research uses a very simple and basic algorithm(Linear Regression using Least Square Method). More complex and advanced machine learning algorithms can be used to achieve higher levels of accuracy in predictions. Besides, the research only contains the user data collected of 287 users, more data should be collected to make result become much more intelligent and accurate.</p></li><li><p>The research uses Linear Regression algorithm to indicate whether the user is addicted to social media or not and gives some recommendation to them like cutting down on their social media usage. This work can be used to predict the user behaviors to indicate how much the user would get addicted to the social media.</p></li></ol>
-          </div>
-
-<div class="note warning no-icon">
-            <p>M. Meghawat, S. Yadav, D. Mahata, Y. Yin, R. R. Shah and R. Zimmermann, “A Multimodal Approach to Predict Social Media Popularity,” 2018 IEEE Conference on Multimedia Information Processing and Retrieval (MIPR), Miami, FL, 2018, pp. 190-195.</p><ol><li><p>First, they use a random forest approach on available social and contextual information. Next, they apply a CNN model on available social and contextual information. Moreover, they apply transfer learning on image content information using the pre-trained InceptionResnet V2 model. Finally, in their multimodal approach, they combine all features derived from earlier steps and apply a convolutional model. The first reason is that most of previous researches just focused on information provided in the SMP-T1 dataset which includes average counts for views, comments, tags, groups, members, and lengths of title and description. No such multimodal dataset exists for the prediction of social media photos. So they propose a new dataset, called multimodal-SMP-dataset, by augmenting the existing SMP-T1 dataset with additional contextual information such as titles, descriptions, and tags of social media photos in addition to crawling image content (actual photos). The second reason is that one modality might not be enough to solve a complex problem like popularity prediction, so their proposed system exploits multimodal information.</p></li><li><p>Experimental results confirm that despite they use half of the training set, their multimodal approach gives comparable performance to that of state-of-the-art. Moreover, they have provided a multimodal dataset for social media popularity prediction to research community.</p></li><li><p>In their research, they explored different models for social media popularity prediction and got different results (Spearman RHO, Mean Absolute Error (MAE), and Mean Squared Error (MSE)) for each model. The issue is that they didn’t mention how many times they did those experiments for each model. I do not know whether they used an average result of several experiments or just an optimal result of single experiment.</p></li><li><p>This research uses a multimodal approach to predict the social media popularity, which could help me consider to use a multimodal approach (including image content) to do my project instead of focusing on a single model. Besides, it reminds me that I could also expand the dataset if necessary.</p></li></ol>
-          </div>
-
-<div class="note success no-icon">
-            
-          </div>
-]]></content>
-      <categories>
-        <category>papers</category>
-      </categories>
-      <tags>
-        <tag>papers</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>pytorch踩坑心得</title>
-    <url>/posts/dadd677d/</url>
-    <content><![CDATA[<blockquote>
-<p>Reocrd the issues when I use pytorch.</p>
-</blockquote>
-<a id="more"></a>
-<h1 id="momentum的用处"><a href="#momentum的用处" class="headerlink" title="momentum的用处"></a>momentum的用处</h1><p><img data-src="/images/pytorch/momentum.png" alt="momentum"></p>
-<div class="note info">
-            <p>Image from <a href="https://pytorch.org/docs/stable/optim.html" target="_blank" rel="noopener">SGD</a></p>
-          </div>
-<!-- more -->
-<h1 id="学习笔记"><a href="#学习笔记" class="headerlink" title="学习笔记"></a>学习笔记</h1><ul>
-<li>NumPy 的替代品，目的是可在GPU上使用</li>
-</ul>
-<p>待更新…</p>
-]]></content>
-      <categories>
-        <category>Deep Learning</category>
-      </categories>
-      <tags>
-        <tag>Machine Learning</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>武汉加油 (Stay Strong Wuhan)</title>
-    <url>/posts/69e98808/</url>
-    <content><![CDATA[<p><img data-src="/images/stay-strong-wuhan/stay-strong-wuhan.jpg" alt="Stay_Strong_Wuhan"></p>
-<div class="note info">
-            <p>Image from <a href="http://opinion.people.com.cn/n1/2020/0215/c1003-31588403.html" target="_blank" rel="noopener">people.cn</a></p>
-          </div>
+    <title>Introduction</title>
+    <url>/posts/ed318fdc/</url>
+    <content><![CDATA[<h2 id="My-first-blog"><a href="#My-first-blog" class="headerlink" title="My first blog"></a>My first blog</h2><p>The domain name <code>kaijiadage.com</code> is derived from the Chinese spelling of my nickname which is widely used in my social media. I bought this domain name on Apirl 22nd 2016 and ran my own .net project on this website until the graduation of the undergraduate.<br>Regrettably, the server was expired after my graduation. As a result, the website cannot work.<br>When it comes to the beginning of semester 2 in my Msc study, I reborn the idea of setting up a personal blog in order to record my study, my life.</p>
 ]]></content>
       <categories>
         <category>Others</category>
       </categories>
       <tags>
         <tag>Life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Why my website is not secure?</title>
-    <url>/posts/4d1d841d/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>After I updated NexT from v7.7.1 to the latest version(v7.8.0), the secure site suffers from the problem of mixed content.</p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-<a id="more"></a>
-
-<blockquote>
-<p>Using <code>HTTPS</code> instead of <code>HTTP</code> means that communications between your browser and a website is encrypted via the use of an <code>SSL (Secure Socket Layer)</code>. Even if your website doesn’t handle sensitive data, it’s a good idea to make sure your website loads securely over HTTPS. It’s now becoming a requirement for many new browser features as well as potentially having an impact on search engine rankings.</p>
-</blockquote>
-<ol>
-<li>When I enable <code>Enforce HTTPS</code>, the website is available over HTTPS.</li>
-</ol>
-<p><img data-src="/images/why-my-website-is-not-secure/1.png" alt="Enforce HTTPS"></p>
-<ol start="2">
-<li>However, today I found the website became not secure.</li>
-</ol>
-<p><img data-src="/images/why-my-website-is-not-secure/2.png" alt="Not fully secure"></p>
-<ol start="3">
-<li>So I checked the certificate to ensure it was still valid.</li>
-</ol>
-<p><img data-src="/images/why-my-website-is-not-secure/3.png" alt="The certificate is still within its validity"></p>
-<ol start="4">
-<li>Next, I checked the Console and found the problem.</li>
-</ol>
-<p><img data-src="/images/why-my-website-is-not-secure/4.png" alt="It was a problem of Mixed Content!"></p>
-<div class="note info">
-            <p>Mixed content means the green padlock icon will not be displayed for an <code>https://</code> site because, in fact, it’s not truly secure.</p><p>Here’s the problem: if an <code>https://</code> website includes any content from a site (even its own) served over <code>http://</code>, the green padlock can’t be displayed. That’s because resources like images, JavaScript, audio, video etc. included over <code>http://</code> open up a security hole into the secure website. A backdoor to trouble.</p><p>Today, Google Chrome shows a <code>circled i</code> on any <code>https://</code> that has insecure content.</p><p>To get a green padlock from either of these browsers requires every single subresource (resource loaded by a page) to be served over HTTPS.</p>
-          </div>
-
-<ol start="5">
-<li>So where is the insecure image <code>http://www.baidu.com/search/error.html</code> from?</li>
-</ol>
-<p><img data-src="/images/why-my-website-is-not-secure/5.png" alt="I found the link!"></p>
-<ol start="6">
-<li>After that, I went to Resources and found this link. The <span class="label danger">Status Code</span> is <code>307 Internal Redirect</code> which means we need to check previous requests!</li>
-</ol>
-<p><img data-src="/images/why-my-website-is-not-secure/7.png" alt="Check previous requests from Request initiator chain"></p>
-<ol start="7">
-<li><p>An exciting finding! The link <code>https://zz.bdstatic.com/linksubmit/push.js</code> works but the link <code>https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif?l=https://kaijiadage.com/</code> has a problem, how do they work here?</p>
-</li>
-<li><p>According to <a href="https://ziyuan.baidu.com/college/articleinfo?id=1587" target="_blank" rel="noopener">this article</a> from baidu platform and the results that we can see from <code>Request initiator chain</code>. Both two links are used when our blogs are pushed to baidu for SEO.</p>
-</li>
-</ol>
-<p><img data-src="/images/why-my-website-is-not-secure/6.png" alt="The baidu JavaScript for pushing code to baidu"></p>
-<ol start="9">
-<li><p>As we can see from this picture, we can clearly know where the previous link <code>.../push.js</code> comes from.</p>
-<p>And when we open this JavaScript file, we can clearly see where the latter link comes form.</p>
-</li>
-</ol>
-<p><img data-src="/images/why-my-website-is-not-secure/8.png" alt="The latter link"></p>
-<ol start="10">
-<li>when the latter link didn’t work, it navigated to the error page. So that was the problem.</li>
-</ol>
-<p><img data-src="/images/why-my-website-is-not-secure/9.png" alt="The latter link"></p>
-<ol start="11">
-<li>More importantly, how can we solve this problem?</li>
-</ol>
-<ul>
-<li>Obviously, <code>baidupush</code> function is not really necessary, so we can simply turn off it.</li>
-<li>If we still need to use this function, we need to learn more about how this funtion work. So here we go!</li>
-<li>刚才在第8点里，我们提到了一段JavaScript代码，只要把这段代码放入每个页面中（这个<code>hexo</code>已经做了），每当用户访问这些页面时，就会通过这段JavaScript从百度下载一个1x1的<code>gif</code>（即出错的链接来源），将window.location.href等信息推送给百度，同时记录页面此时此刻的URL地址（出错链接传参就是页面URL地址）。</li>
-<li>More solutions could be found in <a href="https://blog.cloudflare.com/fixing-the-mixed-content-problem-with-automatic-https-rewrites/" target="_blank" rel="noopener">this post</a></li>
-<li>暂时未想到其他方法，先关闭百度推送功能。</li>
-</ul>
-<p>Reference:</p>
-<ol>
-<li><a href="https://www.20i.com/support/ssl-certificates/force-https" target="_blank" rel="noopener">20i.com</a></li>
-<li><a href="https://blog.cloudflare.com/fixing-the-mixed-content-problem-with-automatic-https-rewrites/" target="_blank" rel="noopener">blog.cloudflare.com</a></li>
-<li><a href="https://ziyuan.baidu.com/college/articleinfo?id=1587" target="_blank" rel="noopener">ziyuan.baidu.com</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
       </tags>
   </entry>
 </search>
