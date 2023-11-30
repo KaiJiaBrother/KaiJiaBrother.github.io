@@ -1,42 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Big Data Systems Lab Session Running Hadoop on a Single Node</title>
-    <url>/posts/e8018068/</url>
-    <content><![CDATA[<div class="note info">
-            <p>针对第三周实验的一些简单个人理解，有错误请指出。</p>
-          </div>
-<a id="more"></a>
-<h1 id="Initial-system-setup"><a href="#Initial-system-setup" class="headerlink" title="Initial system setup"></a>Initial system setup</h1><ol>
-<li><code>whoami</code>: 显示当前用户<br>虚拟机进入时默认为root。</li>
-<li><code>su hduser</code>: su命令用于切换为<code>hduser</code>用户(hadoop user为该hadoop实例下自带的用户)</li>
-<li><code>cd ~</code>: 进入当前用户的根目录，如果当前是root用户，则进入<code>/root/</code>，如果当前是hduser，则进入<code>/home/hduser</code>,其中<code>/</code>代表整个虚拟机的根路径</li>
-<li><code>ssh-keygen -t rsa -P &quot;&quot;</code>: <code>ssh-keygen</code>用来生成密钥对。<code>-t rsa</code>指密钥类型为rsa, <code>-P</code>提供旧密语（类似默认密码）<br>生成的密钥默认位于<code>~/.ssh/</code>目录下，有两个文件，<code>id_rsa</code>是私钥，<code>id_rsa.pub</code>是公钥（<code>.ssh</code>代表隐藏文件，基于安全目的）<br>私钥不要泄漏出去，公钥则可以随意对外发布。用公钥进行加密的数据，只能用私钥才能解密。<br>使用ssh是为了使当前虚拟机与<code>localhost</code>建立安全连接（类似两台不同主机，不同服务器之间），还能免去输入密码，提高登录速度。</li>
-<li><code>cat $HOME/.ssh/id_rsa.pub &gt;&gt; $HOME/.ssh/authorized_keys</code>: 把公钥内容添加到需要免密登录的主机中，这里<code>$HOME</code>和<code>~</code>的效果是一样的<blockquote>
-<p>如果想同时配置多个ssh密钥对，例如还要同时连接gitlab, github，需要手动配置config文件指定使用哪个密钥，这里留个坑，以后再补充。</p>
-</blockquote>
-</li>
-<li><code>ssh localhost</code>: 刚才建立密钥对，就是为了连接<code>localhost</code></li>
-<li><code>echo $HADOOP_HOME</code>: 这里用来显示<code>$HADOOP_HOME</code>环境变量值，指定<code>Hadoop</code>运行环境的路径<br><code>~/.bashrc</code>这里储存了当前用户下的所有环境变量，只会对当前用户有效，每次启动<code>shell</code>自动被读取</li>
-<li><code>source .bashrc</code>: 运行此命令，使新建立的环境变量在当前shell中起作用，否则只能下次启动shell时激活该环境变量。<h1 id="Setting-up-Hadoop-and-HDFS"><a href="#Setting-up-Hadoop-and-HDFS" class="headerlink" title="Setting up Hadoop and HDFS"></a>Setting up Hadoop and HDFS</h1><div class="note info">
-            <p>这一部分主要是配置<code>Hadoop</code>存储数据文件的路径，监听端口。<br><code>hdfsTMP</code>用来储存临时文件</p>
-          </div></li>
-<li><code>nano core-site.xml</code>: 同<code>vi/vim</code>作用类似，文本编辑器，编辑<code>core-site.xml</code>文件。<br>这里使用<code>nano -w core-site.xml</code>命令更好，防止自动换行，造成不必要的错误。<br>常用操作：<code>Ctrl+O</code>(保存), <code>Ctrl+X</code>(退出), <code>Ctrl+C</code>(取消操作), <code>Ctrl+W</code>，搜索, 想再次搜索相同的字符串，按<code>Alt+W</code><br><code>vi/vim core-site.xml</code>: 常用操作：<code>i</code>(进入编辑模式)，<code>ESC</code>(退出编辑模式)，<code>:wq</code>(保存并退出)，<code>:q</code>(退出不保存)，<code>:q!</code>(强制退出)</li>
-<li><code>mkdir -p ~/hdfsTMP/namenode</code>: <code>-p</code>递归创建多个目录</li>
-<li><code>unset HADOOP_OPTS</code>: 清除环境变量<code>$HADOOP_OPTS</code><h1 id="Formatting-HDFS"><a href="#Formatting-HDFS" class="headerlink" title="Formatting HDFS"></a>Formatting HDFS</h1><div class="note info">
-            <p>创建Hadoop file system</p>
-          </div></li>
-<li><code>start-all.sh</code>: 没有权限时需要使用<code>chmod u+x 文件名.sh</code>来给可执行权限，不过该实验不用。<br>bash脚本执行方法：当前目录下，<code>./start-all.sh</code> 或 <code>sh start-all.sh</code><h1 id="Uploading-data-to-HDFS"><a href="#Uploading-data-to-HDFS" class="headerlink" title="Uploading data to HDFS"></a>Uploading data to HDFS</h1><h1 id="Creating-a-MapReduce-Java-application"><a href="#Creating-a-MapReduce-Java-application" class="headerlink" title="Creating a MapReduce Java application"></a>Creating a MapReduce Java application</h1>这里有个坑，<code>hadoop jar OurMapReduceJob.jar org.myorg.WordCount hdfsbook.txt output</code>跑完之后会报找不到main方法的错，原因是环境变量中的引号可能是中文的，回去检查一下。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Big Data</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AI Terms</title>
     <url>/posts/d96bcfee/</url>
     <content><![CDATA[<h1 id="Bootstrapping"><a href="#Bootstrapping" class="headerlink" title="Bootstrapping"></a>Bootstrapping</h1><ol>
@@ -199,27 +163,6 @@
       </tags>
   </entry>
   <entry>
-    <title>COVID-19</title>
-    <url>/posts/42fc5b46/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>最近看COVID-19的疫情统计，发现WHO的统计数据总是落后于各地政府的数据，按理说这很正常，但</p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-<a id="more"></a>
-
-<p>WHO(World Health Organization 世界卫生组织) 从1月21号开始，每天于欧洲中部时间(Central European Time)24H以内的数据，迄今为止，已经发布了共计66个每日报告了。<br>Data as reported by national authorities by 10:00 CET<br>但即使对于同一天的统计数据，依旧比政府的统计数据落后不少，原因如下：</p>
-<p>Due to differences in reporting methods, retrospective data consolidation, and reporting delays, the number of new cases may not always reflect the exact difference between yesterday’s and today’s totals. WHO COVID-19 Situation Reports present official counts of confirmed COVID-19 cases, thus differences between WHO reports and other sources of COVID-19 data using different inclusion criteria and different data cutoff times are to be expected.</p>
-]]></content>
-      <categories>
-        <category>Others</category>
-      </categories>
-      <tags>
-        <tag>Life</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Data mining notes &amp; weka notes</title>
     <url>/posts/c94f917b/</url>
     <content><![CDATA[<blockquote>
@@ -361,92 +304,54 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux command</title>
-    <url>/posts/ee36c540/</url>
-    <content><![CDATA[]]></content>
+    <title>Big Data Systems Lab Session Running Hadoop on a Single Node</title>
+    <url>/posts/e8018068/</url>
+    <content><![CDATA[<div class="note info">
+            <p>针对第三周实验的一些简单个人理解，有错误请指出。</p>
+          </div>
+<a id="more"></a>
+<h1 id="Initial-system-setup"><a href="#Initial-system-setup" class="headerlink" title="Initial system setup"></a>Initial system setup</h1><ol>
+<li><code>whoami</code>: 显示当前用户<br>虚拟机进入时默认为root。</li>
+<li><code>su hduser</code>: su命令用于切换为<code>hduser</code>用户(hadoop user为该hadoop实例下自带的用户)</li>
+<li><code>cd ~</code>: 进入当前用户的根目录，如果当前是root用户，则进入<code>/root/</code>，如果当前是hduser，则进入<code>/home/hduser</code>,其中<code>/</code>代表整个虚拟机的根路径</li>
+<li><code>ssh-keygen -t rsa -P &quot;&quot;</code>: <code>ssh-keygen</code>用来生成密钥对。<code>-t rsa</code>指密钥类型为rsa, <code>-P</code>提供旧密语（类似默认密码）<br>生成的密钥默认位于<code>~/.ssh/</code>目录下，有两个文件，<code>id_rsa</code>是私钥，<code>id_rsa.pub</code>是公钥（<code>.ssh</code>代表隐藏文件，基于安全目的）<br>私钥不要泄漏出去，公钥则可以随意对外发布。用公钥进行加密的数据，只能用私钥才能解密。<br>使用ssh是为了使当前虚拟机与<code>localhost</code>建立安全连接（类似两台不同主机，不同服务器之间），还能免去输入密码，提高登录速度。</li>
+<li><code>cat $HOME/.ssh/id_rsa.pub &gt;&gt; $HOME/.ssh/authorized_keys</code>: 把公钥内容添加到需要免密登录的主机中，这里<code>$HOME</code>和<code>~</code>的效果是一样的<blockquote>
+<p>如果想同时配置多个ssh密钥对，例如还要同时连接gitlab, github，需要手动配置config文件指定使用哪个密钥，这里留个坑，以后再补充。</p>
+</blockquote>
+</li>
+<li><code>ssh localhost</code>: 刚才建立密钥对，就是为了连接<code>localhost</code></li>
+<li><code>echo $HADOOP_HOME</code>: 这里用来显示<code>$HADOOP_HOME</code>环境变量值，指定<code>Hadoop</code>运行环境的路径<br><code>~/.bashrc</code>这里储存了当前用户下的所有环境变量，只会对当前用户有效，每次启动<code>shell</code>自动被读取</li>
+<li><code>source .bashrc</code>: 运行此命令，使新建立的环境变量在当前shell中起作用，否则只能下次启动shell时激活该环境变量。<h1 id="Setting-up-Hadoop-and-HDFS"><a href="#Setting-up-Hadoop-and-HDFS" class="headerlink" title="Setting up Hadoop and HDFS"></a>Setting up Hadoop and HDFS</h1><div class="note info">
+            <p>这一部分主要是配置<code>Hadoop</code>存储数据文件的路径，监听端口。<br><code>hdfsTMP</code>用来储存临时文件</p>
+          </div></li>
+<li><code>nano core-site.xml</code>: 同<code>vi/vim</code>作用类似，文本编辑器，编辑<code>core-site.xml</code>文件。<br>这里使用<code>nano -w core-site.xml</code>命令更好，防止自动换行，造成不必要的错误。<br>常用操作：<code>Ctrl+O</code>(保存), <code>Ctrl+X</code>(退出), <code>Ctrl+C</code>(取消操作), <code>Ctrl+W</code>，搜索, 想再次搜索相同的字符串，按<code>Alt+W</code><br><code>vi/vim core-site.xml</code>: 常用操作：<code>i</code>(进入编辑模式)，<code>ESC</code>(退出编辑模式)，<code>:wq</code>(保存并退出)，<code>:q</code>(退出不保存)，<code>:q!</code>(强制退出)</li>
+<li><code>mkdir -p ~/hdfsTMP/namenode</code>: <code>-p</code>递归创建多个目录</li>
+<li><code>unset HADOOP_OPTS</code>: 清除环境变量<code>$HADOOP_OPTS</code><h1 id="Formatting-HDFS"><a href="#Formatting-HDFS" class="headerlink" title="Formatting HDFS"></a>Formatting HDFS</h1><div class="note info">
+            <p>创建Hadoop file system</p>
+          </div></li>
+<li><code>start-all.sh</code>: 没有权限时需要使用<code>chmod u+x 文件名.sh</code>来给可执行权限，不过该实验不用。<br>bash脚本执行方法：当前目录下，<code>./start-all.sh</code> 或 <code>sh start-all.sh</code><h1 id="Uploading-data-to-HDFS"><a href="#Uploading-data-to-HDFS" class="headerlink" title="Uploading data to HDFS"></a>Uploading data to HDFS</h1><h1 id="Creating-a-MapReduce-Java-application"><a href="#Creating-a-MapReduce-Java-application" class="headerlink" title="Creating a MapReduce Java application"></a>Creating a MapReduce Java application</h1>这里有个坑，<code>hadoop jar OurMapReduceJob.jar org.myorg.WordCount hdfsbook.txt output</code>跑完之后会报找不到main方法的错，原因是环境变量中的引号可能是中文的，回去检查一下。</li>
+</ol>
+]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>Development</tag>
+        <tag>Big Data</tag>
       </tags>
   </entry>
   <entry>
-    <title>Heuristic Algorithm(启发式算法)</title>
-    <url>/posts/f7ee5063/</url>
+    <title>COVID-19</title>
+    <url>/posts/42fc5b46/</url>
     <content><![CDATA[<blockquote class="blockquote-center">
             <i class="fa fa-quote-left"></i>
-            <p>Some understandings on Heuristic Algorithm(启发式算法).</p>
+            <p>最近看COVID-19的疫情统计，发现WHO的统计数据总是落后于各地政府的数据，按理说这很正常，但</p>
 
             <i class="fa fa-quote-right"></i>
           </blockquote>
 <a id="more"></a>
-<h1 id="Heuristic-Algorithm-启发式算法"><a href="#Heuristic-Algorithm-启发式算法" class="headerlink" title="Heuristic Algorithm(启发式算法)"></a>Heuristic Algorithm(启发式算法)</h1><h2 id="general-concept"><a href="#general-concept" class="headerlink" title="general concept"></a>general concept</h2><p>a heuristic is a technique designed for solving a problem more quickly when classic methods are too slow, or for finding an approximate solution when classic methods fail to find any exact solution. This is achieved by trading optimality, completeness, accuracy, or precision for speed. In a way, it can be considered a shortcut.</p>
-<h2 id="Travelling-salesman-problem-TSP"><a href="#Travelling-salesman-problem-TSP" class="headerlink" title="Travelling salesman problem(TSP)"></a>Travelling salesman problem(TSP)</h2><blockquote>
-<p>Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city and returns to the origin city?</p>
-</blockquote>
-<p>TSP is known to be NP-Hard so an optimal solution for even a moderate size problem is difficult to solve. Instead, the greedy algorithm can be used to give a good but not optimal solution (it is an approximation to the optimal answer) in a reasonably short amount of time. The greedy algorithm heuristic says to pick whatever is currently the best next step regardless of whether that prevents (or even makes impossible) good steps later. It is a heuristic in that practice says it is a good enough solution, theory says there are better solutions (and even can tell how much better in some cases).</p>
-<h2 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h2><p>Another example of heuristic making an algorithm faster occurs in certain search problems. Initially, the heuristic tries every possibility at each step, like the full-space search algorithm. But it can stop the search at any time if the current possibility is already worse than the best solution already found. In such search problems, a heuristic can be used to try good choices first so that bad paths can be eliminated early (see alpha-beta pruning). In the case of best-first search algorithms, such as A* search, the heuristic improves the algorithm’s convergence while maintaining its correctness as long as the heuristic is admissible.</p>
-<h2 id="Antivirus-software"><a href="#Antivirus-software" class="headerlink" title="Antivirus software"></a>Antivirus software</h2><p>Antivirus software often uses heuristic rules for detecting viruses and other forms of malware. Heuristic scanning looks for code and/or behavioral patterns common to a class or family of viruses, with different sets of rules for different viruses. If a file or executing process is found to contain matching code patterns and/or to be performing that set of activities, then the scanner infers that the file is infected. The most advanced part of behavior-based heuristic scanning is that it can work against highly randomized self-modifying/mutating (polymorphic) viruses that cannot be reliably detected by simpler string scanning methods. Heuristic scanning has the potential to detect future viruses without requiring the virus to be first detected somewhere else, submitted to the virus scanner developer, analyzed, and a detection update for the scanner provided to the scanner’s users.</p>
-<h2 id="启发式算法"><a href="#启发式算法" class="headerlink" title="启发式算法"></a>启发式算法</h2><p>一个基于直观或经验构造的算法，在可接受的花费（指计算时间和空间）下给出待解决组合优化问题每一个实例的一个可行解，该可行解与最优解的偏离程度一般不能被预计。现阶段，启发式算法以仿自然体算法为主，主要有蚁群算法、模拟退火法、神经网络等。</p>
-<h1 id="P-Problem-vs-NP-Problem"><a href="#P-Problem-vs-NP-Problem" class="headerlink" title="P-Problem vs NP-Problem"></a>P-Problem vs NP-Problem</h1><h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><ul>
-<li>时间复杂度则表示这个算法运行得到想要的解所需的计算工作量，他探讨的是当输入值接近无穷时，算法所需工作量的变化快慢程度。<h2 id="P-Problem-polynomial"><a href="#P-Problem-polynomial" class="headerlink" title="P-Problem(polynomial)"></a>P-Problem(polynomial)</h2></li>
-<li>A problem is assigned to the P (polynomial time) class if there exists at least one algorithm to solve that problem, such that the number of steps of the algorithm is bounded by a polynomial in n, where n is the length of the input.</li>
-<li>算法的步数可以用多项式来表示</li>
-<li>P类问题：如果一个问题可以找到一个能在多项式的时间里解决它的算法</li>
-</ul>
-<h2 id="NP-Problem-non-deterministic-polynomial-time-不确定性多项式时间"><a href="#NP-Problem-non-deterministic-polynomial-time-不确定性多项式时间" class="headerlink" title="NP-Problem(non-deterministic polynomial time)不确定性多项式时间"></a>NP-Problem(non-deterministic polynomial time)不确定性多项式时间</h2><ul>
-<li>A problem is assigned to the NP (nondeterministic polynomial time) class if it is solvable in polynomial time by a nondeterministic Turing machine.</li>
-<li></li>
-<li>A P-problem (whose solution time is bounded by a polynomial) is always also NP. If a problem is known to be NP, and a solution to the problem is somehow known, then demonstrating the correctness of the solution can always be reduced to a single P (polynomial time) verification. If P and NP are not equivalent, then the solution of NP-problems requires (in the worst case) an exhaustive search.</li>
-<li></li>
-<li>NP问题：可以在多项式的时间里验证一个解的问题/可以在多项式的时间里猜出一个解的问题</li>
-<li>所有的P类问题都是NP问题。</li>
-<li>不知道这个问题是不是存在多项式时间内的算法，所以叫non-deterministic不确定性，但是我们可以在多项式时间内验证并得出这个问题的一个正确解。</li>
-</ul>
-<h2 id="NPC-problem-non-deterministic-polynomial-complete"><a href="#NPC-problem-non-deterministic-polynomial-complete" class="headerlink" title="NPC problem(non-deterministic polynomial complete)"></a>NPC problem(non-deterministic polynomial complete)</h2><ul>
-<li>如果所有NP问题都能在多项式时间内转化为最难的一个NP类问题（被约化成的问题应具有比前一个问题更复杂的时间复杂度），则称该NP问题为NPC问题</li>
-</ul>
-<h2 id="NP-hard-Problem"><a href="#NP-hard-Problem" class="headerlink" title="NP-hard Problem"></a>NP-hard Problem</h2><ul>
-<li><p>A problem is said to be NP-hard if an algorithm for solving it can be translated into one for solving any other NP-problem. It is much easier to show that a problem is NP than to show that it is NP-hard. A problem which is both NP and NP-hard is called an NP-complete problem.</p>
-</li>
-<li><p>我们又叫NP难问题，他不是一个NP问题，然后所有的NPC问题都可以在多项式时间内转化为他的话，我们就叫他NPH（hard）问题。</p>
-</li>
-</ul>
-<p>Reference:</p>
-<ol>
-<li><a href="https://en.wikipedia.org/wiki/Heuristic_(computer_science)" target="_blank" rel="noopener">wikipedia</a></li>
-<li><a href="https://mathworld.wolfram.com/NP-Problem.html" target="_blank" rel="noopener">mathworld</a></li>
-<li><a href="http://www.matrix67.com/blog/archives/105" target="_blank" rel="noopener">matrix67.com</a></li>
-<li><a href="https://blog.csdn.net/databatman/article/details/49304295" target="_blank" rel="noopener">blog.csdn</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Artificial Intelligence</category>
-      </categories>
-      <tags>
-        <tag>Artificial Intelligence</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Inspired</title>
-    <url>/posts/bf1390a3/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>An email to record the concerns that I have recently. And thanks Professor Netta.</p>
 
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-<a id="more"></a>
-<p>Dear Netta,</p>
-<p>I’m still at leeds now,  in residence during this time. I don’t have any plan to go back home in the near future.</p>
-<p>– Ok, thanks!</p>
-<p>When I went shopping, I found only myself wearing the mask, which made me feel a little uncomfortable. Some of my Chinese friends suffered from discrimination maybe because they are Chinese and they wear the masks.</p>
-<p>– I also wore a mask yesterday and was also the only one in the shop and also got some funny looks. I think in general, we should expect a range of reactions. Some people think this is all crazy overreaction, others are down right panicking. If you experience any discrimination, please do let me know! Regardless, please don’t put yourself at risk just because of other people’s reactions.</p>
-<p>I know self-control is pretty important, but when I study at home, I’m not very efficient. I tried to focus on the subjects that I’m interest in, maybe that’s one of the solutions.</p>
-<p>–Jerry, this is not going to be easy. Remember that we are planning on a marathon, not a sprint. I would not expect you to work full hours initially. You need to set yourself up and gradually create an environment and routine that work for you. Go easy on yourself. One step at a time…</p>
-<p>– take care! Netta</p>
-<p>All the best to you and yours,<br>Jerry</p>
+<p>WHO(World Health Organization 世界卫生组织) 从1月21号开始，每天于欧洲中部时间(Central European Time)24H以内的数据，迄今为止，已经发布了共计66个每日报告了。<br>Data as reported by national authorities by 10:00 CET<br>但即使对于同一天的统计数据，依旧比政府的统计数据落后不少，原因如下：</p>
+<p>Due to differences in reporting methods, retrospective data consolidation, and reporting delays, the number of new cases may not always reflect the exact difference between yesterday’s and today’s totals. WHO COVID-19 Situation Reports present official counts of confirmed COVID-19 cases, thus differences between WHO reports and other sources of COVID-19 data using different inclusion criteria and different data cutoff times are to be expected.</p>
 ]]></content>
       <categories>
         <category>Others</category>
@@ -629,6 +534,90 @@
       </tags>
   </entry>
   <entry>
+    <title>Heuristic Algorithm(启发式算法)</title>
+    <url>/posts/f7ee5063/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>Some understandings on Heuristic Algorithm(启发式算法).</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+<h1 id="Heuristic-Algorithm-启发式算法"><a href="#Heuristic-Algorithm-启发式算法" class="headerlink" title="Heuristic Algorithm(启发式算法)"></a>Heuristic Algorithm(启发式算法)</h1><h2 id="general-concept"><a href="#general-concept" class="headerlink" title="general concept"></a>general concept</h2><p>a heuristic is a technique designed for solving a problem more quickly when classic methods are too slow, or for finding an approximate solution when classic methods fail to find any exact solution. This is achieved by trading optimality, completeness, accuracy, or precision for speed. In a way, it can be considered a shortcut.</p>
+<h2 id="Travelling-salesman-problem-TSP"><a href="#Travelling-salesman-problem-TSP" class="headerlink" title="Travelling salesman problem(TSP)"></a>Travelling salesman problem(TSP)</h2><blockquote>
+<p>Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city and returns to the origin city?</p>
+</blockquote>
+<p>TSP is known to be NP-Hard so an optimal solution for even a moderate size problem is difficult to solve. Instead, the greedy algorithm can be used to give a good but not optimal solution (it is an approximation to the optimal answer) in a reasonably short amount of time. The greedy algorithm heuristic says to pick whatever is currently the best next step regardless of whether that prevents (or even makes impossible) good steps later. It is a heuristic in that practice says it is a good enough solution, theory says there are better solutions (and even can tell how much better in some cases).</p>
+<h2 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h2><p>Another example of heuristic making an algorithm faster occurs in certain search problems. Initially, the heuristic tries every possibility at each step, like the full-space search algorithm. But it can stop the search at any time if the current possibility is already worse than the best solution already found. In such search problems, a heuristic can be used to try good choices first so that bad paths can be eliminated early (see alpha-beta pruning). In the case of best-first search algorithms, such as A* search, the heuristic improves the algorithm’s convergence while maintaining its correctness as long as the heuristic is admissible.</p>
+<h2 id="Antivirus-software"><a href="#Antivirus-software" class="headerlink" title="Antivirus software"></a>Antivirus software</h2><p>Antivirus software often uses heuristic rules for detecting viruses and other forms of malware. Heuristic scanning looks for code and/or behavioral patterns common to a class or family of viruses, with different sets of rules for different viruses. If a file or executing process is found to contain matching code patterns and/or to be performing that set of activities, then the scanner infers that the file is infected. The most advanced part of behavior-based heuristic scanning is that it can work against highly randomized self-modifying/mutating (polymorphic) viruses that cannot be reliably detected by simpler string scanning methods. Heuristic scanning has the potential to detect future viruses without requiring the virus to be first detected somewhere else, submitted to the virus scanner developer, analyzed, and a detection update for the scanner provided to the scanner’s users.</p>
+<h2 id="启发式算法"><a href="#启发式算法" class="headerlink" title="启发式算法"></a>启发式算法</h2><p>一个基于直观或经验构造的算法，在可接受的花费（指计算时间和空间）下给出待解决组合优化问题每一个实例的一个可行解，该可行解与最优解的偏离程度一般不能被预计。现阶段，启发式算法以仿自然体算法为主，主要有蚁群算法、模拟退火法、神经网络等。</p>
+<h1 id="P-Problem-vs-NP-Problem"><a href="#P-Problem-vs-NP-Problem" class="headerlink" title="P-Problem vs NP-Problem"></a>P-Problem vs NP-Problem</h1><h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><ul>
+<li>时间复杂度则表示这个算法运行得到想要的解所需的计算工作量，他探讨的是当输入值接近无穷时，算法所需工作量的变化快慢程度。<h2 id="P-Problem-polynomial"><a href="#P-Problem-polynomial" class="headerlink" title="P-Problem(polynomial)"></a>P-Problem(polynomial)</h2></li>
+<li>A problem is assigned to the P (polynomial time) class if there exists at least one algorithm to solve that problem, such that the number of steps of the algorithm is bounded by a polynomial in n, where n is the length of the input.</li>
+<li>算法的步数可以用多项式来表示</li>
+<li>P类问题：如果一个问题可以找到一个能在多项式的时间里解决它的算法</li>
+</ul>
+<h2 id="NP-Problem-non-deterministic-polynomial-time-不确定性多项式时间"><a href="#NP-Problem-non-deterministic-polynomial-time-不确定性多项式时间" class="headerlink" title="NP-Problem(non-deterministic polynomial time)不确定性多项式时间"></a>NP-Problem(non-deterministic polynomial time)不确定性多项式时间</h2><ul>
+<li>A problem is assigned to the NP (nondeterministic polynomial time) class if it is solvable in polynomial time by a nondeterministic Turing machine.</li>
+<li></li>
+<li>A P-problem (whose solution time is bounded by a polynomial) is always also NP. If a problem is known to be NP, and a solution to the problem is somehow known, then demonstrating the correctness of the solution can always be reduced to a single P (polynomial time) verification. If P and NP are not equivalent, then the solution of NP-problems requires (in the worst case) an exhaustive search.</li>
+<li></li>
+<li>NP问题：可以在多项式的时间里验证一个解的问题/可以在多项式的时间里猜出一个解的问题</li>
+<li>所有的P类问题都是NP问题。</li>
+<li>不知道这个问题是不是存在多项式时间内的算法，所以叫non-deterministic不确定性，但是我们可以在多项式时间内验证并得出这个问题的一个正确解。</li>
+</ul>
+<h2 id="NPC-problem-non-deterministic-polynomial-complete"><a href="#NPC-problem-non-deterministic-polynomial-complete" class="headerlink" title="NPC problem(non-deterministic polynomial complete)"></a>NPC problem(non-deterministic polynomial complete)</h2><ul>
+<li>如果所有NP问题都能在多项式时间内转化为最难的一个NP类问题（被约化成的问题应具有比前一个问题更复杂的时间复杂度），则称该NP问题为NPC问题</li>
+</ul>
+<h2 id="NP-hard-Problem"><a href="#NP-hard-Problem" class="headerlink" title="NP-hard Problem"></a>NP-hard Problem</h2><ul>
+<li><p>A problem is said to be NP-hard if an algorithm for solving it can be translated into one for solving any other NP-problem. It is much easier to show that a problem is NP than to show that it is NP-hard. A problem which is both NP and NP-hard is called an NP-complete problem.</p>
+</li>
+<li><p>我们又叫NP难问题，他不是一个NP问题，然后所有的NPC问题都可以在多项式时间内转化为他的话，我们就叫他NPH（hard）问题。</p>
+</li>
+</ul>
+<p>Reference:</p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Heuristic_(computer_science)" target="_blank" rel="noopener">wikipedia</a></li>
+<li><a href="https://mathworld.wolfram.com/NP-Problem.html" target="_blank" rel="noopener">mathworld</a></li>
+<li><a href="http://www.matrix67.com/blog/archives/105" target="_blank" rel="noopener">matrix67.com</a></li>
+<li><a href="https://blog.csdn.net/databatman/article/details/49304295" target="_blank" rel="noopener">blog.csdn</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Artificial Intelligence</category>
+      </categories>
+      <tags>
+        <tag>Artificial Intelligence</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Inspired</title>
+    <url>/posts/bf1390a3/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>An email to record the concerns that I have recently. And thanks Professor Netta.</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+<p>Dear Netta,</p>
+<p>I’m still at leeds now,  in residence during this time. I don’t have any plan to go back home in the near future.</p>
+<p>– Ok, thanks!</p>
+<p>When I went shopping, I found only myself wearing the mask, which made me feel a little uncomfortable. Some of my Chinese friends suffered from discrimination maybe because they are Chinese and they wear the masks.</p>
+<p>– I also wore a mask yesterday and was also the only one in the shop and also got some funny looks. I think in general, we should expect a range of reactions. Some people think this is all crazy overreaction, others are down right panicking. If you experience any discrimination, please do let me know! Regardless, please don’t put yourself at risk just because of other people’s reactions.</p>
+<p>I know self-control is pretty important, but when I study at home, I’m not very efficient. I tried to focus on the subjects that I’m interest in, maybe that’s one of the solutions.</p>
+<p>–Jerry, this is not going to be easy. Remember that we are planning on a marathon, not a sprint. I would not expect you to work full hours initially. You need to set yourself up and gradually create an environment and routine that work for you. Go easy on yourself. One step at a time…</p>
+<p>– take care! Netta</p>
+<p>All the best to you and yours,<br>Jerry</p>
+]]></content>
+      <categories>
+        <category>Others</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>送给25岁的你的10个礼物</title>
     <url>/posts/2bda7ee1/</url>
     <content><![CDATA[<div class="note info">
@@ -640,49 +629,6 @@
       </categories>
       <tags>
         <tag>Life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Tableau</title>
-    <url>/posts/9c9742d/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>Some issues that I encounter when I use Tableau.</p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-<a id="more"></a>
-<ol>
-<li>Create a Top N Filter顺序问题<br>From the Data pane, drag City to the Filters shelf：filter的City还是原数据里的所有City，不是通过filter State之后的City(top N filter or the set filter排序问题)<br>原因：Tableau Order of Operations(the order that Tableau performs various actions, such as the order in which it applies your filters to the view.)</li>
-</ol>
-<p>解决方法：On the Filters shelf, right-click the Inclusions (Country, State) (Country, State) set and select Add to Context.</p>
-<p>Reference:</p>
-<ol>
-<li><a href="https://help.tableau.com/current/guides/get-started-tutorial/en-us/get-started-tutorial-drilldown.htm" target="_blank" rel="noopener">help.tableau.com</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Tableau</category>
-      </categories>
-      <tags>
-        <tag>Tableau</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>为什么我不使用hexo-asset-image插件 (Why I do not use hexo-asset-image)</title>
-    <url>/posts/bbd6e04f/</url>
-    <content><![CDATA[<p><code>hexo-asset-image</code> 是一个图片管理插件，在博客同一级可以生成相应的文件夹，用来存放博客用到的图片。<br>但在实际使用时，发现：</p>
-<ul>
-<li>1.这个功能有些多余,在一定程度上造成博客的插件众多，降低访问速度。</li>
-<li>2.图片和博客同时存在_post/，不如手动建一个文件夹存在images/更为合适。</li>
-<li>3.插件本身因为长时间无人维护，有一些坑。具体哪些坑，以后更新…</li>
-</ul>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -736,6 +682,60 @@
       </categories>
       <tags>
         <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tableau</title>
+    <url>/posts/9c9742d/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>Some issues that I encounter when I use Tableau.</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+<ol>
+<li>Create a Top N Filter顺序问题<br>From the Data pane, drag City to the Filters shelf：filter的City还是原数据里的所有City，不是通过filter State之后的City(top N filter or the set filter排序问题)<br>原因：Tableau Order of Operations(the order that Tableau performs various actions, such as the order in which it applies your filters to the view.)</li>
+</ol>
+<p>解决方法：On the Filters shelf, right-click the Inclusions (Country, State) (Country, State) set and select Add to Context.</p>
+<p>Reference:</p>
+<ol>
+<li><a href="https://help.tableau.com/current/guides/get-started-tutorial/en-us/get-started-tutorial-drilldown.htm" target="_blank" rel="noopener">help.tableau.com</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Tableau</category>
+      </categories>
+      <tags>
+        <tag>Tableau</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>为什么我不使用hexo-asset-image插件 (Why I do not use hexo-asset-image)</title>
+    <url>/posts/bbd6e04f/</url>
+    <content><![CDATA[<p><code>hexo-asset-image</code> 是一个图片管理插件，在博客同一级可以生成相应的文件夹，用来存放博客用到的图片。<br>但在实际使用时，发现：</p>
+<ul>
+<li>1.这个功能有些多余,在一定程度上造成博客的插件众多，降低访问速度。</li>
+<li>2.图片和博客同时存在_post/，不如手动建一个文件夹存在images/更为合适。</li>
+<li>3.插件本身因为长时间无人维护，有一些坑。具体哪些坑，以后更新…</li>
+</ul>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux command</title>
+    <url>/posts/ee36c540/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Development</tag>
       </tags>
   </entry>
   <entry>
@@ -817,6 +817,92 @@
       </tags>
   </entry>
   <entry>
+    <title>big data notes</title>
+    <url>/posts/b96255d4/</url>
+    <content><![CDATA[<h1 id="CPU-vs-GPU-vs-FPGA"><a href="#CPU-vs-GPU-vs-FPGA" class="headerlink" title="CPU vs GPU vs FPGA"></a>CPU vs GPU vs FPGA</h1><p>A CPU (central processing unit) works together with a GPU (graphics processing unit) to increase the throughput of data and the number of concurrent calculations within an application.</p>
+<a id="more"></a>
+<p>A CPU can never be fully replaced by a GPU: a GPU complements CPU architecture by allowing repetitive calculations within an application to be run in parallel while the main program continues to run on the CPU. The CPU can be thought of as the taskmaster of the entire system, coordinating a wide range of general-purpose computing tasks, with the GPU performing a narrower range of more specialized tasks (usually mathematical). Using the power of parallelism, a GPU can complete more work in the same amount of time as compared to a CPU.</p>
+<p><code>The main difference</code> between CPU and GPU architecture is that a CPU is designed to handle a wide-range of tasks quickly (as measured by CPU clock speed), but are limited in the concurrency of tasks that can be running. A GPU is designed to quickly render high-resolution images and video concurrently.</p>
+<p>Because GPUs can perform parallel operations on multiple sets of data, they are also commonly used for non-graphical tasks such as machine learning and scientific computation. Designed with thousands of processor cores running simultaneously, GPUs enable massive parallelism where each core is focused on making efficient calculations.</p>
+<p><img data-src="/images/cpu_vs_gpu.png" alt="cpu vs gpu"></p>
+<p>GPU needs to use cuda, so programming on GPU is more complicated</p>
+<p>GPU has better energy efficiency in design than CPU.</p>
+<p>Field Programmable Gate Array (FPGA), a reconfigurable integrated circuit.</p>
+<p>You can configure the FPGA to become any circuit you want to (as long as it fits on the FPGA). This is quite a bit different than the instruction-based hardware most programmers are used to, such as CPUs and GPUs. Instruction-based hardware is configured via software, whereas FPGAs are instead configured by specifying a hardware circuit.</p>
+<p>Low latency<br>This is where FPGAs are much better than CPUs (or GPUs, which have to communicate via the CPU). With an FPGA it is feasible to get a latency around or below 1 microsecond, whereas with a CPU a latency smaller than 50 microseconds is already very good.</p>
+<p>Reference:</p>
+<ol>
+<li>lectures from university of leeds</li>
+<li><a href="https://www.omnisci.com/technical-glossary/cpu-vs-gpu" target="_blank" rel="noopener">omnisci</a></li>
+<li><a href="https://blog.esciencecenter.nl/why-use-an-fpga-instead-of-a-cpu-or-gpu-b234cd4f309c" target="_blank" rel="noopener">esciencecenter</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Notes</category>
+      </categories>
+      <tags>
+        <tag>Big Data</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>debate</title>
+    <url>/posts/ddc4a368/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>Some debate topics in English. Practice oral English every day.</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+<h1 id="Can-people-work-from-home"><a href="#Can-people-work-from-home" class="headerlink" title="Can people work from home?"></a>Can people work from home?</h1><h2 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages"></a>Advantages</h2><h2 id="Disadvantages"><a href="#Disadvantages" class="headerlink" title="Disadvantages"></a>Disadvantages</h2><ol>
+<li>different industry, actor , hotel stores ,designer need to collect some info with people. some work like recruiting need to face to face commucation. Most of the time, they need to haave a look. TO keep the staff working ,boss need to keep an eye on the employees.For the majority of company, even people are statying in the workplace, the y make mistakes.</li>
+<li>psychology idea, people and human being need to social, they can create new and ideas when they face to face, build a relationshiop with customers, but phone cannot. observing their body language, gestures, eye contact. Face to face talk is easy to show your facial emotions, they can ask questions.</li>
+<li>senior manager, they need to have a meeting, decisive decision? show their power,if this is very important and interesting for you, you need to find it, if it’s wrong,you need to make sure everything is under control. contract is face to face, if they have a contract online, it&#39;s not reliable.</li>
+</ol>
+]]></content>
+      <categories>
+        <category>English study</category>
+      </categories>
+      <tags>
+        <tag>English study</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cloud computing notes</title>
+    <url>/posts/983f472e/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Notes</category>
+      </categories>
+      <tags>
+        <tag>Cloud Computing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>What I did in the data challenge</title>
+    <url>/posts/9affb527/</url>
+    <content><![CDATA[<p>待更新…</p>
+]]></content>
+      <categories>
+        <category>Data Analytics</category>
+      </categories>
+      <tags>
+        <tag>competition</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>This is a blog without any titles</title>
+    <url>/posts/58173337/</url>
+    <content><![CDATA[<h2 id="A-small-goal"><a href="#A-small-goal" class="headerlink" title="A small goal"></a>A small goal</h2><p>I&#39;m going to record <code>one Linux command</code> (<del>everyday</del>) once a week since (<del>today</del>) this week.<br>Let&#39;s see how long I can insist it.</p>
+]]></content>
+      <categories>
+        <category>Others</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>云计算学习笔记之Docker(Cloud Computing Lab -- Docker)</title>
     <url>/posts/db3e7c66/</url>
     <content><![CDATA[<blockquote>
@@ -855,60 +941,25 @@
       </tags>
   </entry>
   <entry>
-    <title>cloud computing notes</title>
-    <url>/posts/983f472e/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>Cloud Computing</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>What I did in the data challenge</title>
-    <url>/posts/9affb527/</url>
-    <content><![CDATA[<p>待更新…</p>
-]]></content>
-      <categories>
-        <category>Data Analytics</category>
-      </categories>
-      <tags>
-        <tag>competition</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>big data notes</title>
-    <url>/posts/b96255d4/</url>
-    <content><![CDATA[<h1 id="CPU-vs-GPU-vs-FPGA"><a href="#CPU-vs-GPU-vs-FPGA" class="headerlink" title="CPU vs GPU vs FPGA"></a>CPU vs GPU vs FPGA</h1><p>A CPU (central processing unit) works together with a GPU (graphics processing unit) to increase the throughput of data and the number of concurrent calculations within an application.</p>
+    <title>悼念奶奶 (In memory of grandma)</title>
+    <url>/posts/5e869232/</url>
+    <content><![CDATA[<blockquote>
+<p>奶奶居住过的老宅孤独寂寞，亦破败不堪。这正如以往年迈的奶奶，那屋檐上的杂草见证了人事间世事的冷暖。<br>The lonely house where grandma lived was secluded and dilapidated. Just like the aged grandma in the past, the weeds on the eaves have witnessed the warmth and coldness of the world.</p>
+</blockquote>
 <a id="more"></a>
-<p>A CPU can never be fully replaced by a GPU: a GPU complements CPU architecture by allowing repetitive calculations within an application to be run in parallel while the main program continues to run on the CPU. The CPU can be thought of as the taskmaster of the entire system, coordinating a wide range of general-purpose computing tasks, with the GPU performing a narrower range of more specialized tasks (usually mathematical). Using the power of parallelism, a GPU can complete more work in the same amount of time as compared to a CPU.</p>
-<p><code>The main difference</code> between CPU and GPU architecture is that a CPU is designed to handle a wide-range of tasks quickly (as measured by CPU clock speed), but are limited in the concurrency of tasks that can be running. A GPU is designed to quickly render high-resolution images and video concurrently.</p>
-<p>Because GPUs can perform parallel operations on multiple sets of data, they are also commonly used for non-graphical tasks such as machine learning and scientific computation. Designed with thousands of processor cores running simultaneously, GPUs enable massive parallelism where each core is focused on making efficient calculations.</p>
-<p><img data-src="/images/cpu_vs_gpu.png" alt="cpu vs gpu"></p>
-<p>GPU needs to use cuda, so programming on GPU is more complicated</p>
-<p>GPU has better energy efficiency in design than CPU.</p>
-<p>Field Programmable Gate Array (FPGA), a reconfigurable integrated circuit.</p>
-<p>You can configure the FPGA to become any circuit you want to (as long as it fits on the FPGA). This is quite a bit different than the instruction-based hardware most programmers are used to, such as CPUs and GPUs. Instruction-based hardware is configured via software, whereas FPGAs are instead configured by specifying a hardware circuit.</p>
-<p>Low latency<br>This is where FPGAs are much better than CPUs (or GPUs, which have to communicate via the CPU). With an FPGA it is feasible to get a latency around or below 1 microsecond, whereas with a CPU a latency smaller than 50 microseconds is already very good.</p>
-<p>Reference:</p>
-<ol>
-<li>lectures from university of leeds</li>
-<li><a href="https://www.omnisci.com/technical-glossary/cpu-vs-gpu" target="_blank" rel="noopener">omnisci</a></li>
-<li><a href="https://blog.esciencecenter.nl/why-use-an-fpga-instead-of-a-cpu-or-gpu-b234cd4f309c" target="_blank" rel="noopener">esciencecenter</a></li>
-</ol>
+<p>(1929-2020/2/18)<br>奶奶永远的睡着了，奶奶一路走好。</p>
+<p>若不是那个电话，我不知道我可能会被瞒多久。<br>远在英国，妈妈最初只是说奶奶出了点事情，爸爸不在家，便扯开话题，聊些别的。我心里已经有了不祥的预感，这语气似乎过于委婉，又似乎夹杂着些许犹豫。<br>正值疫情严重之时，各路口都布满了层层关卡。<br>我不知道要聊些什么，聊了几句便沉默了。<br>还是沉默。<br>妈妈对着镜头看着我，我移开视线，拨弄着盘子里的食物，把薯条一根一根叉起来，慢慢的嚼。<br>妈妈说这回奶奶病得很重，似乎还在掩饰着什么。<br>姐姐也接通了，有些急，问我懂不懂妈妈的意思。<br>我已经懂了，只是不愿意把这个词说出来。<br>小的时候，每次回奶奶家，离开的时候，奶奶和爷爷都会互相搀扶着，颤颤巍巍地走到路口送我们。<br>过了几年，只有奶奶送我们。<br>现在，再也没有人了。<br>奶奶只是睡着了。<br>希望奶奶睡得安稳，睡得安详。</p>
+<p><img data-src="/images/in-memory-of-grandma/in-memory-of-grandma.jpg" alt="in-memory-of-grandma"></p>
+<div class="note info">
+            <p>Image by <a href="https://pixabay.com/users/geralt-9301/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3064504" target="_blank" rel="noopener">Gerd Altmann</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3064504" target="_blank" rel="noopener">Pixabay</a></p>
+          </div>
 ]]></content>
       <categories>
-        <category>Notes</category>
+        <category>Others</category>
       </categories>
       <tags>
-        <tag>Big Data</tag>
+        <tag>Life</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>how to use gitlab and github at the same time</title>
-    <url>/posts/c406e4ba/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Introduction</title>
@@ -976,62 +1027,6 @@
       </tags>
   </entry>
   <entry>
-    <title>debate</title>
-    <url>/posts/ddc4a368/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>Some debate topics in English. Practice oral English every day.</p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-<a id="more"></a>
-<h1 id="Can-people-work-from-home"><a href="#Can-people-work-from-home" class="headerlink" title="Can people work from home?"></a>Can people work from home?</h1><h2 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages"></a>Advantages</h2><h2 id="Disadvantages"><a href="#Disadvantages" class="headerlink" title="Disadvantages"></a>Disadvantages</h2><ol>
-<li>different industry, actor , hotel stores ,designer need to collect some info with people. some work like recruiting need to face to face commucation. Most of the time, they need to haave a look. TO keep the staff working ,boss need to keep an eye on the employees.For the majority of company, even people are statying in the workplace, the y make mistakes.</li>
-<li>psychology idea, people and human being need to social, they can create new and ideas when they face to face, build a relationshiop with customers, but phone cannot. observing their body language, gestures, eye contact. Face to face talk is easy to show your facial emotions, they can ask questions.</li>
-<li>senior manager, they need to have a meeting, decisive decision? show their power,if this is very important and interesting for you, you need to find it, if it’s wrong,you need to make sure everything is under control. contract is face to face, if they have a contract online, it&#39;s not reliable.</li>
-</ol>
-]]></content>
-      <categories>
-        <category>English study</category>
-      </categories>
-      <tags>
-        <tag>English study</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>悼念奶奶 (In memory of grandma)</title>
-    <url>/posts/5e869232/</url>
-    <content><![CDATA[<blockquote>
-<p>奶奶居住过的老宅孤独寂寞，亦破败不堪。这正如以往年迈的奶奶，那屋檐上的杂草见证了人事间世事的冷暖。<br>The lonely house where grandma lived was secluded and dilapidated. Just like the aged grandma in the past, the weeds on the eaves have witnessed the warmth and coldness of the world.</p>
-</blockquote>
-<a id="more"></a>
-<p>(1929-2020/2/18)<br>奶奶永远的睡着了，奶奶一路走好。</p>
-<p>若不是那个电话，我不知道我可能会被瞒多久。<br>远在英国，妈妈最初只是说奶奶出了点事情，爸爸不在家，便扯开话题，聊些别的。我心里已经有了不祥的预感，这语气似乎过于委婉，又似乎夹杂着些许犹豫。<br>正值疫情严重之时，各路口都布满了层层关卡。<br>我不知道要聊些什么，聊了几句便沉默了。<br>还是沉默。<br>妈妈对着镜头看着我，我移开视线，拨弄着盘子里的食物，把薯条一根一根叉起来，慢慢的嚼。<br>妈妈说这回奶奶病得很重，似乎还在掩饰着什么。<br>姐姐也接通了，有些急，问我懂不懂妈妈的意思。<br>我已经懂了，只是不愿意把这个词说出来。<br>小的时候，每次回奶奶家，离开的时候，奶奶和爷爷都会互相搀扶着，颤颤巍巍地走到路口送我们。<br>过了几年，只有奶奶送我们。<br>现在，再也没有人了。<br>奶奶只是睡着了。<br>希望奶奶睡得安稳，睡得安详。</p>
-<p><img data-src="/images/in-memory-of-grandma/in-memory-of-grandma.jpg" alt="in-memory-of-grandma"></p>
-<div class="note info">
-            <p>Image by <a href="https://pixabay.com/users/geralt-9301/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3064504" target="_blank" rel="noopener">Gerd Altmann</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3064504" target="_blank" rel="noopener">Pixabay</a></p>
-          </div>
-]]></content>
-      <categories>
-        <category>Others</category>
-      </categories>
-      <tags>
-        <tag>Life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>This is a blog without any titles</title>
-    <url>/posts/58173337/</url>
-    <content><![CDATA[<h2 id="A-small-goal"><a href="#A-small-goal" class="headerlink" title="A small goal"></a>A small goal</h2><p>I&#39;m going to record <code>one Linux command</code> (<del>everyday</del>) once a week since (<del>today</del>) this week.<br>Let&#39;s see how long I can insist it.</p>
-]]></content>
-      <categories>
-        <category>Others</category>
-      </categories>
-      <tags>
-        <tag>Life</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode</title>
     <url>/posts/39d23ebd/</url>
     <content><![CDATA[<p>这里分享leetcode编程练习中遇到的不错的代码。</p>
@@ -1044,28 +1039,9 @@
       </tags>
   </entry>
   <entry>
-    <title>pytorch踩坑心得</title>
-    <url>/posts/dadd677d/</url>
-    <content><![CDATA[<blockquote>
-<p>Reocrd the issues when I use pytorch.</p>
-</blockquote>
-<a id="more"></a>
-<h1 id="momentum的用处"><a href="#momentum的用处" class="headerlink" title="momentum的用处"></a>momentum的用处</h1><p><img data-src="/images/pytorch/momentum.png" alt="momentum"></p>
-<div class="note info">
-            <p>Image from <a href="https://pytorch.org/docs/stable/optim.html" target="_blank" rel="noopener">SGD</a></p>
-          </div>
-<!-- more -->
-<h1 id="学习笔记"><a href="#学习笔记" class="headerlink" title="学习笔记"></a>学习笔记</h1><ul>
-<li>NumPy 的替代品，目的是可在GPU上使用</li>
-</ul>
-<p>待更新…</p>
-]]></content>
-      <categories>
-        <category>Deep Learning</category>
-      </categories>
-      <tags>
-        <tag>Machine Learning</tag>
-      </tags>
+    <title>how to use gitlab and github at the same time</title>
+    <url>/posts/c406e4ba/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>papers summary</title>
@@ -1098,6 +1074,30 @@
       </categories>
       <tags>
         <tag>papers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pytorch踩坑心得</title>
+    <url>/posts/dadd677d/</url>
+    <content><![CDATA[<blockquote>
+<p>Reocrd the issues when I use pytorch.</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="momentum的用处"><a href="#momentum的用处" class="headerlink" title="momentum的用处"></a>momentum的用处</h1><p><img data-src="/images/pytorch/momentum.png" alt="momentum"></p>
+<div class="note info">
+            <p>Image from <a href="https://pytorch.org/docs/stable/optim.html" target="_blank" rel="noopener">SGD</a></p>
+          </div>
+<!-- more -->
+<h1 id="学习笔记"><a href="#学习笔记" class="headerlink" title="学习笔记"></a>学习笔记</h1><ul>
+<li>NumPy 的替代品，目的是可在GPU上使用</li>
+</ul>
+<p>待更新…</p>
+]]></content>
+      <categories>
+        <category>Deep Learning</category>
+      </categories>
+      <tags>
+        <tag>Machine Learning</tag>
       </tags>
   </entry>
   <entry>
