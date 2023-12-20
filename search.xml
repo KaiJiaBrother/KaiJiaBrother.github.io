@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Elasticsearch</title>
+    <url>/posts/d32d37e5/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+<h1 id="ElasticSearch-命令文档"><a href="#ElasticSearch-命令文档" class="headerlink" title="ElasticSearch 命令文档"></a>ElasticSearch 命令文档</h1><p>5.4安装文档：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/docker.html#_inspect_status_of_cluster" target="_blank" rel="noopener">Install Elasticsearch with Docker | Elasticsearch Reference [5.4] | Elastic</a></p>
+<p>The default password for the <code>elastic</code>user is <code>changeme</code></p>
+<p>官方中文文档：<a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/match-query.html" target="_blank" rel="noopener">匹配查询 | Elasticsearch: 权威指南 | Elastic</a></p>
+<p>官方5.4英文文档：<a href="https://www.elastic.co/guide/en/elasticsearch/client/java-api/5.4/java-docs.html" target="_blank" rel="noopener">Document APIs | Java API [5.4] | Elastic</a></p>
+<p>Web应用查询链接：</p>
+<p><a href="https://ngdc.cncb.ac.cn/nucbank/search/query?term=human&page=1&length=10&seqLength1=&seqLength2=&sortField=accession.keyword&sortRule=asc&updateDate1=&updateDate2=&speciesName=&moleculeTypeName=&dataTypeName=Nucleotide" target="_blank" rel="noopener"></a></p>
+<h1 id="Nucbank索引格式"><a href="#Nucbank索引格式" class="headerlink" title="Nucbank索引格式"></a>Nucbank索引格式</h1><ol>
+<li>accession, text</li>
+<li>definition, text</li>
+<li>seqlength, long</li>
+<li>organism, text</li>
+<li>moleculetype, text</li>
+<li>updatedate,date</li>
+<li>devision,text</li>
+<li>releasedate,date</li>
+</ol>
+<h1 id="测试环境单节点启动ElasticSearch"><a href="#测试环境单节点启动ElasticSearch" class="headerlink" title="测试环境单节点启动ElasticSearch"></a>测试环境单节点启动ElasticSearch</h1><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">nohup docker run -p <span class="number">9200</span>:<span class="number">9200</span> -p <span class="number">9300</span>:<span class="number">9300</span> -e <span class="string">"discovery.type=single-node"</span> docker.elastic.co/elasticsearch/elasticsearch:<span class="number">5.4</span><span class="number">.1</span> &amp;</span><br></pre></td></tr></table></figure>
+
+<h1 id="创建索引-默认情况下，创建的索引分片数量是-5-个，副本数量是-1-个。"><a href="#创建索引-默认情况下，创建的索引分片数量是-5-个，副本数量是-1-个。" class="headerlink" title="创建索引(默认情况下，创建的索引分片数量是 5 个，副本数量是 1 个。)"></a>创建索引(默认情况下，创建的索引分片数量是 5 个，副本数量是 1 个。)</h1><p>测试环境：PUT <a href="http://192.168.130.19:9200/seqbank/" target="_blank" rel="noopener">http://192.168.130.19:9200/seqbank/</a></p>
+<p>正式环境：PUT <a href="http://192.168.130.21:9200/nucbank/" target="_blank" rel="noopener">http://192.168.130.21:9200/nucbank/</a></p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"settings"</span>: &#123;</span><br><span class="line">		<span class="string">"number_of_shards"</span>: <span class="number">30</span>,</span><br><span class="line">		<span class="string">"number_of_replicas"</span>: <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="更新索引字段（以create-date举例）"><a href="#更新索引字段（以create-date举例）" class="headerlink" title="更新索引字段（以create_date举例）"></a>更新索引字段（以create_date举例）</h1><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"properties"</span>: &#123;</span><br><span class="line">    <span class="string">"create_date"</span>: &#123;</span><br><span class="line">      <span class="string">"type"</span>: <span class="string">"date"</span>,</span><br><span class="line">      <span class="string">"format"</span>: <span class="string">"yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="创建mapping"><a href="#创建mapping" class="headerlink" title="创建mapping"></a>创建mapping</h1><p>测试环境：</p>
+<ol>
+<li>PUT <a href="http://192.168.130.19:9200/seqbank/_mapping/nucleotide" target="_blank" rel="noopener">http://192.168.130.19:9200/seqbank/_mapping/nucleotide</a></li>
+</ol>
+<p>正式环境：</p>
+<ol>
+<li>PUT <a href="http://192.168.130.21:9200/nucbank/_mapping/nucleotide" target="_blank" rel="noopener">http://192.168.130.21:9200/nucbank/_mapping/nucleotide</a></li>
+</ol>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">"properties"</span>: &#123;</span><br><span class="line">		<span class="attr">"accession"</span>: &#123;</span><br><span class="line">			<span class="attr">"type"</span>: <span class="string">"text"</span>,</span><br><span class="line">			<span class="attr">"fields"</span>: &#123;</span><br><span class="line">				<span class="attr">"keyword"</span>: &#123;</span><br><span class="line">					<span class="attr">"type"</span>: <span class="string">"keyword"</span>,</span><br><span class="line">					<span class="attr">"ignore_above"</span>: <span class="number">256</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="attr">"definition"</span>: &#123;</span><br><span class="line">			<span class="attr">"type"</span>: <span class="string">"text"</span>,</span><br><span class="line">			<span class="attr">"fields"</span>: &#123;</span><br><span class="line">				<span class="attr">"keyword"</span>: &#123;</span><br><span class="line">					<span class="attr">"type"</span>: <span class="string">"keyword"</span>,</span><br><span class="line">					<span class="attr">"ignore_above"</span>: <span class="number">256</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="attr">"seq_length"</span>: &#123;</span><br><span class="line">			<span class="attr">"type"</span>: <span class="string">"long"</span></span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="attr">"organism"</span>: &#123;</span><br><span class="line">			<span class="attr">"type"</span>: <span class="string">"text"</span>,</span><br><span class="line">			<span class="attr">"fields"</span>: &#123;</span><br><span class="line">				<span class="attr">"keyword"</span>: &#123;</span><br><span class="line">					<span class="attr">"type"</span>: <span class="string">"keyword"</span>,</span><br><span class="line">					<span class="attr">"ignore_above"</span>: <span class="number">256</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="attr">"molecule_type"</span>: &#123;</span><br><span class="line">			<span class="attr">"type"</span>: <span class="string">"text"</span>,</span><br><span class="line">			<span class="attr">"fields"</span>: &#123;</span><br><span class="line">				<span class="attr">"keyword"</span>: &#123;</span><br><span class="line">					<span class="attr">"type"</span>: <span class="string">"keyword"</span>,</span><br><span class="line">					<span class="attr">"ignore_above"</span>: <span class="number">256</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="attr">"update_date"</span>: &#123;</span><br><span class="line">			<span class="attr">"type"</span>: <span class="string">"date"</span>,</span><br><span class="line">			<span class="attr">"format"</span>: <span class="string">"yyyy-MM-dd||epoch_millis"</span>,</span><br><span class="line">			<span class="attr">"null_value"</span>: <span class="string">"1970-01-01"</span></span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="attr">"devision"</span>: &#123;</span><br><span class="line">			<span class="attr">"type"</span>: <span class="string">"text"</span>,</span><br><span class="line">			<span class="attr">"fields"</span>: &#123;</span><br><span class="line">				<span class="attr">"keyword"</span>: &#123;</span><br><span class="line">					<span class="attr">"type"</span>: <span class="string">"keyword"</span>,</span><br><span class="line">					<span class="attr">"ignore_above"</span>: <span class="number">256</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="attr">"release_date"</span>: &#123;</span><br><span class="line">			<span class="attr">"type"</span>: <span class="string">"date"</span>,</span><br><span class="line">			<span class="attr">"format"</span>: <span class="string">"yyyy-MM-dd||epoch_millis"</span>,</span><br><span class="line">			<span class="attr">"null_value"</span>: <span class="string">"1970-01-01"</span></span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="attr">"create_date"</span>: &#123;</span><br><span class="line">			<span class="attr">"type"</span>: <span class="string">"date"</span>,</span><br><span class="line">			<span class="attr">"format"</span>: <span class="string">"yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="使用-bulk批量导入数据"><a href="#使用-bulk批量导入数据" class="headerlink" title="使用_bulk批量导入数据"></a>使用_bulk批量导入数据</h1><p>测试环境：POST <a href="http://192.168.130.19:9200/seqbank/nucleotide/_bulk" target="_blank" rel="noopener">http://192.168.130.19:9200/seqbank/nucleotide/_bulk</a></p>
+<p>正式环境：POST <a href="http://192.168.130.21:9200/nucbank/nucleotide/_bulk" target="_blank" rel="noopener">http://192.168.130.21:9200/nucbank/nucleotide/_bulk</a></p>
+<p>使用：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123; <span class="attr">"index"</span>: &#123;&#125;&#125;</span><br><span class="line">&#123; <span class="attr">"accession"</span>: <span class="string">""</span>, <span class="attr">"definition"</span>:<span class="string">""</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h1><p>测试环境：DELETE <a href="http://192.168.130.19:9200/seqbank/" target="_blank" rel="noopener">http://192.168.130.19:9200/seqbank/</a></p>
+<p>正式环境：DELETE <a href="http://192.168.130.21:9200/nucbank/" target="_blank" rel="noopener">http://192.168.130.21:9200/nucbank/</a></p>
+<h1 id="查看全部索引状态"><a href="#查看全部索引状态" class="headerlink" title="查看全部索引状态"></a>查看全部索引状态</h1><p><a href="http://192.168.130.21:9200/_cat/indices?pretty" target="_blank" rel="noopener">192.168.130.21:9200/_cat/indices?pretty</a></p>
+<h1 id="查看es集群健康"><a href="#查看es集群健康" class="headerlink" title="查看es集群健康"></a>查看es集群健康</h1><p><a href="http://192.168.130.21:9200/_cluster/health" target="_blank" rel="noopener">http://192.168.130.21:9200/_cluster/health</a></p>
+<h1 id="查看es集群状态"><a href="#查看es集群状态" class="headerlink" title="查看es集群状态"></a>查看es集群状态</h1><p><a href="http://192.168.130.21:9200/_cat/health?v" target="_blank" rel="noopener">192.168.130.21:9200/_cat/health?v</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Why my website is not secure?</title>
     <url>/posts/4d1d841d/</url>
     <content><![CDATA[<blockquote class="blockquote-center">
