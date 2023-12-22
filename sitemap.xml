@@ -2,9 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kaijiadage.com/posts/812f29ca/</loc>
+    
+    <lastmod>2023-12-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kaijiadage.com/posts/d32d37e5/</loc>
     
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kaijiadage.com/posts/c4be357a/</loc>
+    
+    <lastmod>2023-12-22</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -319,7 +337,7 @@
 
   <url>
     <loc>https://kaijiadage.com/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -327,105 +345,112 @@
   
   <url>
     <loc>https://kaijiadage.com/tags/Big-Data/</loc>
-    <lastmod>2023-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kaijiadage.com/tags/Artificial-Intelligence/</loc>
-    <lastmod>2023-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kaijiadage.com/tags/English-study/</loc>
-    <lastmod>2023-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kaijiadage.com/tags/Data-mining/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/tags/Life/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://kaijiadage.com/tags/Development/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <loc>https://kaijiadage.com/tags/Artificial-Intelligence/</loc>
+    <lastmod>2023-12-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kaijiadage.com/tags/English-study/</loc>
+    <lastmod>2023-12-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kaijiadage.com/tags/Data-mining/</loc>
+    <lastmod>2023-12-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kaijiadage.com/tags/Database/</loc>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/tags/hexo/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kaijiadage.com/tags/Development/</loc>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/tags/Tableau/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/tags/Cloud-Computing/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/tags/competition/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/tags/Data-challenge/</loc>
-    <lastmod>2023-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kaijiadage.com/tags/University-of-Leeds/</loc>
-    <lastmod>2023-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kaijiadage.com/tags/Machine-Learning/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/tags/Competition/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kaijiadage.com/tags/University-of-Leeds/</loc>
+    <lastmod>2023-12-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kaijiadage.com/tags/Machine-Learning/</loc>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/tags/papers/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -434,84 +459,84 @@
   
   <url>
     <loc>https://kaijiadage.com/categories/Linux/</loc>
-    <lastmod>2023-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kaijiadage.com/categories/Artificial-Intelligence/</loc>
-    <lastmod>2023-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kaijiadage.com/categories/English-study/</loc>
-    <lastmod>2023-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kaijiadage.com/categories/Data-mining/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/categories/Others/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kaijiadage.com/categories/Artificial-Intelligence/</loc>
+    <lastmod>2023-12-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kaijiadage.com/categories/English-study/</loc>
+    <lastmod>2023-12-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kaijiadage.com/categories/Data-mining/</loc>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/categories/Notes/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/categories/hexo/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/categories/Tableau/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/categories/Data-Analytics/</loc>
-    <lastmod>2023-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kaijiadage.com/categories/Deep-Learning/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/categories/Code/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kaijiadage.com/categories/Deep-Learning/</loc>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kaijiadage.com/categories/papers/</loc>
-    <lastmod>2023-12-20</lastmod>
+    <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

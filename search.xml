@@ -1,15 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Elasticsearch-enhancement</title>
+    <url>/posts/812f29ca/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>Summary of Elasticsearch used at my work</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+
+<h1 id="ES优化方案"><a href="#ES优化方案" class="headerlink" title="ES优化方案"></a>ES优化方案</h1><h1 id="ES调研："><a href="#ES调研：" class="headerlink" title="ES调研："></a>ES调研：</h1><h2 id="1-以192-168-130-21为例，目前elastic服务占用服务器35-76GB（57-1-）的内存"><a href="#1-以192-168-130-21为例，目前elastic服务占用服务器35-76GB（57-1-）的内存" class="headerlink" title="1. 以192.168.130.21为例，目前elastic服务占用服务器35.76GB（57.1%）的内存"></a>1. 以192.168.130.21为例，目前elastic服务占用服务器35.76GB（57.1%）的内存</h2><p><img data-src="/images/Elasticsearch-enhancement/1.png" alt="1"></p>
+<p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/heap-sizing.html" target="_blank" rel="noopener">堆内存:大小和交换 | Elasticsearch: 权威指南 | Elastic</a></p>
+<p><strong>服务器是62GB，MySQL占用8.4GB，官方建议给ES分配的内存为可用内存的50%（27GB），给Lucene缓存服务留下更多的内存</strong></p>
+<p><img data-src="/images/Elasticsearch-enhancement/2.png" alt="2"></p>
+<p>从图里看，目前给elastic服务设置的堆内存是32GB，超过27GB，</p>
+<p><strong>堆内存越小，Elasticsearch（更快的 GC）和 Lucene（更多的内存用于缓存）的性能越好。</strong></p>
+<p>官方举了个例子，给64GB服务器分配32GB内存到ES上恰好存在一个<a href="https://wikis.oracle.com/display/HotSpotInternals/CompressedOops" target="_blank" rel="noopener">内存指针压缩</a>的问题，最稳妥的是分配31GB内存。</p>
+<h2 id="2-现有4个主分片-4个副本分片，每个分片大概225gb"><a href="#2-现有4个主分片-4个副本分片，每个分片大概225gb" class="headerlink" title="2. 现有4个主分片+4个副本分片，每个分片大概225gb"></a>2. 现有4个主分片+4个副本分片，每个分片大概225gb</h2><ol>
+<li>官方社区建议每个分片尽量控制在10-50GB</li>
+</ol>
+<p><img data-src="/images/Elasticsearch-enhancement/3.png" alt="3"></p>
+<p>优化建议一：分成45个分片，以现有数据规模900GB来看，每个分片大概保留20GB的数据</p>
+<p>结论：先分成30个分片</p>
+<h2 id="3-首页不提供全局搜索，只展示静态页面，和NCBI相似，用户输入内容后才显示搜索内容"><a href="#3-首页不提供全局搜索，只展示静态页面，和NCBI相似，用户输入内容后才显示搜索内容" class="headerlink" title="3. 首页不提供全局搜索，只展示静态页面，和NCBI相似，用户输入内容后才显示搜索内容"></a>3. 首页不提供全局搜索，只展示静态页面，和NCBI相似，用户输入内容后才显示搜索内容</h2><h2 id="4-分库分表先不操作，代码改动比较大"><a href="#4-分库分表先不操作，代码改动比较大" class="headerlink" title="4. 分库分表先不操作，代码改动比较大"></a>4. 分库分表先不操作，代码改动比较大</h2><h2 id="5-聚合的操作需要单独进行优化"><a href="#5-聚合的操作需要单独进行优化" class="headerlink" title="5. 聚合的操作需要单独进行优化"></a>5. 聚合的操作需要单独进行优化</h2><h1 id="提升导入性能"><a href="#提升导入性能" class="headerlink" title="提升导入性能"></a>提升导入性能</h1><p>牺牲数据可靠性及搜索实时性以换取数据写入性能</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"settings"</span>: &#123;</span><br><span class="line">    <span class="attr">"index"</span>: &#123;</span><br><span class="line">      <span class="attr">"refresh_interval"</span>: <span class="string">"-1"</span>,</span><br><span class="line">			<span class="attr">"number_of_shards"</span>: <span class="string">"30"</span>,</span><br><span class="line">			<span class="attr">"number_of_replicas"</span>: <span class="number">0</span>,</span><br><span class="line">			<span class="attr">"translog"</span>: &#123;</span><br><span class="line">		      <span class="attr">"sync_interval"</span>: <span class="string">"60s"</span>,</span><br><span class="line">		      <span class="attr">"durability"</span>: <span class="string">"async"</span></span><br><span class="line">		    &#125;,</span><br><span class="line">			<span class="attr">"routing"</span>: &#123;</span><br><span class="line">		      <span class="attr">"allocation"</span>: &#123;</span><br><span class="line">		        <span class="attr">"total_shards_per_node"</span>: <span class="number">15</span></span><br><span class="line">			      &#125;</span><br><span class="line">		    &#125;,</span><br><span class="line">			<span class="attr">"mapping"</span>: &#123;</span><br><span class="line">					<span class="attr">"total_fields"</span>:&#123;</span><br><span class="line">						<span class="attr">"limit"</span>: <span class="number">2000</span>						</span><br><span class="line">						&#125;</span><br><span class="line">				&#125;</span><br><span class="line">    &#125;,</span><br><span class="line"><span class="attr">"mapper"</span>: &#123;</span><br><span class="line">		    <span class="attr">"dynamic"</span>: <span class="literal">false</span></span><br><span class="line">		  &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">PUT <span class="string">http:</span><span class="comment">//192.168.130.21:9200/nucbank1/_settings</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"index"</span>: &#123;</span><br><span class="line">      <span class="string">"refresh_interval"</span>: <span class="string">"-1"</span>,</span><br><span class="line">      <span class="string">"number_of_shards"</span>: <span class="string">"30"</span>,</span><br><span class="line">			<span class="string">"number_of_replicas"</span>: <span class="number">0</span>,</span><br><span class="line">			<span class="string">"mapping.total_fields.limit"</span>: <span class="string">"2000"</span>,</span><br><span class="line">			<span class="string">"translog"</span>: &#123;</span><br><span class="line">		      <span class="string">"sync_interval"</span>: <span class="string">"60s"</span>,</span><br><span class="line">		      <span class="string">"durability"</span>: <span class="string">"async"</span></span><br><span class="line">		    &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"routing"</span>: &#123;</span><br><span class="line">      <span class="string">"allocation"</span>: &#123;</span><br><span class="line">        <span class="string">"total_shards_per_node"</span>: <span class="number">15</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">  <span class="string">"mappings"</span>: &#123;</span><br><span class="line">    <span class="string">"dynamic"</span>: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">bootstrap.<span class="string">memory_lock:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"settings"</span>: &#123;</span><br><span class="line">    <span class="string">"index"</span>: &#123;</span><br><span class="line">      <span class="string">"refresh_interval"</span>: <span class="string">"-1"</span>,</span><br><span class="line">			<span class="string">"number_of_shards"</span>: <span class="string">"30"</span>,</span><br><span class="line">			<span class="string">"number_of_replicas"</span>: <span class="number">0</span>,</span><br><span class="line">			<span class="string">"translog"</span>: &#123;</span><br><span class="line">		      <span class="string">"sync_interval"</span>: <span class="string">"60s"</span>,</span><br><span class="line">		      <span class="string">"durability"</span>: <span class="string">"async"</span></span><br><span class="line">		    &#125;,</span><br><span class="line">			<span class="string">"routing"</span>: &#123;</span><br><span class="line">		      <span class="string">"allocation"</span>: &#123;</span><br><span class="line">		        <span class="string">"total_shards_per_node"</span>: <span class="number">15</span></span><br><span class="line">			      &#125;</span><br><span class="line">		    &#125;,</span><br><span class="line">			<span class="string">"mapping"</span>: &#123;</span><br><span class="line">					<span class="string">"total_fields"</span>:&#123;</span><br><span class="line">						<span class="string">"limit"</span>: <span class="number">2000</span>						</span><br><span class="line">						&#125;</span><br><span class="line">				&#125;</span><br><span class="line">    &#125;,</span><br><span class="line"><span class="string">"mapper"</span>: &#123;</span><br><span class="line">		    <span class="string">"dynamic"</span>: <span class="literal">false</span></span><br><span class="line">		  &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"settings"</span>: &#123;</span><br><span class="line">    <span class="string">"index"</span>: &#123;</span><br><span class="line">      <span class="string">"refresh_interval"</span>: <span class="string">"60s"</span>,</span><br><span class="line">			<span class="string">"number_of_replicas"</span>: <span class="number">1</span>,</span><br><span class="line">			<span class="string">"translog"</span>: &#123;</span><br><span class="line">		      <span class="string">"sync_interval"</span>: <span class="string">"60s"</span>,</span><br><span class="line">		      <span class="string">"durability"</span>: <span class="string">"async"</span></span><br><span class="line">		    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">PUT http:<span class="regexp">//</span><span class="number">192.168</span>.<span class="number">130.21</span>:<span class="number">9200</span><span class="regexp">/nucbank1/</span>_settings</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"index.mapping.total_fields.limit"</span>: <span class="number">2000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>导入数据完成后执行<a href="http://192.168.130.21:9200/nucbank1/_refresh" target="_blank" rel="noopener">http://192.168.130.21:9200/nucbank1/_refresh</a></p>
+<h1 id="使用-bulk批量导入数据"><a href="#使用-bulk批量导入数据" class="headerlink" title="使用_bulk批量导入数据"></a>使用_bulk批量导入数据</h1><p>测试环境：POST <a href="http://192.168.130.19:9200/seqbank/nucleotide/_bulk" target="_blank" rel="noopener">http://192.168.130.19:9200/seqbank/nucleotide/_bulk</a></p>
+<p>正式环境：POST <a href="http://192.168.130.21:9200/nucbank/nucleotide/_bulk" target="_blank" rel="noopener">http://192.168.130.21:9200/nucbank/nucleotide/_bulk</a></p>
+<p>使用：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123; <span class="attr">"index"</span>: &#123;&#125;&#125;</span><br><span class="line">&#123; <span class="attr">"accession"</span>: <span class="string">""</span>, <span class="attr">"definition"</span>:<span class="string">""</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>不要使用：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;<span class="attr">"index"</span>: &#123;<span class="attr">"_index"</span>: <span class="string">"nucbank"</span>, <span class="attr">"_type"</span>: <span class="string">"nucleotide"</span>, <span class="attr">"_id"</span>: <span class="number">1</span>&#125;&#125;</span><br><span class="line">&#123;<span class="attr">"doc"</span>: &#123;<span class="attr">"accession"</span>: <span class="string">""</span>, <span class="attr">"definition"</span>:<span class="string">""</span>&#125;&#125;</span><br><span class="line">&#123;<span class="attr">"index"</span>: &#123;<span class="attr">"_index"</span>: <span class="string">"nucbank"</span>, <span class="attr">"_type"</span>: <span class="string">"nucleotide"</span>, <span class="attr">"_id"</span>: <span class="number">2</span>&#125;&#125;</span><br><span class="line">&#123;<span class="attr">"doc"</span>: &#123;<span class="attr">"accession"</span>: <span class="string">""</span>, <span class="attr">"definition"</span>:<span class="string">""</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意在 json 文件末尾加多一个回车</p>
+<h1 id="kibana"><a href="#kibana" class="headerlink" title="kibana"></a>kibana</h1><p><a href="http://192.168.164.19:7000/app/kibana" target="_blank" rel="noopener">192.168.164.19</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Elasticsearch-index</title>
+    <url>/posts/c4be357a/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>Summary of Elasticsearch used at my work</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+<a id="more"></a>
+<h1 id="ElasticSearch索引、分片"><a href="#ElasticSearch索引、分片" class="headerlink" title="ElasticSearch索引、分片"></a>ElasticSearch索引、分片</h1><p><a href="https://www.cnblogs.com/storyawine/p/13408248.html#:~:text=ES%E8%87%AA%E5%8A%A8%E7%AE%A1%E7%90%86%E5%92%8C%E7%BB%84%E7%BB%87,%E7%9B%B8%E5%BA%94%E7%9A%84%E6%9C%89%E4%B8%80%E4%B8%AAcopy." target="_blank" rel="noopener">索引、分片以及副本的数量和大小原则： - 一个运维 - 博客园 (cnblogs.com)</a></p>
+<ol>
+<li>集群(cluster)：由一个或多个节点组成, 并通过集群名称与其他集群进行区分，比如bigd</li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">[http:<span class="comment">//192.168.130.21:9200/_cluster/health](http://192.168.130.21:9200/_cluster/health)</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>分片(shard)：ES是一个分布式的搜索引擎，所以索引会分解为不同部分，分布到不同节点的数据就是分片。ES自动管理和组织分片，并对分片数据进行平衡分配，所以用户不需要担心分片的处理细节，一个分片默认最大文档数量是20亿。</li>
+<li>副本(replica)：ES默认为一个索引创建5个主分片，并分别为每个主分片创建一个副本分片。对于分布式搜索引擎来说，分片及副本的分配将是高可用及快速搜索响应的设计核心，主分片与副本都能处理查询请求，唯一区别是只有主分片才能处理索引请求。</li>
+<li>关于分片和副本：ES建好索引后，分片设置无法更改，副本数量可以修改。</li>
+<li>在开始阶段, 一个好的方案是根据你的节点数量按照1.5~3倍的原则来创建分片. 例如,如果你有3个节点, 则推荐你创建的分片数最多不超过9(3x3)个。</li>
+</ol>
+<p><a href="https://juejin.cn/post/6885320503867736078" target="_blank" rel="noopener">极限压榨elasticsearch写入速度 - 掘金</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Elasticsearch</title>
     <url>/posts/d32d37e5/</url>
     <content><![CDATA[<blockquote class="blockquote-center">
             <i class="fa fa-quote-left"></i>
-            
+            <p>Summary of Elasticsearch used at my work</p>
+
             <i class="fa fa-quote-right"></i>
           </blockquote>
 <a id="more"></a>
-<h1 id="ElasticSearch-命令文档"><a href="#ElasticSearch-命令文档" class="headerlink" title="ElasticSearch 命令文档"></a>ElasticSearch 命令文档</h1><p>5.4安装文档：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/docker.html#_inspect_status_of_cluster" target="_blank" rel="noopener">Install Elasticsearch with Docker | Elasticsearch Reference [5.4] | Elastic</a></p>
+
+<h1 id="ElasticSearch-命令文档"><a href="#ElasticSearch-命令文档" class="headerlink" title="ElasticSearch 命令文档"></a>ElasticSearch 命令文档</h1><p>5.4 Install Documentation: <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/docker.html#_inspect_status_of_cluster" target="_blank" rel="noopener">Install Elasticsearch with Docker | Elasticsearch Reference [5.4] | Elastic</a></p>
 <p>The default password for the <code>elastic</code>user is <code>changeme</code></p>
 <p>官方中文文档：<a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/match-query.html" target="_blank" rel="noopener">匹配查询 | Elasticsearch: 权威指南 | Elastic</a></p>
 <p>官方5.4英文文档：<a href="https://www.elastic.co/guide/en/elasticsearch/client/java-api/5.4/java-docs.html" target="_blank" rel="noopener">Document APIs | Java API [5.4] | Elastic</a></p>
@@ -25,13 +96,13 @@
 <li>devision,text</li>
 <li>releasedate,date</li>
 </ol>
-<h1 id="测试环境单节点启动ElasticSearch"><a href="#测试环境单节点启动ElasticSearch" class="headerlink" title="测试环境单节点启动ElasticSearch"></a>测试环境单节点启动ElasticSearch</h1><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">nohup docker run -p <span class="number">9200</span>:<span class="number">9200</span> -p <span class="number">9300</span>:<span class="number">9300</span> -e <span class="string">"discovery.type=single-node"</span> docker.elastic.co/elasticsearch/elasticsearch:<span class="number">5.4</span><span class="number">.1</span> &amp;</span><br></pre></td></tr></table></figure>
+<h1 id="测试环境单节点启动ElasticSearch"><a href="#测试环境单节点启动ElasticSearch" class="headerlink" title="测试环境单节点启动ElasticSearch"></a>测试环境单节点启动ElasticSearch</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:5.4.1 &amp;</span><br></pre></td></tr></table></figure>
 
 <h1 id="创建索引-默认情况下，创建的索引分片数量是-5-个，副本数量是-1-个。"><a href="#创建索引-默认情况下，创建的索引分片数量是-5-个，副本数量是-1-个。" class="headerlink" title="创建索引(默认情况下，创建的索引分片数量是 5 个，副本数量是 1 个。)"></a>创建索引(默认情况下，创建的索引分片数量是 5 个，副本数量是 1 个。)</h1><p>测试环境：PUT <a href="http://192.168.130.19:9200/seqbank/" target="_blank" rel="noopener">http://192.168.130.19:9200/seqbank/</a></p>
 <p>正式环境：PUT <a href="http://192.168.130.21:9200/nucbank/" target="_blank" rel="noopener">http://192.168.130.21:9200/nucbank/</a></p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"settings"</span>: &#123;</span><br><span class="line">		<span class="string">"number_of_shards"</span>: <span class="number">30</span>,</span><br><span class="line">		<span class="string">"number_of_replicas"</span>: <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;</span><br><span class="line">		<span class="attr">"number_of_shards"</span>: <span class="number">30</span>,</span><br><span class="line">		<span class="attr">"number_of_replicas"</span>: <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="更新索引字段（以create-date举例）"><a href="#更新索引字段（以create-date举例）" class="headerlink" title="更新索引字段（以create_date举例）"></a>更新索引字段（以create_date举例）</h1><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"properties"</span>: &#123;</span><br><span class="line">    <span class="string">"create_date"</span>: &#123;</span><br><span class="line">      <span class="string">"type"</span>: <span class="string">"date"</span>,</span><br><span class="line">      <span class="string">"format"</span>: <span class="string">"yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="更新索引字段（以create-date举例）"><a href="#更新索引字段（以create-date举例）" class="headerlink" title="更新索引字段（以create_date举例）"></a>更新索引字段（以create_date举例）</h1><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"properties"</span>: &#123;</span><br><span class="line">    <span class="attr">"create_date"</span>: &#123;</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"date"</span>,</span><br><span class="line">      <span class="attr">"format"</span>: <span class="string">"yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="创建mapping"><a href="#创建mapping" class="headerlink" title="创建mapping"></a>创建mapping</h1><p>测试环境：</p>
 <ol>
@@ -54,6 +125,9 @@
 <h1 id="查看es集群健康"><a href="#查看es集群健康" class="headerlink" title="查看es集群健康"></a>查看es集群健康</h1><p><a href="http://192.168.130.21:9200/_cluster/health" target="_blank" rel="noopener">http://192.168.130.21:9200/_cluster/health</a></p>
 <h1 id="查看es集群状态"><a href="#查看es集群状态" class="headerlink" title="查看es集群状态"></a>查看es集群状态</h1><p><a href="http://192.168.130.21:9200/_cat/health?v" target="_blank" rel="noopener">192.168.130.21:9200/_cat/health?v</a></p>
 ]]></content>
+      <tags>
+        <tag>Database</tag>
+      </tags>
   </entry>
   <entry>
     <title>Why my website is not secure?</title>
